@@ -1,0 +1,58 @@
+* {
+/*   border: 1px solid black; */
+}
+
+#main {
+  margin: 5%;
+  padding: 2%;
+  color: #337ab7;
+}
+
+#header {
+  font-family: fantasy;
+  margin-bottom: 5%;
+}
+
+#picture {
+  width: 90%;
+  margin: 0 auto;
+}
+
+#picture p {
+  color: slategray;
+  padding: 1%;
+}
+
+#timeline ul {
+  color: black;
+}
+
+.tyear {
+  font-weight: bold;
+}
+
+#timeline-source {
+  color: slategray;
+}
+
+.quote-large {
+  font-family: cursive;
+  font-size: 1.6em;
+  padding: 1.5% 5% 0.5%;
+}
+
+.quote-small {
+  padding: 0 5%;
+  font-size: 0.8em;
+}
+
+#cta {
+  color: black;
+  font-family: Verdana;
+  font-size: 1.8em;
+}
+
+footer {
+  font-family: serif;
+  color: slategray;
+}
