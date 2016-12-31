@@ -1,0 +1,124 @@
+/* just for testing layout */
+* {
+/*   border: 1px solid black; */
+}
+
+body {
+  padding-top: 65px;
+  background-color: #EEEBEB;
+}
+
+/*************************
+NAVAR
+*************************/
+
+.navbar-brand {
+/*   border: 1px solid pink; */
+  font-weight: bold;
+}
+
+.navbar-brand img {
+  height: 100%;
+  display: inline-block;
+}
+
+
+/*************************
+MAIN
+*************************/
+
+hr {
+    border-top: 2px solid #ccc;
+}
+
+.main {
+  border-left: 2px ridge;
+  border-right: 2px ridge;
+  padding: 0;
+}
+
+/*************************
+MAIN - ABOUT
+*************************/
+
+.main header {
+  margin-top: -1%;
+  padding-bottom: 3%;
+  border-bottom: 5px dotted slategray;
+
+}
+
+#header-intro {
+  font-size: 1.8em;
+  padding: 3% 5%;
+  color: #404040;
+
+}
+
+#header-img img {
+  width: 85%;
+  border-radius: 50%;
+  padding: 2%;
+}
+
+
+/*************************
+MAIN - PORTFOLIO
+*************************/
+
+#portfolio {
+  margin-top: -2%;
+}
+
+#portfolio > h1 {
+  padding-top: 2.5%;
+}
+
+.project {
+  padding: 5% 15%;
+}
+
+.project img {
+  width: 100%;
+}
+
+figcaption {
+  padding: 1.2%;
+}
+
+/*************************
+FOOTER
+*************************/
+
+.footer-social {
+  padding: 3.5% 1%;
+  border-top: 1px solid lightgray;
+}
+
+.footer-social h2 {
+  color: #337ab7;
+}
+
+#footer-social i {
+  font-size: 2.5em;
+  padding: 1.5%;
+  border: 1px solid slategray;
+  border-radius: 50%;
+}
+
+#footer-about p,
+#footer-social > div {
+  padding: 2% 0;
+}
+
+#footer-about p {
+  font-size: 1.4em;
+}
+
+.footer-copy {
+  padding: 0.5%;
+}
+
+.footer-copy img {
+  height: 20px;
+}
