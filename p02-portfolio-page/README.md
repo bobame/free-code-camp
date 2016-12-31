@@ -19,12 +19,12 @@ see [instructions](https://www.freecodecamp.com/challenges/build-a-personal-port
 ## Plan
 1. PART-1: Navigation Bar
     - [X] Full-width and Fixed-top
-    - [ ] Nav-Left - Home Logo that scrolls to top of page
+    - [X] Nav-Left - Home Logo that scrolls to top of page
     - Nav-Right:
-        - [ ] Nav-Right-1 - ABOUT text that scrolls to ABOUT section on page
-        - [ ] Nav-Right-2 - PORTFOLIO text that scrolls to PORTFOLIO section on page
+        - [X] Nav-Right-1 - ABOUT text that scrolls to ABOUT section on page
+        - [X] Nav-Right-2 - PORTFOLIO text that scrolls to PORTFOLIO section on page
         - [X] should collapse into hamburger menu in mobile size
-        - [ ] should highlight button corresponding to active section on page
+        - [X] should highlight button corresponding to active section on page
     - [ ] Extra Scroll up feature - lower right corner should provide button to scroll up in mobile size
 2. PART-2: Footer
     - [X] Full-width
