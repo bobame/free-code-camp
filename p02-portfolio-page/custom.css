@@ -100,6 +100,18 @@ figcaption {
   padding: 1.2%;
 }
 
+
+/*************************
+MAIN - SCROLL TOP FEATURE
+*************************/
+
+.scroll-top {
+  font-size: 3em;
+  position: fixed;
+  bottom: 5.5%;
+  right: 5%;
+}
+
 /*************************
 FOOTER
 *************************/
