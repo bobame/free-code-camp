@@ -25,7 +25,7 @@ see [instructions](https://www.freecodecamp.com/challenges/build-a-personal-port
         - [X] Nav-Right-2 - PORTFOLIO text that scrolls to PORTFOLIO section on page
         - [X] should collapse into hamburger menu in mobile size
         - [X] should highlight button corresponding to active section on page
-    - [ ] Extra Scroll up feature - lower right corner should provide button to scroll up in mobile size
+    - [X] Extra Scroll up feature - lower right corner should provide button to scroll up in mobile size
 2. PART-2: Footer
     - [X] Full-width
     - [X] Center-aligned text, "<logo> &copy; 2017. All Rights Reserved." (Unsure if original "All Rights **Reversed**" is intentional)
