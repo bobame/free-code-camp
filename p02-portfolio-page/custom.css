@@ -4,7 +4,7 @@
 }
 
 body {
-  padding-top: 65px;
+  padding-top: 58px;
   background-color: #EEEBEB;
 }
 
@@ -32,8 +32,8 @@ hr {
 }
 
 .main {
-  border-left: 2px ridge;
-  border-right: 2px ridge;
+  /*border-left: 2px ridge;
+  border-right: 2px ridge;*/
   padding: 0;
 }
 
@@ -44,7 +44,7 @@ MAIN - ABOUT
 .main header {
   margin-top: -1%;
   padding-bottom: 3%;
-  border-bottom: 5px dotted slategray;
+  border: 1px ridge lightgray;
 
 }
 
@@ -59,6 +59,19 @@ MAIN - ABOUT
   width: 85%;
   border-radius: 50%;
   padding: 2%;
+  margin: 0 auto;
+}
+
+/*************************
+MAIN - VISUAL SEPARATOR
+*************************/
+
+#separator {
+  padding-bottom: 2%;
+}
+
+.fa-asterisk {
+  padding: 2% 1.5%;
 }
 
 
@@ -68,6 +81,7 @@ MAIN - PORTFOLIO
 
 #portfolio {
   margin-top: -2%;
+  border: 1px ridge lightgray;
 }
 
 #portfolio > h1 {
