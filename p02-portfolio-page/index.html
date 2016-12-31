@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="custom.css">
 </head>
 
-<body>
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
   <!-- navigation -->
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
@@ -28,9 +28,8 @@
       <!-- collapse-able nav links right-aligned -->
       <div class="collapse navbar-collapse" id="collapseNavBar">
         <ul class="nav navbar-nav navbar-right">
-          <li class="active"><a href="#">ABOUT</a></li>
-          <li><a href="#">PORTFOLIO</a></li>
-          <li><a href="#">CONTACT</a></li> <!-- social links-->
+          <li><a href="#section1">ABOUT</a></li>
+          <li><a href="#section2">PORTFOLIO</a></li>
         </ul>
       </div> <!-- /.navbar-collapse -->
     </div> <!-- /.container-fluid -->
@@ -38,48 +37,64 @@
 
   <!-- body main with about and portfolio -->
   <div class="container main">
-    <header class="bg-warning">
-      <div class="row">
-        <h1 class="text-muted text-center">ABOUT</h1>
+    <div id="section1" class="container-fluid">
+      <header class="bg-warning">
         <div class="row">
-          <div class="line-break col-sm-4 col-sm-offset-4">
-            <hr>
+          <h1 class="text-muted text-center">ABOUT</h1>
+          <div class="row">
+            <div class="line-break col-sm-4 col-sm-offset-4">
+              <hr>
+            </div>
           </div>
-        </div>
 
-        <div class="col-md-8" id="header-intro">
-          <p>Aspiring Front-End Developer, currently taking the Front-End Development Track offered by FreeCodeCamp. Making slow progress, but absolutely enjoying every moment of it!</p>
-        </div>
-        <div class="col-md-4" id="header-img">
-          <img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAk0AAAAJDkxODM5Zjg1LWIzNmQtNDIzOS05NDAwLWZiMWRiMjY5YTk1OA.jpg" alt="picture of Grace after first day at first IT job">
-        </div>
-      </div> <!-- /.row -->
-    </header>
+          <div class="container">
 
-    <!-- portfolio -->
-    <div id="portfolio" class="bg-warning">
-      <h1 class="text-muted text-center">PORTFOLIO</h1>
-      <div class="row">
-          <div class="line-break col-sm-4 col-sm-offset-4">
-            <hr>
-          </div>
+            <div class="col-sm-8" id="header-intro">
+            <p>Aspiring Front-End Developer, currently taking the Front-End Development Track offered by FreeCodeCamp. Making slow progress, but absolutely enjoying every moment of it!</p>
+            </div>
+            <div class="col-sm-4" id="header-img">
+              <img src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAk0AAAAJDkxODM5Zjg1LWIzNmQtNDIzOS05NDAwLWZiMWRiMjY5YTk1OA.jpg" alt="picture of Grace after first day at first IT job">
+            </div>
+            </div>
+          </div> <!-- /row -->
+      </header>
+    </div> <!-- /#section1 -->
+
+    <div id="section2" class="container-fluid">
+      <!-- visual separator between 2 sections since want to keep both same color -->
+      <div class="row text-center" id="separator">
+        <div class="col-sm-4 col-sm-offset-4" id="nav-portfolio">
+          <i class="fa fa-asterisk" aria-hidden="true"></i>
+          <i class="fa fa-asterisk" aria-hidden="true"></i>
+          <i class="fa fa-asterisk" aria-hidden="true"></i>
         </div>
-      <figure class="figure project">
-        <img class="figure-img img-fluid rounded" src="http://res.cloudinary.com/nelloreg/image/upload/v1483162030/Screen_Shot_2016-12-30_at_9.08.53_PM_wlbyqq.png" alt="screenshot of tribute project">
-        <figcaption class="figure-caption text-muted text-center">Build a tribute page project <a href="http://codepen.io/gracen/pen/MJggGd" target="_blank">here</a></figcaption>
-      </div>
-    </div> <!-- /portfolio -->
+      </div> <!-- /visual separator -->
+
+      <!-- portfolio -->
+      <div id="portfolio" class="bg-warning">
+        <h1 class="text-muted text-center">PORTFOLIO</h1>
+        <div class="row">
+            <div class="line-break col-sm-4 col-sm-offset-4">
+              <hr>
+            </div>
+        </div>
+        <figure class="figure project">
+          <img class="figure-img img-fluid rounded" src="http://res.cloudinary.com/nelloreg/image/upload/v1483162030/Screen_Shot_2016-12-30_at_9.08.53_PM_wlbyqq.png" alt="screenshot of tribute project">
+          <figcaption class="figure-caption text-muted text-center">Build a tribute page project <a href="http://codepen.io/gracen/pen/MJggGd" target="_blank">here</a></figcaption>
+        </figure>
+      </div> <!-- /portfolio -->
+    </div> <!-- /#section2 -->
   </div> <!-- body main -->
 
   <!-- footer -->
   <footer>
     <div class="footer-social bg-info">
       <div class="row">
-        <div class="col-md-6 text-center" id="footer-about">
+        <div class="col-sm-6 text-center" id="footer-about">
           <h2>ABOUT THIS PAGE</h1>
           <p>Made with <i class="fa fa-coffee" style=""></i>, <i class="fa fa-music"></i>, and <i class="fa fa-heart"></i>, by Grace Nellore.</p>
         </div>
-        <div class="col-md-6 text-center" id="footer-social">
+        <div class="col-sm-6 text-center" id="footer-social">
           <h2>AROUND THE WEB</h2>
           <div>
             <a href="https://www.linkedin.com/in/grace-nellore-237725105" target="_blank"><i class="fa fa-linkedin"></i></a>
@@ -96,5 +111,7 @@
     </div> <!-- /.footer-copy -->
   </footer> <!-- /footer -->
   <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="action.js"></script>
 </body>
 </html>
