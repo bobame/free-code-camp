@@ -1,9 +1,9 @@
 /* importing google fonts */
-@import url("https://fonts.googleapis.com/css?family=Frijole|Indie+Flower|Shadows+Into+Light|Ultra");
+@import url("https://fonts.googleapis.com/css?family=Alex+Brush|Frijole|Indie+Flower|Shadows+Into+Light|Ultra");
 
 /* just for testing layout */
 * {
-  /*border: 1px solid black;*/
+/*   border: 1px solid black; */
 }
 
 /******************************
@@ -38,6 +38,7 @@ button {
                0 20px 20px rgba(0,0,0,.15);
 }
 
+
 /******************************
 PAGE TITLE
 ******************************/
@@ -50,7 +51,7 @@ PAGE TITLE
 
 .top {
   position: relative;
-  margin: 15% auto auto auto;
+  margin: 7.8% auto auto auto;
 }
 
 
@@ -96,4 +97,12 @@ button {
   font-family: "Frijole";
   color: white;
   background-color: pink;
+}
+
+/******************************
+FOOT
+******************************/
+
+#ref, #attrib {
+  font-family: "Alex Brush";
 }
