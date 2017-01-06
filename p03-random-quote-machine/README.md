@@ -19,13 +19,13 @@ see [instructions](https://www.freecodecamp.com/challenges/build-a-random-quote-
     - [X] div box
     - [X] quote part
     - [X] quote author
-    - [] tweet button
+    - [X] tweet button
     - [X] new quote button
 2. UI - background
     - [X] "by <name>" below div box
 3. jQuery - colors
     - [X] background - random new color with every new quote button click
-    - [] tweet and new quote buttons - same random color as background
+    - [X] tweet and new quote buttons - same random color as background
 4. AJAX
     - [X] use api to get quote
     - [X] include attribution link
