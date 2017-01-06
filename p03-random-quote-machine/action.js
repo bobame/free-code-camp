@@ -46,6 +46,6 @@ function showRandomQuote() {
         $foot.css("margin-bottom", "5%");
     }
     $quote.html(data.quoteText);
-    $author.html(data.quoteAuthor);
+    $author.html("- " + data.quoteAuthor);
   });
 }
