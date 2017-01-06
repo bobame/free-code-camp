@@ -1,0 +1,99 @@
+/* importing google fonts */
+@import url("https://fonts.googleapis.com/css?family=Frijole|Indie+Flower|Shadows+Into+Light|Ultra");
+
+/* just for testing layout */
+* {
+  /*border: 1px solid black;*/
+}
+
+/******************************
+BODY / SHARED
+******************************/
+html,
+body {
+  height: 100%;
+  background-color: pink;
+}
+
+.container-fluid {
+  position: relative;
+  width: 50%;
+  padding: 2%;
+}
+
+#page-title,
+button {
+  /* 3D effect from mark otto, http://markdotto.com/playground/3d-text/ */
+  text-shadow: 0 1px 0 #ccc,
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #b9b9b9,
+               0 5px 0 #aaa,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);
+}
+
+/******************************
+PAGE TITLE
+******************************/
+
+#page-title {
+  font-size: 3em;
+  font-family: "Ultra";
+  color: white;
+}
+
+.top {
+  position: relative;
+  margin: 15% auto auto auto;
+}
+
+
+/******************************
+QUOTE BOX
+******************************/
+
+.bottom {
+  border: 4px ridge darkgray;
+  border-radius: 3.5%;
+  background-color: white;
+}
+
+/******************************
+QUOTE & AUTHOR
+******************************/
+
+#quote {
+  font-size: 2em;
+  font-family: "Indie Flower";
+}
+
+.fa-quote-left,
+.fa-quote-right {
+  font-size: 1.5em;
+}
+
+#author {
+  font-size: 1.2em;
+  font-family: "Shadows Into Light";
+}
+
+
+/******************************
+NEW QUOTE BUTTON
+******************************/
+
+#tweet {
+  background-color: green;
+}
+
+button {
+  font-family: "Frijole";
+  color: white;
+  background-color: pink;
+}
