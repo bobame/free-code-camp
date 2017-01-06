@@ -1,6 +1,6 @@
 ## Specifications
 
-see [CodePen](#) for completed version
+see [CodePen](http://codepen.io/gracen/full/QdwzBj/) for completed version
 
 
 ### Objective:
