@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="custom.css">
+    <title>Show Local Weather</title>
+  </head>
+  <body>
+    <div class="container-fluid text-center">
+      <!-- PART-1: Static Header -->
+      <div class="container-fluid header">
+        <h1>Free Code Camp</h1>
+        <h3>Local Weather App</h3>
+      </div> <!-- /header -->
+      <!-- PART-2: Dynamic Content -->
+      <div class="container-fluid content">
+        <!-- row1, weather icon, degrees, tooltip -->
+        <div class="row text-center">
+          <span id="weather-icon">
+            <img>
+            <i class="fa fa-thermometer-three-quarters" style="font-size:2em;"></i>
+            </img>
+          </span>
+          <button id="degrees">
+            00&#176; F
+          </button>
+        </div> <!-- /row1 -->
+        <!-- row2, location, description, wind -->
+        <div class="row boxes">
+          <div class="col col-sm-2 col-sm-offset-3">
+            <span id="location">
+              Your location
+            </span>
+          </div>
+          <div class="col col-sm-2">
+            <span id="sky">
+              Sky condition
+            </span>
+          </div>
+          <div class="col col-sm-2">
+            <span id="wind">
+              Wind Speed m/s
+            </span>
+          </div>
+        </div> <!-- /row2 -->
+      </div> <!-- /content -->
+
+    </div> <!-- /container main -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <script src="action.js"></script>
+
+    </script>
+  </body>
+</html>
