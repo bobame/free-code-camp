@@ -1,0 +1,88 @@
+/* google fonts */
+@import url("https://fonts.googleapis.com/css?family=Arima+Madurai|Lemonada|Noto+Serif|Playfair+Display");
+
+/******************************
+BODY
+******************************/
+
+body {
+  /*https://upload.wikimedia.org/wikipedia/commons/c/cc/Nacreous_clouds_Antarctica.jpg*/
+  /*http://res.cloudinary.com/nelloreg/image/upload/v1483151258/sample.jpg*/
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/c/cc/Nacreous_clouds_Antarctica.jpg");
+  background-size: cover;
+}
+
+/* for testing layout */
+* {
+/*   border: 1px solid black; */
+}
+
+
+/******************************
+HEADER
+******************************/
+
+.header {
+  color: yellow;
+  text-shadow: 2px 1px 1px yellow;
+  margin:  5% auto 2% auto;
+}
+
+h1 {
+  font-family: "Lemonada";
+  font-size: 4em;
+}
+
+h3 {
+  font-family: "Arima Madurai";
+  font-size: 2.5em;
+}
+
+
+/******************************
+DYNAMIC CONTENT
+******************************/
+
+#weather-icon > img {
+
+}
+
+#degrees {
+  font-family: "Noto Serif";
+  font-size: 3em;
+  color: white;
+  /*from @mdo, http://markdotto.com/playground/3d-text/*/
+  text-shadow: 0 1px 0 #ccc,
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #b9b9b9,
+               0 5px 0 #aaa,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);
+  background-color:  Transparent;
+  border: none;
+}
+
+.boxes {
+  margin: 1% auto 5% auto;
+}
+
+.col {
+  border: 1px solid darkgray;
+  border-radius: 5px;
+  background-color: #f9fafc;
+  opacity: 0.7;
+  color: #31548c;
+  font-family: "Playfair Display";
+  font-size: 1.5em;
+  padding: 2%;
+}
+
+.col-sm-2:nth-child(2) {
+  margin: auto 1% auto 1%;
+}
