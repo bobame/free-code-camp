@@ -40,6 +40,7 @@ see [instructions](https://www.freecodecamp.com/challenges/build-a-wikipedia-vie
     - [X] new result list per search, clear old
     - [X] no results alert
     - [X] clear input field after click on close
+    - [X] scrolls to result after valid search
 
 
 ## Note
