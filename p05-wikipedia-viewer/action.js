@@ -26,6 +26,7 @@ $(document).ready(function(){
   //click on close button hides search field and shows icon
   $clearBtn.click(function(){
     $searchField.toggle();
+    $searchField.val('')
     $clearBtn.toggle();
     $searchBtn.toggle();
     $searchIcon.toggle();
@@ -60,22 +61,25 @@ $(document).ready(function(){
          //alerts user if no results returned
          if (data[1].length===0) {
           alert("No results");
-         }
-         for (var i=0; i<data[1].length; i++) {
-           var li = document.createElement("li");
-           //title with link part
-           var a = document.createElement("a");
-           var title = document.createTextNode(data[1][i]);
-           a.setAttribute("href", data[3][i]);
-           a.setAttribute("target", "_blank");
-           a.appendChild(title);
-           //preview part
-           var preview = document.createTextNode(data[2][i] + "..");
-           //putting it all together
-           li.appendChild(a);
-           li.appendChild(document.createElement("br"));
-           li.appendChild(preview);
-           $resultList[0].appendChild(li);
+          $searchField.val('');
+         } else {
+           for (var i=0; i<data[1].length; i++) {
+             var li = document.createElement("li");
+             //title with link part
+             var a = document.createElement("a");
+             var title = document.createTextNode(data[1][i]);
+             a.setAttribute("href", data[3][i]);
+             a.setAttribute("target", "_blank");
+             a.appendChild(title);
+             //preview part
+             var preview = document.createTextNode(data[2][i] + "..");
+             //putting it all together
+             li.appendChild(a);
+             li.appendChild(document.createElement("br"));
+             li.appendChild(preview);
+             $resultList[0].appendChild(li);
+           }
+           $searchField.val('');
          }
        },
        //alerts user if request fails
