@@ -4,6 +4,7 @@ $(document).ready(function(){
   var $clearBtn = $("#clear-btn");
   var $randomBtn = $("#random-search");
   var $searchBtn = $("#search-btn");
+  var $resultList = $("#search-results");
   // var resultLimit = 5;
   var randomUrl = "https://en.wikipedia.org/wiki/Special:Random";
 
@@ -49,6 +50,8 @@ $(document).ready(function(){
        type:"POST",
        headers: { 'Api-User-Agent': 'Example/1.0' },
        success : function(data){
+         //first clears old results list if any
+         $resultList.empty();
          for (var i=0; i<data[1].length; i++) {
            var li = document.createElement("li");
            //title with link part
@@ -63,7 +66,7 @@ $(document).ready(function(){
            li.appendChild(a);
            li.appendChild(document.createElement("br"));
            li.appendChild(preview);
-           document.getElementById("search-results").appendChild(li);
+           $resultList[0].appendChild(li);
          }
        },
        //alerts user if request fails
