@@ -33,7 +33,7 @@ see [instructions](https://www.freecodecamp.com/challenges/build-a-wikipedia-vie
         - [X] click on textfield "X" toggles back icon
     - [X] text instructing click icon to search
 3. functionality
-    - [] mimic click on SEARCH button for keypress on ENTER
+    - [X] mimic click on SEARCH button for keypress on ENTER
     - [X] throw alert for search click with null input
     - [] autocomplete?
     - [X] default pointer to input field
