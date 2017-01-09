@@ -1,0 +1,107 @@
+/*google fonts*/
+@import url(https://fonts.googleapis.com/css?family=Aclonica|Cabin+Sketch|Crafty+Girls|Ultra);
+
+/*just for testing layout*/
+* {
+  /*border: 1px solid black;*/
+}
+
+/*************************
+BODY
+*************************/
+
+body {
+  background-color: #250339;
+  font-family: "Crafty Girls";
+  font-size: 3em;
+  font-weight: 900;
+  color: #9775AA;
+}
+
+
+/*************************
+CONTENT
+*************************/
+
+.container {
+  margin: auto;
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+}
+
+/*************************
+RANDOM SEARCH
+*************************/
+
+#random-search {
+  margin-top: 5%;
+  margin-bottom: 3%;
+  background-color: Transparent;
+  border: none;
+}
+
+
+/*************************
+USER SEARCH
+*************************/
+
+#user-search-icon {
+  background-color: Transparent;
+  border: none;
+}
+
+#user-search-field {
+  width: 40%;
+  margin: 0 auto;
+}
+
+#clear-btn,
+#search-btn {
+  height: 25px;
+  font-size: 0.5em;
+}
+
+#user-search-field {
+  background-color: white;
+}
+
+#user-search-icon,
+#user-search-field {
+  margin-bottom: 2%;
+}
+
+/*search icon*/
+.fa-search {
+  font-size: 2em;
+  color: #754B8E;
+}
+
+
+/*************************
+TEXT TO SEARCH
+*************************/
+
+.text-search {
+  margin-top: 3%;
+}
+
+
+/*************************
+RESULT LIST
+*************************/
+
+#search-results {
+  list-style-type: none;
+  margin-bottom: 5%;
+}
+
+#search-results li {
+  color: white;
+  font-family: "Cabin Sketch";
+  font-size: 0.6em;
+  text-align: left;
+  background-color: #401255;
+  font-weight: 200;
+  color: #9974AA;
+  padding: 1% 2%;
+}
