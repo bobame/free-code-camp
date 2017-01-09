@@ -57,6 +57,10 @@ $(document).ready(function(){
        success : function(data){
          //first clears old results list if any
          $resultList.empty();
+         //alerts user if no results returned
+         if (data[1].length===0) {
+          alert("No results");
+         }
          for (var i=0; i<data[1].length; i++) {
            var li = document.createElement("li");
            //title with link part
