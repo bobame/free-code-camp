@@ -39,7 +39,7 @@ see [instructions](https://www.freecodecamp.com/challenges/build-a-wikipedia-vie
     - [X] default pointer to input field
     - [X] new result list per search, clear old
     - [X] no results alert
-    - [] clear input field after click on close
+    - [X] clear input field after click on close
 
 
 ## Note
