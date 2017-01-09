@@ -1,5 +1,6 @@
 $(document).ready(function(){
   var $searchIcon = $("#user-search-icon");
+  var $searchText = $("#text-search");
   var $searchField = $("#user-search-field");
   var $clearBtn = $("#clear-btn");
   var $randomBtn = $("#random-search");
@@ -21,6 +22,7 @@ $(document).ready(function(){
     $clearBtn.toggle();
     $searchBtn.toggle();
     $searchIcon.toggle();
+    $searchText.toggle();
   });
 
   //click on close button hides search field and shows icon
@@ -30,6 +32,7 @@ $(document).ready(function(){
     $clearBtn.toggle();
     $searchBtn.toggle();
     $searchIcon.toggle();
+    $searchText.toggle();
   });
 
   //click on surprise me button opens random article in new tab
@@ -43,7 +46,7 @@ $(document).ready(function(){
     if (key === 13) { $searchBtn.trigger("click"); }
   });
 
-  //click on search button returns top 5 results
+  //click on search button returns results list
  $searchBtn.on("click",function(){
    var searchTerm = $("#user-search-field").val();
    var url = "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + searchTerm + "&format=json&callback=?";
@@ -80,6 +83,12 @@ $(document).ready(function(){
              $resultList[0].appendChild(li);
            }
            $searchField.val('');
+
+           //scrolls to result, http://stackoverflow.com/a/19012631
+           $('html, body').animate({
+              scrollTop: $resultList.offset().top
+           },
+           2000);
          }
        },
        //alerts user if request fails
