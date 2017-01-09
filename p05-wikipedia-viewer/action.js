@@ -16,6 +16,7 @@ $(document).ready(function(){
   //click on icon hides icon and shows searchfield
   $searchIcon.click(function(){
     $searchField.toggle();
+    $searchField.focus();
     $clearBtn.toggle();
     $searchBtn.toggle();
     $searchIcon.toggle();
