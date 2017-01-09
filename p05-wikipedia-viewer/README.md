@@ -37,7 +37,7 @@ see [instructions](https://www.freecodecamp.com/challenges/build-a-wikipedia-vie
     - [X] throw alert for search click with null input
     - [] autocomplete?
     - [X] default pointer to input field
-    - [] new result list per search, clear old
+    - [X] new result list per search, clear old
 
 
 ## Note
