@@ -36,7 +36,7 @@ see [instructions](https://www.freecodecamp.com/challenges/build-a-wikipedia-vie
     - [] mimic click on SEARCH button for keypress on ENTER
     - [X] throw alert for search click with null input
     - [] autocomplete?
-    - [] default pointer to input field
+    - [X] default pointer to input field
     - [] new result list per search, clear old
 
 
