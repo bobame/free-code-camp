@@ -36,9 +36,14 @@ $(document).ready(function(){
     window.open(randomUrl, '_blank');
   });
 
+  //mimicks click on search button when user presses ENTER key
+  $searchField.keypress(function(e){
+    var key = e.which;
+    if (key === 13) { $searchBtn.trigger("click"); }
+  });
 
   //click on search button returns top 5 results
- $("#search-btn").on("click",function(){
+ $searchBtn.on("click",function(){
    var searchTerm = $("#user-search-field").val();
    var url = "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + searchTerm + "&format=json&callback=?";
    // var url = "https://en.wikipedia.org/w/api.php?action=opensearch&search=" + searchTerm + "&limit=" + resultLimit + "&format=json&callback=?";
