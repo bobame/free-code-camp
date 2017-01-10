@@ -87,6 +87,22 @@ TEXT TO SEARCH
 
 
 /*************************
+AUTOCOMPLETE SUGGESTIONS
+*************************/
+
+.ui-menu-item {
+  background-color: #401255;
+  color: #9974AA;
+  list-style-type: none;
+  font-size: 0.5em;
+  font-family: "Aclonica";
+  width: 37%;
+  margin-left: -3.4%;
+  padding-left: 1%;
+}
+
+
+/*************************
 RESULT LIST
 *************************/
 
