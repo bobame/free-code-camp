@@ -1,6 +1,6 @@
 ## Specifications
 
-see [CodePen](#) for completed version **UPDATE LINK**
+see [CodePen](http://codepen.io/gracen/full/pRjgOv/) for completed version
 
 
 ### Objective:
@@ -44,7 +44,7 @@ see [instructions](https://www.freecodecamp.com/challenges/build-a-wikipedia-vie
         - [X] get it working
         - [X] style autocomplete results
         - [X] remove active item text in upper left
-        - [] on enter press trigger click event
+        - [X] on enter press trigger click event (first click closes list, 2nd click triggers search)
 
 
 ## Note
