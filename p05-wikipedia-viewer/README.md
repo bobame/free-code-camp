@@ -35,12 +35,16 @@ see [instructions](https://www.freecodecamp.com/challenges/build-a-wikipedia-vie
 3. functionality
     - [X] mimic click on SEARCH button for keypress on ENTER
     - [X] throw alert for search click with null input
-    - [] autocomplete?
     - [X] default pointer to input field
     - [X] new result list per search, clear old
     - [X] no results alert
     - [X] clear input field after click on close
     - [X] scrolls to result after valid search
+    - autocomplete?
+        - [X] get it working
+        - [] style autocomplete results
+        - [] remove active item text in upper left
+        - [] on enter press trigger click event
 
 
 ## Note
@@ -51,4 +55,6 @@ see [instructions](https://www.freecodecamp.com/challenges/build-a-wikipedia-vie
 - [opensearch api](https://www.mediawiki.org/wiki/API:Opensearch)
 - [endpoint](https://www.mediawiki.org/wiki/API:Main_page#The_endpoint)
 - [HTML5 dropdown](https://helgesverre.com/blog/textbox-dropdown-html5/)
+- [cdn for autocomplete](https://cdnjs.com/libraries/jqueryui) (ending /jquery-ui.min.js)
+- [autocomplete example](http://w3lessons.info/2015/03/01/autocomplete-search-using-wikipedia-api-and-jquery-ui/)
 - look into vertical center-aligning
