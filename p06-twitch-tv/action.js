@@ -41,20 +41,25 @@ $(document).ready(function(){
         var logo = data.streams[i].channel.logo;
         var name = data.streams[i].channel.display_name;
         var status = data.streams[i].channel.status;
+        status = status.length > 35 ? status.substring(0,35)+"..." : status;
         //creating elements to reduce hardcoding errors
         var row = document.createElement("div");
         var colLogo = document.createElement("div");
+        var img = document.createElement("img");
         var colName = document.createElement("div");
         var colStatus = document.createElement("div");
         //setting to bootstrap classes to force into 3 col rows
         row.setAttribute("class", "row");
-        colLogo.setAttribute("class", "col-sm-2");
-        colName.setAttribute("class", "col-sm-8");
-        colStatus.setAttribute("class", "col-dm-2");
-        //testing testing...
-        colLogo.appendChild(document.createTextNode("Logo!"));
+        colLogo.setAttribute("class", "col-sm-1");
+        colName.setAttribute("class", "col-sm-4");
+        colStatus.setAttribute("class", "col-sm-7");
+        //setting attributes for img element
+        img.setAttribute("src", logo);
+        img.setAttribute("alt", "Streamer logo");
+        //add into parent div elements
+        colLogo.appendChild(img);
         colName.appendChild(document.createTextNode(name));
-        // colStatus.appendChild(document.createTextNode(status))
+        colStatus.appendChild(document.createTextNode(status))
         row.appendChild(colLogo);
         row.appendChild(colName);
         row.appendChild(colStatus);
@@ -65,11 +70,8 @@ $(document).ready(function(){
       alert("Error making request");
     }
   });
-
-
+  
 });
-
-//for modularity, taken out, to be called inside document ready()
 
 function hideDefault() {
   $searchInput.hide();
