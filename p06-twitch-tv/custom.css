@@ -1,0 +1,84 @@
+/* google fonts */
+@import url('https://fonts.googleapis.com/css?family=Cagliostro|Fontdiner+Swanky|Snippet|Tenali+Ramakrishna|Text+Me+One');
+
+/* test layout */
+* {
+  border: 1px solid black;
+}
+
+/********************
+BODY
+********************/
+
+body {
+  background-color: #E1E14E;
+}
+
+#main {
+  background-color: white;
+  margin-bottom: 5%;
+  width: 65%;
+}
+
+
+/********************
+TOP PART
+********************/
+
+#top {
+  background-color: #5C5C3C;
+}
+
+h1 {
+  color: #FFFF45;
+  font-family: "Fredericka the Great";
+  font-size: 4em;
+  text-shadow: 3px 3px #000;
+}
+
+h1 button {
+ background-color: Transparent;
+}
+
+#btn-all,
+#btn-on,
+#btn-off {
+  color: #5C5C3C;
+  font-family: "Text Me One";
+  text-shadow: 0.1px 0.2px #ADAD4C;
+  width: 100%;
+  text-align: left;
+  padding-left: 5%;
+}
+
+#search {
+  font-family: "Cagliostro";
+  margin-bottom: 2%;
+}
+
+#submit,
+#cancel {
+  color: #5C5C3C;
+  font-family: "Text Me One";
+  text-shadow: 0.1px 0.2px #ADAD4C;
+}
+
+
+/********************
+LIST PART
+********************/
+
+#list ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+
+/********************
+BOTTOM PART
+********************/
+
+#bottom {
+  background-color: #5C5C3C;
+  padding: 0.5%;
+}
