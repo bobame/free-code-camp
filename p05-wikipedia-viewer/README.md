@@ -42,8 +42,8 @@ see [instructions](https://www.freecodecamp.com/challenges/build-a-wikipedia-vie
     - [X] scrolls to result after valid search
     - autocomplete?
         - [X] get it working
-        - [] style autocomplete results
-        - [] remove active item text in upper left
+        - [X] style autocomplete results
+        - [X] remove active item text in upper left
         - [] on enter press trigger click event
 
 
