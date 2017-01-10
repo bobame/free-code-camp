@@ -68,10 +68,26 @@ h1 button {
 LIST PART
 ********************/
 
-#list ul {
-  list-style-type: none;
-  padding-left: 0;
+#list > div {
+  padding: 2%;
+  border: 1px ridge gray;
 }
+
+#list img {
+  width: 90%;
+}
+
+.col-sm-4 {
+  font-family: "Tenal Ramakrishna";
+  font-size: 1.8em;
+}
+
+.col-sm-7 {
+  font-family: "Snippet";
+  text-align: center;
+  font-size: 1.2em;
+}
+
 
 
 /********************
