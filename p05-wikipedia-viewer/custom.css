@@ -101,6 +101,10 @@ AUTOCOMPLETE SUGGESTIONS
   padding-left: 1%;
 }
 
+.ui-helper-hidden-accessible {
+  display: none;
+}
+
 
 /*************************
 RESULT LIST
