@@ -40,6 +40,29 @@ $(document).ready(function(){
     window.open(randomUrl, '_blank');
   });
 
+  //autocomplete, http://w3lessons.info/2015/03/01/autocomplete-search-using-wikipedia-api-and-jquery-ui/
+  $searchField.autocomplete({
+    source: function(request, response) {
+      $.ajax({
+        url: "http://en.wikipedia.org/w/api.php",
+        dataType: "jsonp",
+        data: {
+          "action": "opensearch",
+          "format": "json",
+          "search": request.term
+        },
+        success: function(data) {
+          response(data[1]);
+        },
+        error: function(e) {
+          console.log("Error loading autocomplete");
+        }
+
+      });
+    }
+  });
+
+
   //mimicks click on search button when user presses ENTER key
   $searchField.keypress(function(e){
     var key = e.which;
