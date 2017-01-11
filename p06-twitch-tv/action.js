@@ -6,6 +6,8 @@ var $filterAll = $("#btn-all");
 var $filterOnline = $("#btn-on");
 var $filterOffline = $("#btn-off");
 var $streamersList = $("#list");
+var usersArr = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas", "brunofin", "comster404", "summit1g"];
+var logoPlaceholder = "http://res.cloudinary.com/nelloreg/image/upload/v1483151812/Screen_Shot_2016-12-30_at_6.23.11_PM_jf1uun.png";
 
 
 $(document).ready(function(){
@@ -26,62 +28,78 @@ $(document).ready(function(){
     toggleSearch();
   });
 
-  //get streamers data
-  $.ajax({
-    type: "GET",
-    url: "https://api.twitch.tv/kraken/streams",
-    headers: {
-      "client-ID": "vc7b62435lvr09pkh9zaaxlrgd66cv"
-    },
-    success: function(data){
-      //printing all streamers count for reference
-      console.log(data.streams.length + " streamers");
-      for (var i=0; i<data.streams.length; i++) {
-        //decalring variables for easier usage
-        var logo = data.streams[i].channel.logo;
-        var name = data.streams[i].channel.display_name;
-        var status = data.streams[i].channel.status;
-        status = status.length > 35 ? status.substring(0,35)+"..." : status;
-        //creating elements to reduce hardcoding errors
-        var row = document.createElement("div");
-        var colLogo = document.createElement("div");
-        var img = document.createElement("img");
-        var colName = document.createElement("div");
-        var colStatus = document.createElement("div");
-        //setting to bootstrap classes to force into 3 col rows
-        row.setAttribute("class", "row");
-        colLogo.setAttribute("class", "col-sm-1");
-        colName.setAttribute("class", "col-sm-4");
-        colStatus.setAttribute("class", "col-sm-7");
-        //setting attributes for img element
-        img.setAttribute("src", logo);
-        img.setAttribute("alt", "Streamer logo");
-        //add into parent div elements
-        colLogo.appendChild(img);
-        colName.appendChild(document.createTextNode(name));
-        colStatus.appendChild(document.createTextNode(status))
-        row.appendChild(colLogo);
-        row.appendChild(colName);
-        row.appendChild(colStatus);
-        $streamersList[0].appendChild(row);
+  //loop through given user array
+  for (var i=0; i<usersArr.length; i++) {
+    //async should be false!! else entire array assigned same last value
+    var name = usersArr[i];
+    var status;
+    var logo;
+    var channel;
+
+    //first checking if channel exists
+    $.ajax({
+      type: "GET",
+      url: "https://api.twitch.tv/kraken/channels/"+usersArr[i],
+      headers: { "client-ID": "vc7b62435lvr09pkh9zaaxlrgd66cv" },
+      async: false,
+      success: function(dataChannel){
+        //if existing, reassigning more accurate display_name and getting logo
+        name = dataChannel.display_name;
+        logo = dataChannel.logo;
+        channel = "https://api.twitch.tv/kraken/channels/"+usersArr[i];
+        //then checking if currently streaming
+        $.ajax({
+          type: "GET",
+          url: "https://api.twitch.tv/kraken/streams/"+usersArr[i],
+          headers: { "client-ID": "vc7b62435lvr09pkh9zaaxlrgd66cv" },
+          async: false,
+          success: function(dataStream){
+            // status = (dataStream==null)? "offline" : "online";
+            // working below but not in ternary above, why?
+            if (dataStream.stream==null) {
+              //if not currently streaming, status is offline
+              status = "offline";
+            } else {
+              //if streaming, status is currently streaming content title
+              status = dataStream.stream.channel.status;
+            }
+          },
+          //adding just in case, but don't expect this to fail at this point
+          error: function(e){
+            alert("Error loading stream url");
+          }
+        });
+      },
+      //if not existing, status is notification indicating account not found
+      error: function(e){
+        status = "not found";
+        logo = logoPlaceholder;
+        channel = "#";
       }
-    },
-    error: function(e){
-      alert("Error making request");
-    }
-  });
-  
+    });
+    //calling function to handle the diaplay part
+    buildHTML(name, status, logo, channel);
+  }
+
 });
 
+//default hides select elemens upon page load
 function hideDefault() {
   $searchInput.hide();
   $searchBtn.hide();
   $cancelBtn.hide();
 }
 
+//toggles search icon vs field set
 function toggleSearch() {
   $searchIcon.toggle();
   $searchInput.toggle();
   $searchBtn.toggle();
   $cancelBtn.toggle();
+}
+
+//handles display of api data onto html
+function buildHTML(name, status, logo, channel) {
+  // console.log(name + ":"+status+":"+channel+":"+logo);
+
 }
