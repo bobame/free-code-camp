@@ -39,7 +39,7 @@ see [instructions](https://www.freecodecamp.com/challenges/use-the-twitchtv-json
         - search input field
             - [X] search icon toggle
             - [X] tooltip to click to search
-            - [] autocomplete
+            - [X] autocomplete
     - bottom part
         - [X] consistent color scheme as header
 3. get data
