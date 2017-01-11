@@ -88,6 +88,27 @@ $(document).ready(function(){
   //color schemes per status
   setColorPerStatus();
 
+  //click on filter-ALL shows online, offline, and unavailable channels
+  $filterAll.click(function(){
+    $(".online").parent("div").show();
+    $(".offline").parent("div").show();
+    $(".unavailable").parent("div").show();
+  });
+
+  //click on filter-ONLINE shows only online channels
+  $filterOnline.click(function(){
+    $(".online").parent("div").show();
+    $(".offline").parent("div").hide();
+    $(".unavailable").parent("div").hide();
+  });
+
+  //click on filter-OFFLINE shows only ofline and unavailable channels
+  $filterOffline.click(function(){
+    $(".online").parent("div").hide();
+    $(".offline").parent("div").show();
+    $(".unavailable").parent("div").show();
+  });
+
 });
 
 //default hides select elemens upon page load

@@ -35,7 +35,7 @@ see [instructions](https://www.freecodecamp.com/challenges/use-the-twitchtv-json
             - [] default slide out All, slide in Online & Offline
             - [] slide out upon hover
             - [] click on option toggles slide status
-            - [] filters result set per selected option
+            - [X] filters result set per selected option
         - search input field
             - [X] search icon toggle
             - [X] tooltip to click to search
