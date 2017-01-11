@@ -46,17 +46,17 @@ see [instructions](https://www.freecodecamp.com/challenges/use-the-twitchtv-json
     - [X] requiring client id
     - [X] postman? figure out hierarchy, identify required key-val
 4. main list
-    - [] logo link to streamer page
-    - [] name link to streamer page
+    - [X] logo link to streamer page
+    - [X] name link to streamer page
     - online
-        - [] streaming content name with link to stream
+        - [-] streaming content name with link to stream (not implementing)
         - [] color scheme to indicate online
     - offline
         - [] color scheme to indicate offline
-        - [] text indicating offline in place of stream name
+        - [X] text indicating offline in place of stream name
     - closed twitch account
         - [] color scheme indicating closed account
-        - [] placeholder notification
+        - [X] placeholder notification
 
 
 ## Note
