@@ -22,9 +22,12 @@
               <i class="fa fa-search"></i>
             </button>
           </h1>
-          <!-- toggable search input field -->
+          <!-- toggable search input field and buttons -->
           <form>
-            <input id="search-input" type="search" placeholder="Search streamer...">
+            <input id="search-input" list="autocomplete" type="search" placeholder="Search streamer...">
+            <!-- autocomplete options using html5 datalist tag -->
+            <datalist id="autocomplete">
+            </datalist>
             <button id="submit">Search</button>
             <button id="cancel">Cancel</button>
           </form>
