@@ -1,5 +1,6 @@
 var $searchIcon = $("#search-icon");
 var $searchInput = $("#search-input");
+var $autocomplete = $("#autocomplete");
 var $searchBtn = $("#submit");
 var $cancelBtn = $("#cancel");
 var $filterAll = $("#btn-all");
@@ -18,6 +19,9 @@ $(document).ready(function(){
 
   //tooltip over search icon
   $searchIcon.attr('title', 'Search streamers');
+
+  //populating autocomplete options
+  populateAutocomplete();
 
   //click on search icon toggles input field and button
   $searchIcon.click(function(){
@@ -88,6 +92,16 @@ function hideDefault() {
   $searchInput.hide();
   $searchBtn.hide();
   $cancelBtn.hide();
+}
+
+//adds options for autocomplete
+function populateAutocomplete() {
+  for (var i=0; i<usersArr.length; i++) {
+    var option = document.createElement("option");
+    option.value = usersArr[i];
+    option.appendChild(document.createTextNode(usersArr[i]));
+    $autocomplete[0].appendChild(option);
+  }
 }
 
 //toggles search icon vs field set
