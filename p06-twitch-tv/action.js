@@ -85,6 +85,9 @@ $(document).ready(function(){
     buildHTML(name, status, logo, channel);
   }
 
+  //color schemes per status
+  setColorPerStatus();
+
 });
 
 //default hides select elemens upon page load
@@ -152,4 +155,11 @@ function buildHTML(name, status, logo, channel) {
   colStatus.appendChild(document.createTextNode(status));
   row.appendChild(colStatus);
   $streamersList[0].appendChild(row);
+}
+
+//sets color per status, http://stackoverflow.com/a/1901332
+function setColorPerStatus() {
+  $(".online").parent("div").css("background-color", "#d3ff66");
+  $(".offline").parent("div").css("background-color", "#e3e5de");
+  $(".unavailable").parent("div").css("background-color", "#e3e5de");
 }

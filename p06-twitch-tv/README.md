@@ -50,12 +50,12 @@ see [instructions](https://www.freecodecamp.com/challenges/use-the-twitchtv-json
     - [X] name link to streamer page
     - online
         - [-] streaming content name with link to stream (not implementing)
-        - [] color scheme to indicate online
+        - [X] color scheme to indicate online
     - offline
-        - [] color scheme to indicate offline
+        - [X] color scheme to indicate offline
         - [X] text indicating offline in place of stream name
     - closed twitch account
-        - [] color scheme indicating closed account
+        - [X] color scheme indicating closed account
         - [X] placeholder notification
 
 
