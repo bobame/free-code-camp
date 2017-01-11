@@ -46,7 +46,7 @@ $(document).ready(function(){
         //if existing, reassigning more accurate display_name and getting logo
         name = dataChannel.display_name;
         logo = dataChannel.logo;
-        channel = "https://api.twitch.tv/kraken/channels/"+usersArr[i];
+        channel = dataChannel.url;
         //then checking if currently streaming
         $.ajax({
           type: "GET",
@@ -72,7 +72,7 @@ $(document).ready(function(){
       },
       //if not existing, status is notification indicating account not found
       error: function(e){
-        status = "not found";
+        status = "unavailable";
         logo = logoPlaceholder;
         channel = "#";
       }
@@ -100,6 +100,42 @@ function toggleSearch() {
 
 //handles display of api data onto html
 function buildHTML(name, status, logo, channel) {
-  // console.log(name + ":"+status+":"+channel+":"+logo);
-
+  console.log(name + ":"+status+":"+channel+":"+logo);
+  //row per streamer
+  var row = document.createElement("div");
+  row.setAttribute("class", "row");
+  //logo column
+  var colLogo = document.createElement("div");
+  colLogo.setAttribute("class", "col-sm-2");
+  var a = document.createElement("a");
+  a.setAttribute("href", channel);
+  a.setAttribute("target", "_blank");
+  var img = document.createElement("img");
+  img.setAttribute("src", logo);
+  img.setAttribute("alt", "Logo for Streamer: "+name);
+  a.appendChild(img);
+  colLogo.appendChild(a);
+  row.appendChild(colLogo);
+  //display name
+  var colName = document.createElement("div");
+  colName.setAttribute("class", "col-sm-4");
+  var a = document.createElement("a");
+  a.setAttribute("href", channel);
+  a.setAttribute("target", "_blank");
+  a.appendChild(document.createTextNode(name));
+  colName.appendChild(a);
+  row.appendChild(colName);
+  //status - streaming / offline / not found
+  var colStatus = document.createElement("div");
+  //adding classes per status to use for filtering/toggling later
+  if (status==="unavailable") {
+    colStatus.setAttribute("class", "col-sm-6 unavailable");
+  } else if (status==="offline") {
+    colStatus.setAttribute("class", "col-sm-6 offline");
+  } else {
+    colStatus.setAttribute("class", "col-sm-6 online");
+  }
+  colStatus.appendChild(document.createTextNode(status));
+  row.appendChild(colStatus);
+  $streamersList[0].appendChild(row);
 }
