@@ -7,6 +7,8 @@ var $filterAll = $("#btn-all");
 var $filterOnline = $("#btn-on");
 var $filterOffline = $("#btn-off");
 var $streamersList = $("#list");
+var filterBtnWidth = "26%"; //may change, refer css file
+var filterBtnWidthFull = "100%";
 var usersArr = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas", "brunofin", "comster404", "summit1g"];
 var logoPlaceholder = "http://res.cloudinary.com/nelloreg/image/upload/v1483151812/Screen_Shot_2016-12-30_at_6.23.11_PM_jf1uun.png";
 
@@ -93,9 +95,9 @@ $(document).ready(function(){
     $(".online").parent("div").show();
     $(".offline").parent("div").show();
     $(".unavailable").parent("div").show();
-    $filterAll.css("width", "100%");
-    $filterOnline.css("width", "26%");
-    $filterOffline.css("width", "26%");
+    $filterAll.css("width", filterBtnWidthFull);
+    $filterOnline.css("width", filterBtnWidth);
+    $filterOffline.css("width", filterBtnWidth);
   });
 
   //click on filter-ONLINE shows only online channels
@@ -103,9 +105,9 @@ $(document).ready(function(){
     $(".online").parent("div").show();
     $(".offline").parent("div").hide();
     $(".unavailable").parent("div").hide();
-    $filterAll.css("width", "26%");
-    $filterOnline.css("width", "100%");
-    $filterOffline.css("width", "26%");
+    $filterAll.css("width", filterBtnWidth);
+    $filterOnline.css("width", filterBtnWidthFull);
+    $filterOffline.css("width", filterBtnWidth);
   });
 
   //click on filter-OFFLINE shows only ofline and unavailable channels
@@ -113,10 +115,20 @@ $(document).ready(function(){
     $(".online").parent("div").hide();
     $(".offline").parent("div").show();
     $(".unavailable").parent("div").show();
-    $filterAll.css("width", "26%");
-    $filterOnline.css("width", "26%");
-    $filterOffline.css("width", "100%");
+    $filterAll.css("width", filterBtnWidth);
+    $filterOnline.css("width", filterBtnWidth);
+    $filterOffline.css("width", filterBtnWidthFull);
   });
+
+  //filters for channel entered in input field
+  //click on search reloading page before executing code block, saving as future enhancement
+  // $searchBtn.click(function(){
+  //   if (usersArr.contains($searchInput.val())) {
+  //     alert("");
+  //   } else {
+  //     alert("");
+  //   }
+  // });
 
 });
 
@@ -152,7 +164,7 @@ function toggleSearch() {
 
 //handles display of api data onto html
 function buildHTML(name, status, logo, channel) {
-  console.log(name + ":"+status+":"+channel+":"+logo);
+  // console.log(name + ":"+status+":"+channel+":"+logo);
   //row per streamer
   var row = document.createElement("div");
   row.setAttribute("class", "row");
