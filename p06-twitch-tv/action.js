@@ -10,12 +10,12 @@ var $streamersList = $("#list");
 var usersArr = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas", "brunofin", "comster404", "summit1g"];
 var logoPlaceholder = "http://res.cloudinary.com/nelloreg/image/upload/v1483151812/Screen_Shot_2016-12-30_at_6.23.11_PM_jf1uun.png";
 
-
 $(document).ready(function(){
   //hide search input and button on load
   hideDefault();
-  //slides out all and slides in online and offline
-  // $filterAll.animate({width: 'toggle'});
+
+  //default slide out filter-ALL
+  slideOutDefault();
 
   //tooltip over search icon
   $searchIcon.attr('title', 'Search streamers');
@@ -93,6 +93,9 @@ $(document).ready(function(){
     $(".online").parent("div").show();
     $(".offline").parent("div").show();
     $(".unavailable").parent("div").show();
+    $filterAll.css("width", "100%");
+    $filterOnline.css("width", "26%");
+    $filterOffline.css("width", "26%");
   });
 
   //click on filter-ONLINE shows only online channels
@@ -100,6 +103,9 @@ $(document).ready(function(){
     $(".online").parent("div").show();
     $(".offline").parent("div").hide();
     $(".unavailable").parent("div").hide();
+    $filterAll.css("width", "26%");
+    $filterOnline.css("width", "100%");
+    $filterOffline.css("width", "26%");
   });
 
   //click on filter-OFFLINE shows only ofline and unavailable channels
@@ -107,6 +113,9 @@ $(document).ready(function(){
     $(".online").parent("div").hide();
     $(".offline").parent("div").show();
     $(".unavailable").parent("div").show();
+    $filterAll.css("width", "26%");
+    $filterOnline.css("width", "26%");
+    $filterOffline.css("width", "100%");
   });
 
 });
@@ -116,6 +125,11 @@ function hideDefault() {
   $searchInput.hide();
   $searchBtn.hide();
   $cancelBtn.hide();
+}
+
+//slide out filter-ALL button as default on page load
+function slideOutDefault() {
+  $filterAll.css("width", "100%");
 }
 
 //adds options for autocomplete
