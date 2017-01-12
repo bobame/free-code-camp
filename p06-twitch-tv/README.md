@@ -1,6 +1,6 @@
 ## Specifications
 
-see [CodePen](http://codepen.io/gracen/full/bgVZoR/) for completed version
+- see [CodePen](http://s.codepen.io/gracen/debug/bgVZoR/NjrYzybYKYLA) for completed version in DEBUG mode (refer "Known Issues" section below)
 
 
 ### Objective:
@@ -63,11 +63,15 @@ see [instructions](https://www.freecodecamp.com/challenges/use-the-twitchtv-json
 - hover effect on filter buttons
 - filter from autocomplete list
 
-## Blocker
+## Known Issues
 
-- channel href links working fine locally, but throwing **Failed to load resource: net::ERR_BLOCKED_BY_CLIENT** in codepen
+- tracked in Issue# 1340 "Issues with linking to Twitch from CodePen IFrame"
+- [append "1340" to this link](https://github.com/FreeCodeCamp/freecodecamp/issues/)
+- working as expected in DEBUG mode
 
 
 ## Note
 
 - colors from [Paletton](http://paletton.com/#uid=11T0u0kkVsbp4QUnjBfhUlFbjbz)
+- submitting project as all given requirements satisfied
+- noting down tasks for future enhancements in "Future Enhancements" section above
