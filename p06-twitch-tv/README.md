@@ -32,14 +32,14 @@ see [instructions](https://www.freecodecamp.com/challenges/use-the-twitchtv-json
     - header part
         - [X] text, TWITCH STREAMERS
         - interactive sliding All / Online / Offline
-            - [] default slide out All, slide in Online & Offline
-            - [] slide out upon hover
-            - [] click on option toggles slide status
+            - [X] default slide out All, slide in Online & Offline
+            - [-] slide out upon hover (future enhancement, no more hover effect after 1st click)
+            - [X] click on option toggles slide status
             - [X] filters result set per selected option
         - search input field
             - [X] search icon toggle
             - [X] tooltip to click to search
-            - [X] autocomplete
+            - [-] autocomplete (future enhancement, click on search/cancel reloading page)
     - bottom part
         - [X] consistent color scheme as header
 3. get data
@@ -58,7 +58,13 @@ see [instructions](https://www.freecodecamp.com/challenges/use-the-twitchtv-json
         - [X] color scheme indicating closed account
         - [X] placeholder notification
 
+## Future Enhancements
+
+- hover effect on filter buttons
+- filter from autocomplete list
 
 ## Note
 
 - colors from [Paletton](http://paletton.com/#uid=11T0u0kkVsbp4QUnjBfhUlFbjbz)
+- submitting as-is, since all user stories /reqs satisfied
+- and instead adding task items for future iterations under "Future Enhancements" section
