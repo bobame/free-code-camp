@@ -1,6 +1,6 @@
 ## Specifications
 
-see [CodePen](#) for completed version **UPDATE LINK**
+see [CodePen](http://codepen.io/gracen/full/bgVZoR/) for completed version
 
 
 ### Objective:
@@ -63,8 +63,11 @@ see [instructions](https://www.freecodecamp.com/challenges/use-the-twitchtv-json
 - hover effect on filter buttons
 - filter from autocomplete list
 
+## Blocker
+
+- channel href links working fine locally, but throwing **Failed to load resource: net::ERR_BLOCKED_BY_CLIENT** in codepen
+
+
 ## Note
 
 - colors from [Paletton](http://paletton.com/#uid=11T0u0kkVsbp4QUnjBfhUlFbjbz)
-- submitting as-is, since all user stories /reqs satisfied
-- and instead adding task items for future iterations under "Future Enhancements" section
