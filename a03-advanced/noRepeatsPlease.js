@@ -33,16 +33,23 @@ function permAlone(str) {
     strArr.shift();                         //making sure to remove processed char
   }
 
-  //using regex to filter for perms not having repeating chars
-  var re = /(\w)\1+/g;                      //http://stackoverflow.com/a/644724
+  //regex to match repeating chars, //http://stackoverflow.com/a/644724
+  //needed to remove "g", http://stackoverflow.com/a/16859795
+  var re = /(\w)\1+/;
   var filteredResult = permArrBuilding.filter(function(val){
     return !re.test(val);
   });                                       console.log("Filterd -> " + filteredResult);
+
   return filteredResult.length;            //returning just the length of filtered arr
 }
 
 //TEST
-permAlone('abc');
+//permAlone('abc'); //easier to understand permutation
+//permAlone('aab'); //to test filtering (aab, aab, aba, aba, baa, baa) => (aba, aba)
+
+//still failing
+permAlone("abcdefa"); //returns 3600 correctly but failing fcc validation
+permAlone("abfdefa"); //returns 2640 correctly but failing fcc validation
 
 //console.log permutation reference
 //          Char: b
