@@ -14,20 +14,20 @@ function permAlone(str) {
   strArr.shift();                           //making sure to remove processed char
 
   while (strArr.length > 0) {               //looping until no more chars left to process
-    var currentChar = strArr[0];            console.log("\nChar: " + currentChar);
+    var currentChar = strArr[0];            //console.log("\nChar: " + currentChar);
 
     while (permArrBuilding.length > 0) {    //looping until no more elements left to process
-      var currentPerm = permArrBuilding[0]; console.log("\tPerm: " + currentPerm);
+      var currentPerm = permArrBuilding[0]; //console.log("\tPerm: " + currentPerm);
 
       //inserts current char to every element at each index (up to last index, length+1)
       for (var i=0; i<currentPerm.length+1; i++) {
         var newPerm = currentPerm.slice(0, i) + currentChar + currentPerm.slice(i);
-        permArrBuilt.push(newPerm);         console.log("\t\tNew: " + newPerm);
+        permArrBuilt.push(newPerm);         //console.log("\t\tNew: " + newPerm);
       }
       permArrBuilding.shift();              //making sure to remove processed element
     }
     //staging elements processed/empty, now replacing with built elements
-    permArrBuilding = permArrBuilt;         console.log("\tPerms: " + permArrBuilding);
+    permArrBuilding = permArrBuilt;         //console.log("\tPerms: " + permArrBuilding);
     //clearing built elements to set up for new iteration of built elements
     permArrBuilt = [];
     strArr.shift();                         //making sure to remove processed char
@@ -38,7 +38,7 @@ function permAlone(str) {
   var re = /(\w)\1+/;
   var filteredResult = permArrBuilding.filter(function(val){
     return !re.test(val);
-  });                                       console.log("Filterd -> " + filteredResult);
+  });                                       //console.log("Filterd -> " + filteredResult);
 
   return filteredResult.length;            //returning just the length of filtered arr
 }
@@ -47,9 +47,9 @@ function permAlone(str) {
 //permAlone('abc'); //easier to understand permutation
 //permAlone('aab'); //to test filtering (aab, aab, aba, aba, baa, baa) => (aba, aba)
 
-//still failing
-permAlone("abcdefa"); //returns 3600 correctly but failing fcc validation
-permAlone("abfdefa"); //returns 2640 correctly but failing fcc validation
+//passing after cmomenting out console.log statements
+// permAlone("abcdefa"); //returns 3600 correctly but failing fcc validation
+// permAlone("abfdefa"); //returns 2640 correctly but failing fcc validation
 
 //console.log permutation reference
 //          Char: b
