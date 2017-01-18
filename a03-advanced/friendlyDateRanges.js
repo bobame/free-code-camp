@@ -52,18 +52,13 @@ function makeFriendlyDates(arr) {
   var endMonth = monthsRef[parseInt(endDate[1])];
   var endDay = makeOrdinal(parseInt(endDate[2]));
 
-  //function to check if date range within 12 months
+  //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
   function withinYear(startY, startM, startD, endY, endM, endD) {
-    var diffYears = Math.abs(endY - startY);
-    var diffMonths = Math.abs(endM - startM);
-    var diffDays = Math.abs(startD + endD);
-
-    //WORKING ON THIS PART...
-    if (diffYears===0) return true;
-    else if (diffYears===1 && diffMonths===0) return true;
-    else if (diffYears===1 && diffMonths===1 && diffDays && diffDays < 30) return true;
-    return false;
-
+    var starting = new Date(startY, startM, startD);
+    var ending = new Date(endY, endM, endD);
+    //http://stackoverflow.com/a/2627493
+    var singleDay = 24*60*60*1000;
+    return Math.round(Math.abs((ending.getTime() - starting.getTime())/(singleDay))) < 365;
   }
   var withinYearTrue = withinYear(startYear, parseInt(startDate[1]), parseInt(startDate[2]), endYear, parseInt(endDate[1]), parseInt(endDate[2]));
 
@@ -90,7 +85,7 @@ function makeFriendlyDates(arr) {
   } else if (withinYearTrue && (startYear !== currentYear)) {
     //remove end year if (end year within a year)
     startPart = startMonth + " " + startDay + ", " + startYear;
-    endPart = startMonth + " " + endDay;
+    endPart = endMonth + " " + endDay;
   } else {
     //otherwise return full dates
     startPart = startMonth + " " + startDay + ", " + startYear;
@@ -108,3 +103,4 @@ makeFriendlyDates(["2016-12-01", "2017-02-03"]); //["December 1st","February 3rd
 makeFriendlyDates(["2017-03-01", "2017-05-05"]); //["March 1st, 2017","May 5th"]
 makeFriendlyDates(["2016-12-01", "2018-02-03"]); //["December 1st, 2016","February 3rd, 2018"]
 makeFriendlyDates(["2022-09-05", "2023-09-05"]); //["September 5th, 2022","September 5th, 2023"]
+makeFriendlyDates(["2022-09-05", "2023-09-04"]); //["September 5th, 2022","September 4th"]
