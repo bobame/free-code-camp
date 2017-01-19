@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css?family=Annie+Use+Your+Telescope|Delius+Swash+Caps|Patrick+Hand|Walter+Turncoat|Bungee+Shade|Tangerine');
+
+* {
+/*   border: 1px solid black; */
+}
+
+/******************************
+MAIN
+******************************/
+
+body {
+  background-color: #99e6ff;
+}
+
+#calculator {
+  background-color: #f2f2f2;
+  border-radius: 25px;
+  width: 320px;
+  height: 420px;
+  margin: 5% auto;
+  padding: 1%;
+  /* http://www.w3schools.com/css/css3_buttons.asp */
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+
+
+/******************************
+NAME
+******************************/
+
+#name {
+  font-family: "Patrick Hand";
+  font-size: 1.8em;
+  margin: 2%;
+  color: #4d004d;
+}
+
+
+
+/******************************
+DISPLAY
+******************************/
+
+.display {
+/*   background-color: #F2F3F3; */
+  background-color: #1a000d;
+  border-radius: 5px;
+  margin: 2%;
+  font-family: "Delius Swash Caps";
+  padding: 5px;
+  height: 85px;
+  position: relative;
+  border: 3px ridge;
+}
+
+#display-top {
+  font-family: "Walter Turncoat";
+  font-size: 2.8em;
+  position: absolute;
+  right: 30px;
+  color: #66ccff;
+}
+
+#display-bottom {
+  font-family: "Annie Use Your Telescope";
+  position: absolute;
+  bottom: 0;
+  right: 30px;
+  padding-bottom: 5px;
+  font-size: 1.1em;
+  color: #ffe6ff;
+}
+
+
+
+/******************************
+BUTTONS
+******************************/
+
+button {
+  font-family: "Bungee Shade";
+  font-size: 1.6em;
+  transition-duration: 0.7s;
+  background-color: #003d66;
+  color: #99d6ff;
+}
+
+.button-standard,
+.button-horizontal {
+  height: 45px;
+  position: relative;
+}
+
+.button-standard > button {
+  width: 55px;
+  height: 35px;
+  position: absolute;
+  left: 7px;
+  top: 3px;
+}
+
+.button-vertical {
+  height: 90px;
+}
+
+.button-vertical > button {
+  width: 55px;
+  position: absolute;
+  left: 7px;
+  height: 79.5px;
+  top: 4.5px;
+}
+
+.button-horizontal > button {
+  width: 128px;
+  height: 35px;
+  position: absolute;
+  left: 7px;
+  top: 3px;
+}
+
+/*http://www.w3schools.com/css/css3_buttons.asp*/
+button:hover {
+  box-shadow: 0 2.5px 2.5px 0 rgba(0,0,0,0.24), 0 2.5px 2.5px 0 rgba(0,0,0,0.19);
+}
+
+/* removes blue highlighting after button click, http://stackoverflow.com/a/21758143 */
+button:focus {
+  outline: 1px;
+}
+
+.button-clear {
+  background-color: #ffccff;
+  color: #003d66;
+}
+
+/******************************
+FUN
+******************************/
+
+#message {
+  font-family: "Tangerine";
+  font-size: 1.25em;
+}
+
+.message {
+  margin-top: 5px;
+  color: #4d004d;
+}
