@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Javascript Calculator</title>
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="custom.css">
+  </head>
+  <body>
+
+    <div class="container text-center" id="calculator">
+      <!-- PART-A, Name -->
+      <div class="container-fluid row">
+        <span id="name">ELECTRONIC CALCULATOR</span>
+      </div>
+      <!-- PART-B, Display -->
+      <div class="container-fluid row display">
+        <div class="row" id="display-top">
+          Hello World!
+        </div>
+        <div class="row" id="display-bottom">
+          Try me
+        </div>
+      </div>
+      <!-- PART-C, BUTTONS -->
+      <div class="container-fluid buttons">
+
+        <!-- row-1, AC / CE / divide / multiply -->
+        <div class="row">
+          <div class="col-xs-3 button-standard">
+            <button class="button-clear" id="clear-ac">AC</button>
+          </div>
+          <div class="col-xs-3 button-standard">
+            <button class="button-clear" id="clear-ce">CE</button>
+          </div>
+          <div class="col-xs-3 button-standard">
+            <button id="calc-divide">&divide;</button>
+          </div>
+          <div class="col-xs-3 button-standard">
+            <button id="calc-multiply">x</button>
+          </div>
+        </div>
+
+        <!-- row-2, 7 / 8 / 9 / - -->
+        <div class="row">
+          <div class="col-xs-3 button-standard">
+            <button id="num-7">7</button>
+          </div>
+          <div class="col-xs-3 button-standard">
+            <button id="num-8">8</button>
+          </div>
+          <div class="col-xs-3 button-standard">
+            <button id="num-9">9</button>
+          </div>
+          <div class="col-xs-3 button-standard">
+            <button id="calc-subtract">-</button>
+          </div>
+        </div>
+
+        <!-- row-3, 4 / 5 / 6 / + -->
+        <div class="row">
+          <div class="col-xs-3 button-standard">
+            <button id="num-4">4</button>
+          </div>
+          <div class="col-xs-3 button-standard">
+            <button id="num-5">5</button>
+          </div>
+          <div class="col-xs-3 button-standard">
+            <button id="num-6">6</button>
+          </div>
+          <div class="col-xs-3 button-standard">
+            <button id="calc-add">+</button>
+          </div>
+        </div>
+
+        <!-- row-4,  -->
+        <div class="row">
+          <div class="col-xs-9">
+            <div class="row">
+              <div class="col-xs-4 button-standard">
+                <button id="num-1">1</button>
+              </div>
+              <div class="col-xs-4 button-standard">
+                <button id="num2">2</button>
+              </div>
+              <div class="col-xs-4 button-standard">
+                <button id="num-3">3</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-xs-8 button-horizontal">
+                <button id="num-0">0</button>
+              </div>
+              <div class="col-xs-4 button-standard">
+                <button id="etc-decimal">.</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-3 button-vertical">
+            <button id="etc-equals">=</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PART-D, Fun Message -->
+      <div class="container-fluid row message">
+        <span id="message">Any fool can know. The point is to understand. -Einstein</span>
+      </div>
+    </div>
+
+    <!-- jquery, bootstrap, js -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+    <script src="action.js"></script>
+  </body>
+</html>
