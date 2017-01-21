@@ -31,22 +31,22 @@ see [instructions](https://www.freecodecamp.com/challenges/build-a-javascript-ca
         - [X] double col width for 0 button
         - [X] double col height for = button
 2. Functionality
-    - [] AC button clear all
-    - [] CE button clear entry
-    - [] calculation buttons (divide, multiply, subtract, add)
-    - [] limit entered value to 10 digits
-    - [] round calculation to TBD
-    - [] display undefined for division by zero
-    - [] limit calculation buttons to first clicked, tie with CE and AC
+    - [X] AC button clear all
+    - [X] CE button clear entry
+    - [X] calculation buttons (divide, multiply, subtract, add)
+    - [X] limit entered value to 10 digits
+    - [X] round calculation to (9 - (digit count preceding decimal))
+    - [X] display undefined for division by zero
+    - [X] limit calculation buttons to first clicked, tie with CE and AC
 3. Additional Features
-    - [] display ongoing calculation in bottom part of display container
+    - [X] display ongoing calculation in bottom part of display container
     - keyboard presses for number and calculation buttons
         - [] ENTER key for = button
         - [] SHIFT+8 keys for * button
         - [] FORWARD SLASH key for / button
         - [] SHIFT+= keys for + button
         - [] DASH key for - button
-    - [] button press behavior
+    - [X] button press behavior
     - [X] button hover behavior
 
 ## Note
