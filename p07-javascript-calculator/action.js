@@ -151,46 +151,45 @@ $(document).ready(function(){
     }
   }
 
-  //single key downs
-  //https://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes
-  $(document).keydown(function(e) {
-    if (e.which == 13) {
-      returnCalculation();
-    } else if (e.which == 48) { //0
-      processNumKey("num-0");
-    } else if (e.which == 49) { //1
-      processNumKey("num-1");
-    } else if (e.which == 50) { //2
-      processNumKey("num-2");
-    } else if (e.which == 51) { //3
-      processNumKey("num-3");
-    } else if (e.which == 52) { //4
-      processNumKey("num-4");
-    } else if (e.which == 53) { //5
-      processNumKey("num-5");
-    } else if (e.which == 54) { //6
-      processNumKey("num-6");
-    } else if (e.which == 55) { //7
-      processNumKey("num-7");
-    } else if (e.which == 56) { //8
-      processNumKey("num-8");
-    } else if (e.which == 57) { //9
-      processNumKey("num-9");
-    } else if (e.which == 191) { //forward slash (divide)
-      processCalcKey("calc-divide");
-    } else if (e.which == 189) { //dash (subtract)
-      processCalcKey("calc-subtract");
-    }
-
-    //keypress and keyup when multiple keys required
-    // let downKeys = {};
-    // $(document).keyDown(function(e){
-    //   downKeys[e.keyCode] = true;
-    // }).keyUp(function(e){
-    //   if (downKeys[16] && downKeys[56]) {
-    //     alert("16 and 56 for *");
-    //   } else { downKeys[e.keyCode] = false; }
-    // });
-
-  });
+  //keycodes, https://www.cambiaresearch.com/articles/15/javascript-char-codes-key-codes
+  //multiple keys, http://stackoverflow.com/a/10655316
+    var down = {};
+    $(document).keydown(function(e) {
+        down[e.keyCode] = true;
+    }).keyup(function(e) {
+      if (down[8] || down[46]) { //BACKSPACE (8) or DELETE (46)
+        processClearKey("clear-ce");
+      } else if (down[191]) { //forward slash (divide)
+        processCalcKey("calc-divide");
+      } else if (down[189]) { //dash (subtract)
+        processCalcKey("calc-subtract");
+      } else if (down[16] && down[56]) { //* (multiply)
+        processCalcKey("calc-multiply");
+      } else if (down[16] && down[187]) { //+ (add)
+        processCalcKey("calc-add");
+      } else if (e.which == 13) { //ENTER
+        returnCalculation();
+      } else if (down[48]) { //0
+        processNumKey("num-0");
+      } else if (down[49]) { //1
+        processNumKey("num-1");
+      } else if (down[50]) { //2
+        processNumKey("num-2");
+      } else if (down[51]) { //3
+        processNumKey("num-3");
+      } else if (down[52]) { //4
+        processNumKey("num-4");
+      } else if (down[53]) { //5
+        processNumKey("num-5");
+      } else if (down[54]) { //6
+        processNumKey("num-6");
+      } else if (down[55]) { //7
+        processNumKey("num-7");
+      } else if (down[56]) { //8
+        processNumKey("num-8");
+      } else if (down[57]) { //9
+        processNumKey("num-9");
+      }
+      down = {};
+    });
 });
