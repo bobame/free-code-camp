@@ -1,7 +1,6 @@
 ## Specifications
 
-- see [CodePen](#) for completed version **UPDATE LINK**
-
+- see [CodePen](http://codepen.io/gracen/full/apJvbb/) for completed version
 
 ### Objective:
 Build a CodePen.io app that is functionally similar to [this](https://codepen.io/FreeCodeCamp/full/rLJZrA/).
@@ -41,11 +40,11 @@ see [instructions](https://www.freecodecamp.com/challenges/build-a-javascript-ca
 3. Additional Features
     - [X] display ongoing calculation in bottom part of display container
     - keyboard presses for number and calculation buttons
-        - [] ENTER key for = button
-        - [] SHIFT+8 keys for * button
-        - [] FORWARD SLASH key for / button
-        - [] SHIFT+= keys for + button
-        - [] DASH key for - button
+        - [X] ENTER key for = button
+        - [X] SHIFT+8 keys for * button
+        - [X] FORWARD SLASH key for / button
+        - [X] SHIFT+= keys for + button
+        - [X] DASH key for - button
     - [X] button press behavior
     - [X] button hover behavior
 
