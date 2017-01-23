@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Pomodoro Timer</title>
+    <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+    <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="custom.css">
+  </head>
+  <body>
+
+    <div class="container-fluid">
+      <!-- PART-1 : TITLE -->
+      <div class="row" id="title">
+        <h1 class="text-center">Pomodoro Timer</h1>
+      </div>
+
+      <!-- PART-2 : BREAK & SESSION BUTTONS -->
+      <div class="row text-center" id="button-holder">
+        <!-- BREAK -->
+        <div class="col-sm-2 col-sm-offset-4" id="break-holder">
+          <div class="row">
+            <h4>Break Length</h4>
+          </div>
+          <div class="row buttons">
+            <div class="col-sm-1 col-sm-offset-3">
+              <button id="break-minus">-</button>
+            </div>
+            <div class="col-sm-3">
+              <div id="break-length">5</div>
+            </div>
+            <div class="col-sm-1">
+              <button id="break-plus">+</button>
+            </div>
+          </div>
+        </div> <!-- /BREAK -->
+        <!-- SESSION -->
+        <div class="col-sm-2 col-sm-offset-0 " id="session-holder">
+          <div class="row">
+            <h4>Session Length</h4>
+          </div>
+          <div class="row">
+            <div class="col-sm-1 col-sm-offset-3">
+              <button id="session-minus">-</button>
+            </div>
+            <div class="col-sm-3">
+              <div id="session-length">25</div>
+            </div>
+            <div class="col-sm-1">
+              <button id="session-plus">+</button>
+            </div>
+          </div>
+        </div> <!-- /BREAK -->
+      </div>
+
+      <!-- PART-3 : MAIN CIRCLE BUTTON -->
+      <div class="row">
+        <div id="big-circle" class="text-center">
+
+        </div>
+      </div>
+    </div>
+
+    <!-- jquery, bootstrap, js -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
+    <script src="action.js"></script>
+  </body>
+</html>
