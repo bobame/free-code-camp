@@ -36,3 +36,7 @@ see [instructions](https://www.freecodecamp.com/challenges/build-a-pomodoro-cloc
     - [] progress indication red
 
 ## Note
+
+- countdown timer how-to [here](http://www.w3schools.com/howto/howto_js_countdown.asp)
+- vertically center inside parent container [here](http://stackoverflow.com/a/17996674)
+-

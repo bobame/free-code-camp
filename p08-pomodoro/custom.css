@@ -1,23 +1,20 @@
-@import url('https://fonts.googleapis.com/css?family=Kaushan+Script|Neucha|Montez');
+@import url('https://fonts.googleapis.com/css?family=Kaushan+Script|Neucha|Montez|Berkshire+Swash|Muli');
 
 
 * {
-  border: 1px solid black;
+/*   border: 1px solid black; */
   box-sizing: border-box;
 }
 
-body {
+html, body {
   background-color: #f44256;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-/******************************
-NAME
-******************************/
-
-h1 {
-  font-family: "Kaushan Script";
-  font-size: 6em;
-  color: #f6f945;
+h1,
+#circle-status {
   /* http://markdotto.com/playground/3d-text/ */
   text-shadow: 0 1px 0 #ccc,
                0 2px 0 #c9c9c9,
@@ -31,6 +28,16 @@ h1 {
                0 5px 10px rgba(0,0,0,.25),
                0 10px 10px rgba(0,0,0,.2),
                0 20px 20px rgba(0,0,0,.15);
+}
+
+/******************************
+NAME
+******************************/
+
+h1 {
+  font-family: "Kaushan Script";
+  font-size: 6em;
+  color: #f6f945;
   padding: 20px;
 }
 
@@ -41,25 +48,26 @@ BREAK/SESSION BUTTONS
 h4 {
   font-family: "Montez";
   font-size: 1.6em;
-  color: #45ccf9;
+  color: #FFB4B4;
 }
 
 #session-length,
 #break-length {
   font-family: "Neucha";
-  font-size: 3em;
-  background-color: white;
-  height: 50px;
-  position: absolute;
-  left: 0;
-  width: 100%;
+  font-size: 3.5em;
+  color: #f6f945;
+  text-shadow: 2px 2px #FFB4B4;
 }
 
-button {
-  width: 100%;
-  position: absolute;
-  left:0;
-  height: 50px;
+.min-sub-break,
+.min-add-break,
+.min-sub-session,
+.min-add-session {
+  background-color: Transparent;
+  border: none;
+  font-size: 2.5em;
+  font-family: "Berkshire Swash";
+  color: #FFB4B4;
 }
 
 
@@ -67,10 +75,45 @@ button {
 BIG CIRCLE
 ******************************/
 
-#big-circle {
-  border: 5px ridge black;
+.big-circle {
+  border: 1px ridge #FFB4B4;
   border-radius: 50%;
-  height: 375px;
-  width: 375px;
-  margin: 60px auto;
+  height: 275px;
+  width: 275px;
+  margin: 0 auto;
+  display: table-cell;
+  vertical-align: middle;
+  background-color: #e1e8e4;
+}
+
+.parent {
+  height: 100%;
+  width: 100%;
+  display: table;
+  margin: 0 0 2% 0;
+  padding: 0;
+}
+
+#circle-status {
+  font-size: 5em;
+  font-family: "Muli";
+  color: #f6f945;
+}
+
+.start {
+  background-color: #92efc4;
+}
+
+
+/******************************
+RESET
+******************************/
+
+#btn-reset {
+  margin-bottom: 5%;
+  font-family: "Montez";
+  font-size: 1.6em;
+  color: #FFB4B4;
+  background-color: Transparent;
+  border: none;
 }
