@@ -1,6 +1,7 @@
 
 $(document).ready(function(){
   let timerActive = false;
+  let timerPaused = false;
   let timerType = 'session';
   let countdownTracking;
   let countdownProgress;
@@ -57,29 +58,32 @@ $(document).ready(function(){
     let minutes;
     let milliseconds;
     //timer not started and turn is session
-    if (!timerActive && timerType==='session') {
+    if (!timerPaused && !timerActive && timerType==='session') {
       minutes = parseInt($('#session-length').text());
       milliseconds = minutes * 60 * 1000;
       countdownTracking = milliseconds;
-      timerActive = true;
       startCountdown();
     }
     //timer not started and turn is 'break'
-    else if (!timerActive && timerType==='break') {
+    else if (!timerPaused && !timerActive && timerType==='break') {
       minutes = parseInt($('#break-length').text());
       milliseconds = minutes * 60 * 1000;
       countdownTracking = milliseconds;
-      timerActive = true;
       startCountdown();
     }
     //timer is active
     else {
       clearInterval(countdownProgress);
-      timerActive = false;
-      if (timerType === 'session') {
-        $('#circle-status').html("START");
-      } else {
-        $('#circle-status').html("BREAK");
+      let partMin = parseInt($('#circle-status').text().split(":")[0]);
+      let partSec = parseInt($('#circle-status').text().split(":")[1]);
+      milliseconds = ((partMin * 60 * 1000) + (partSec * 1000));
+      //if not paused, pause timer and update countdownTracking
+      if (!timerPaused) {
+        clearInterval(countdownProgress);
+        timerPaused = true;
+      } else { //otherwise unpause and continue countdown
+        startCountdown();
+        timerPaused = false;
       }
     }
     countdownTracking = milliseconds;
@@ -87,17 +91,20 @@ $(document).ready(function(){
 
   //starts countdown
   function startCountdown() {
+    timerActive = true;
+    console.log(typeof countdownTracking);
     countdownProgress = setInterval(function(){
+      console.log("countdownTracking -> " + countdownTracking + " " + typeof countdownTracking);
       countdownTracking -= 1000;
       countdownMin = Math.floor(countdownTracking / (60 * 1000));
       countdownSec = Math.floor((countdownTracking % (60 * 1000)) / 1000);
       countdownSec = String("00" + countdownSec).slice(-2);
+      // console.log("countdownSec -> " + countdownSec + " " + typeof countdownSec);
       $('#circle-status').html(countdownMin + ":" + countdownSec);
 
       if (countdownTracking < 0) {
         clearInterval(countdownProgress);
         timerActive = false;
-        //timerType = timerType==='session'? 'break' : 'session';
 
         if (timerType==='session') {
           timerType = 'break';
