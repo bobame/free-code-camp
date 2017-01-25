@@ -1,6 +1,9 @@
 
 $(document).ready(function(){
   let timerActive = false;
+  let timerType = 'session';
+  let countdownTracking;
+  let countdownProgress;
 
   //capturing all clicks and calling functions based on click target
   $(document).on('click', function(e){
@@ -42,14 +45,69 @@ $(document).ready(function(){
 
   //resets break and session lengths to starting defaults
   function resetDefault() {
-    //TODO: stop timer if active
+    clearInterval(countdownProgress);
     $('#break-length').html(5);
     $('#session-length').html(25);
+    timerType = 'session';
+    $('#circle-status').html("START");
   }
 
   //update timer status
   function updateTimer() {
-    console.log('update me');
+    let minutes;
+    let milliseconds;
+    //timer not started and turn is session
+    if (!timerActive && timerType==='session') {
+      minutes = parseInt($('#session-length').text());
+      milliseconds = minutes * 60 * 1000;
+      countdownTracking = milliseconds;
+      timerActive = true;
+      startCountdown();
+    }
+    //timer not started and turn is 'break'
+    else if (!timerActive && timerType==='break') {
+      minutes = parseInt($('#break-length').text());
+      milliseconds = minutes * 60 * 1000;
+      countdownTracking = milliseconds;
+      timerActive = true;
+      startCountdown();
+    }
+    //timer is active
+    else {
+      clearInterval(countdownProgress);
+      timerActive = false;
+      if (timerType === 'session') {
+        $('#circle-status').html("START");
+      } else {
+        $('#circle-status').html("BREAK");
+      }
+    }
+    countdownTracking = milliseconds;
+  }
+
+  //starts countdown
+  function startCountdown() {
+    countdownProgress = setInterval(function(){
+      countdownTracking -= 1000;
+      countdownMin = Math.floor(countdownTracking / (60 * 1000));
+      countdownSec = Math.floor((countdownTracking % (60 * 1000)) / 1000);
+      countdownSec = String("00" + countdownSec).slice(-2);
+      $('#circle-status').html(countdownMin + ":" + countdownSec);
+
+      if (countdownTracking < 0) {
+        clearInterval(countdownProgress);
+        timerActive = false;
+        //timerType = timerType==='session'? 'break' : 'session';
+
+        if (timerType==='session') {
+          timerType = 'break';
+          $('#circle-status').html("BREAK");
+        } else {
+          timerType = 'session';
+          $('#circle-status').html("START");
+        }
+      }
+    }, 1000);
   }
 
 });
