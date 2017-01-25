@@ -103,6 +103,8 @@ $(document).ready(function(){
       $('#circle-status').html(countdownMin + ":" + countdownSec);
 
       if (countdownTracking < 0) {
+        //plays 4 notes from simon project
+        playAudio();
         clearInterval(countdownProgress);
         timerActive = false;
 
@@ -119,6 +121,14 @@ $(document).ready(function(){
         }
       }
     }, 1000);
+  }
+
+  //https://www.freecodecamp.com/challenges/build-a-simon-game
+  function playAudio() {
+    new Audio("https://s3.amazonaws.com/freecodecamp/simonSound1.mp3").play();
+    new Audio("https://s3.amazonaws.com/freecodecamp/simonSound2.mp3").play();
+    new Audio("https://s3.amazonaws.com/freecodecamp/simonSound3.mp3").play();
+    new Audio("https://s3.amazonaws.com/freecodecamp/simonSound4.mp3").play();
   }
 
 });

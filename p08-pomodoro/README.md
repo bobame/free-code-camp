@@ -25,18 +25,23 @@ see [instructions](https://www.freecodecamp.com/challenges/build-a-pomodoro-cloc
             - [X] row-1, name
             - [X] row-2, minus, time, plus
     - row-3
-        - [] big circular button
+        - [X] big circular button
         - update ui per state
-            - [] start session (inside circle)
-            - [] pause session (inside circle)
+            - [X] start session (inside circle)
+            - [X] pause session (inside circle)
     - row-4, reset button
 2. Functionality
-    - [] time remaining
+    - [X] time remaining
     - [] progress indication green
     - [] progress indication red
+    - [X] sound to alert timer end
 
 ## Note
 
 - countdown timer how-to [here](http://www.w3schools.com/howto/howto_js_countdown.asp)
 - vertically center inside parent container [here](http://stackoverflow.com/a/17996674)
--
+- adding minutes to current [here](http://stackoverflow.com/a/4517698)
+- catch all clicks [here](http://stackoverflow.com/a/15234972)
+- left pad 0s to string [here](http://stackoverflow.com/a/14760377)
+- progress bar how-to [here](http://www.w3schools.com/howto/howto_js_progressbar.asp)
+- sound asset [here](https://s3.amazonaws.com/freecodecamp/simonSound1.mp3), from another upcoming project instructions [here](https://www.freecodecamp.com/challenges/build-a-simon-game)
