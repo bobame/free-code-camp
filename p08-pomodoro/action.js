@@ -49,6 +49,8 @@ $(document).ready(function(){
     clearInterval(countdownProgress);
     $('#break-length').html(5);
     $('#session-length').html(25);
+    timerActive = false;
+    timerPaused = false;
     timerType = 'session';
     $('#circle-status').html("START");
   }
@@ -92,9 +94,7 @@ $(document).ready(function(){
   //starts countdown
   function startCountdown() {
     timerActive = true;
-    console.log(typeof countdownTracking);
     countdownProgress = setInterval(function(){
-      console.log("countdownTracking -> " + countdownTracking + " " + typeof countdownTracking);
       countdownTracking -= 1000;
       countdownMin = Math.floor(countdownTracking / (60 * 1000));
       countdownSec = Math.floor((countdownTracking % (60 * 1000)) / 1000);
