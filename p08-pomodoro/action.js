@@ -108,9 +108,13 @@ $(document).ready(function(){
 
         if (timerType==='session') {
           timerType = 'break';
+          $('.big-circle').removeClass("start");
+          $('.big-circle').addClass("break");
           $('#circle-status').html("BREAK");
         } else {
           timerType = 'session';
+          $('.big-circle').removeClass("break");
+          $('.big-circle').addClass("start");
           $('#circle-status').html("START");
         }
       }
