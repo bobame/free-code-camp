@@ -5,6 +5,7 @@ $(document).ready(function(){
   let timerType = 'session';
   let countdownTracking;
   let countdownProgress;
+  let countdownStarting;
 
   //capturing all clicks and calling functions based on click target
   $(document).on('click', function(e){
@@ -94,12 +95,23 @@ $(document).ready(function(){
   //starts countdown
   function startCountdown() {
     timerActive = true;
+
+    //needed to not restart progress bar when countdown paused
+    if (!timerPaused) { countdownStarting = countdownTracking; }
+
+    //the actual setInterval() part
     countdownProgress = setInterval(function(){
       countdownTracking -= 1000;
-      countdownMin = Math.floor(countdownTracking / (60 * 1000));
-      countdownSec = Math.floor((countdownTracking % (60 * 1000)) / 1000);
+      let countdownMin = Math.floor(countdownTracking / (60 * 1000));
+      let countdownSec = Math.floor((countdownTracking % (60 * 1000)) / 1000);
       countdownSec = String("00" + countdownSec).slice(-2);
-      // console.log("countdownSec -> " + countdownSec + " " + typeof countdownSec);
+
+      //updating progress bar UI based on percentage time elapsed
+      let progressPercentage = Math.floor(((countdownStarting - countdownTracking) / countdownStarting) * 100);
+      $("#progress-bar-progress")[0].style.width = progressPercentage + "%";
+      $("#progress-bar-label").html(progressPercentage + "%");
+
+      //displaying countdown
       $('#circle-status').html(countdownMin + ":" + countdownSec);
 
       if (countdownTracking < 0) {
@@ -109,11 +121,13 @@ $(document).ready(function(){
         timerActive = false;
 
         if (timerType==='session') {
+          //if finished turn is 'session' then updates next turn to 'break'
           timerType = 'break';
           $('.big-circle').removeClass("start");
           $('.big-circle').addClass("break");
           $('#circle-status').html("BREAK");
         } else {
+          //if finished turn is 'break' then updates next turn to 'session'
           timerType = 'session';
           $('.big-circle').removeClass("break");
           $('.big-circle').addClass("start");
