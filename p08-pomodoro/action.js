@@ -120,6 +120,10 @@ $(document).ready(function(){
         clearInterval(countdownProgress);
         timerActive = false;
 
+        //resets progress bar
+        $("#progress-bar-progress")[0].style.width = "0%";
+        $("#progress-bar-label").html("");
+
         if (timerType==='session') {
           //if finished turn is 'session' then updates next turn to 'break'
           timerType = 'break';
