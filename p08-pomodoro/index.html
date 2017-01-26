@@ -10,6 +10,7 @@
   <body>
 
     <div class="container-fluid">
+
       <!-- PART-1 : TITLE -->
       <div class="row" id="title">
         <h1 class="text-center">Pomodoro Timer</h1>
@@ -23,9 +24,9 @@
             <h4>Break Length</h4>
           </div>
           <div class="row">
-            <button class="min-sub-break">-</button>
+            <button id="min-sub-break">-</button>
             <span id="break-length">5</span>
-            <button class="min-add-break">+</button>
+            <button id="min-add-break">+</button>
           </div>
         </div> <!-- /BREAK -->
         <div class="col-sm-4 col-sm-offset-0" id="session-holder">
@@ -33,9 +34,9 @@
             <h4>Session Length</h4>
           </div>
           <div class="row">
-            <button class="min-sub-session">-</button>
+            <button id="min-sub-session">-</button>
             <span id="session-length">25</span>
-            <button class="min-add-session">+</button>
+            <button id="min-add-session">+</button>
           </div>
 
         </div> <!-- /SESSION -->
@@ -58,6 +59,14 @@
           RESET <i class="fa fa-refresh"></i>
         </button>
       </div>
+
+      <!-- PART-5 : PROGRESS BAR -->
+      <div class="container-fluid text-center" id="progress-bar-bar">
+        <div id="progress-bar-progress">
+          <div id="progress-bar-label">0%</div>
+        </div>
+      </div>
+
     </div>
     
     <!-- jquery, bootstrap, js -->
