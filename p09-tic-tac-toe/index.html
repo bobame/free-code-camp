@@ -10,7 +10,7 @@
   <body>
 
     <div class="container">
-      
+
       <!-- ROW-1: TITLE -->
       <div class="row">
         <div id="title" class="text-center">
@@ -24,13 +24,13 @@
         <div class="col-sm-5 text-center left">
           <div class="left-inner">
             <div class="row turn">
-              Who's turn is it?
+              Who's turn?
             </div>
             <div class="row score">
-              Player X: <span id='score-x'>0</span>
+              Player X: <span id='score-x'>0</span> (<span id='score-x-ref'></span>)
             </div>
             <div class="row score">
-              Player Y: <span id='score-o'>0</span>
+              Player Y: <span id='score-o'>0</span> (<span id='score-y-ref'></span>)
             </div>
             <div class="row btn-reset">
               <button class="btn btn-success">Reset</button>
@@ -39,47 +39,59 @@
         </div> <!-- /COL-LEFT -->
 
         <!-- COL-RIGHT -->
-        <div class="col-sm-7 text-center right">
+        <div class="col-sm-7 text-center col-centered right">
 
           <!-- ROW-A -->
           <div class="row">
-            <div class="col-xs-4 game row-a col-a">
+            <div class="col-xs-4 game row-a col-a" id="aa">
               AA
             </div>
-            <div class="col-xs-4 game row-a col-b">
+            <div class="col-xs-4 game row-a col-b" id="ab">
               AB
             </div>
-            <div class="col-xs-4 game row-a col-c">
+            <div class="col-xs-4 game row-a col-c" id="ac">
               AC
             </div>
           </div> <!-- /ROW-A -->
 
           <!-- ROW-B -->
           <div class="row">
-            <div class="col-xs-4 game row-b col-a">
+            <div class="col-xs-4 game row-b col-a" id="ba">
               BA
             </div>
-            <div class="col-xs-4 game row-b col-b">
+            <div class="col-xs-4 game row-b col-b" id="bb">
               BB
             </div>
-            <div class="col-xs-4 game row-b col-c">
+            <div class="col-xs-4 game row-b col-c" id="bc">
               BC
             </div>
           </div> <!-- /ROW-B -->
 
           <!-- ROW-C -->
           <div class="row">
-            <div class="col-xs-4 game row-c col-a">
+            <div class="col-xs-4 game row-c col-a" id="ca">
               CA
             </div>
-            <div class="col-xs-4 game row-c col-b">
+            <div class="col-xs-4 game row-c col-b" id="cb">
               CB
             </div>
-            <div class="col-xs-4 game row-c col-c">
+            <div class="col-xs-4 game row-c col-c" id="cc">
               CC
             </div>
           </div> <!-- /ROW-C -->
         </div> <!-- /COL-RIGHT -->
+
+        <div class="col-sm-7 text-center right-start parent">
+
+          <div class="child-start">
+            <h1>Select player...</h1>
+            <button id="start-x">X</button>
+            <button id="start-y">Y</button>
+            <h1>Player <span id="first-turn"> *</span> goes first.</h1>
+          </div>
+
+        </div>
+
       </div> <!-- /ROW-2: BODY -->
 
       <div class="row note"> <!-- ROW-3: NOTE -->

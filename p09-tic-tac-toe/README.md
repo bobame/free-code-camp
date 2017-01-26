@@ -16,27 +16,27 @@ see [instructions](https://www.freecodecamp.com/challenges/build-a-tic-tac-toe-g
 ## Plan
 1. UI
     - screen-1, select player X or O
-        - [] text indicating either player X or O already selected to go first
-        - [] ask user to select either X or O
-        - [] reveal which player selected to go first
-        - [] close modal
+        - [X] text indicating either player X or O already selected to go first
+        - [X] ask user to select either X or O
+        - [X] reveal which player selected to go first
+        - [X] fade out div
     - screen-2, 2 columns
         - column-1
-            - [] row-1, player turn
+            - [X] row-1, player turn
             - [] row-2, score player X (you/computer)
             - [] row-3, score player O (you/computer)
             - [] row-4, reset button
         - column-2
-            - [] 3 by 3 divs equal size
-            - [] gradient css for chalk-like effect
-            - [] thick borders
+            - [X] 3 by 3 divs equal size
+            - [X] gradient css for chalk-like effect
+            - [X] thick borders
     - screen-3, game status
         - [] css opacity to fade out background
         - [] user win
         - [] computer win
         - [] tie
 2. Functionality
-    - game 
+    - game
         - [] TBD
     - scoreboard
         - [] highlight style for higher score
@@ -44,3 +44,8 @@ see [instructions](https://www.freecodecamp.com/challenges/build-a-tic-tac-toe-g
 
 
 ## Note
+
+- radial-gradient [here](http://www.w3schools.com/css/tryit.asp?filename=trycss3_gradient-radial)
+- binding click event to multiple buttons [here](http://stackoverflow.com/a/17715413)
+- disable button [here](http://stackoverflow.com/a/15122550)
+- specify callback function after fadeOut [here](http://stackoverflow.com/a/1065809)

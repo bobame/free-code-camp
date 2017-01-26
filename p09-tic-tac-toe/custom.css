@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Cabin+Sketch|Fontdiner+Swanky|Freckle+Face|Love+Ya+Like+A+Sister|Poiret+One|Special+Elite');
 
 /*
-font-family: "Cabin Sketch";
-font-family: "Fontdiner Swanky"; ;
+font-family: "Cabin Sketch"; ;
+font-family: "Fontdiner Swanky";
 font-family: "Freckle Face"; ;
 font-family: "Love Ya Like A Sister"; ;
 font-family: "Poiret One"; ;
@@ -11,12 +11,12 @@ font-family: "Special Elite"; ;
 
 
 * {
-/*   border: 1px solid black; */
+  border: 1px solid black;
 }
 
-/******************************
+/* ==============================
 BODY
-******************************/
+============================== */
 
 body {
   /* http://www.w3schools.com/css/css3_gradients.asp */
@@ -28,13 +28,13 @@ body {
 }
 
 
-/******************************
+/* ==============================
 TITLE
-******************************/
+============================== */
 
 #title > h1 {
-  font-family: "Fontdiner Swanky";
-  font-size: 4em;
+  font-family: "Cabin Sketch";
+  font-size: 5em;
   margin: 2% auto;
   color: rgb(92, 184, 92);
   /* http://markdotto.com/playground/3d-text/ */
@@ -54,12 +54,12 @@ TITLE
 
 
 
-/******************************
+/* ==============================
 LEFT (SCOREBOARD)
-******************************/
+============================== */
 
 .left {
-  display: table;
+/*   display: table; */
 }
 
 .left-inner {
@@ -80,6 +80,8 @@ LEFT (SCOREBOARD)
 .score {
   font-family: "Poiret One";
   font-size: 1.2em;
+  text-align: left;
+  padding-left: 25%;
 }
 
 .btn-reset {
@@ -90,17 +92,18 @@ LEFT (SCOREBOARD)
 
 
 
-/******************************
+/* ==============================
 RIGHT (GAME)
-******************************/
+============================== */
 
 .right {
-  margin: 0 auto;
+  text-align: center;
+  position: relative;
 }
 
 .game {
   height: 180px;
-  max-width: 180px;
+/*   max-width: 180px; */
   font-family: "Cabin Sketch";
   font-size: 10em;
   /* http://markdotto.com/playground/3d-text/ */
@@ -130,15 +133,41 @@ RIGHT (GAME)
 
 
 
-/******************************
+/* ==============================
 RIGHT (SELECT X/O)
-******************************/
+============================== */
+
+
+.right-start {
+  background-color: rgba(10,10,10, .6);
+
+}
+
+.parent {
+  display: table;
+  font-family: "Fontdiner Swanky";
+}
+
+.child-start {
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 5em;
+  color: white;
+  text-shadow: 5px 5px #000;
+}
+
+.child-start > button {
+  background-color: Transparent;
+  padding: 5%;
+  text-shadow: 5px 5px #000;
+}
 
 
 
-/******************************
+
+/* ==============================
 RIGHT (GAME RESULT)
-******************************/
+============================== */
 
 
 .note {
@@ -148,5 +177,5 @@ RIGHT (GAME RESULT)
 #note {
   font-family: "Special Elite";
   font-size: 1.2em;
-
+  color: rgb(20, 144, 82);
 }
