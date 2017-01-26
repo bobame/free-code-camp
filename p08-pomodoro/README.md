@@ -1,6 +1,6 @@
 ## Specifications
 
-- see [CodePen](#) for completed version **UPDATE LINK**
+- see [CodePen](http://codepen.io/gracen/full/dNWqxj/) for completed version
 
 ### Objective:
 Build a CodePen.io app that is functionally similar to [this](https://codepen.io/freeCodeCamp/full/aNyxXR).
@@ -32,8 +32,8 @@ see [instructions](https://www.freecodecamp.com/challenges/build-a-pomodoro-cloc
     - row-4, reset button
 2. Functionality
     - [X] time remaining
-    - [] progress indication green
-    - [] progress indication red
+    - [X] progress indication green
+    - [X] progress indication gray
     - [X] sound to alert timer end
 
 ## Note

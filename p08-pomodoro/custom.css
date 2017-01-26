@@ -135,19 +135,18 @@ PROGRESS BAR
   width: 50%;
   height: 50px;
   border-radius: 20px;
-  background-color: #e1e8e4;
-  border: 1px ridge #FFB4B4;
+  background-color: #FFB4B4;
+  border: 3.5px ridge #FFB4B4;
   position: relative;
 }
 
 #progress-bar-progress {
   display: table;
-  background-color: pink;
   border-radius: 20px;
   height: 50px;
   position: absolute;
   left: 0;
-  width: 25%;
+  width: 0;
 
 }
 

@@ -106,6 +106,13 @@ $(document).ready(function(){
       let countdownSec = Math.floor((countdownTracking % (60 * 1000)) / 1000);
       countdownSec = String("00" + countdownSec).slice(-2);
 
+      //determining progress bar color based on timer type
+      if (timerType === 'session') {
+        $("#progress-bar-progress")[0].style.backgroundColor = "#92efc4";
+      } else {
+        $("#progress-bar-progress")[0].style.backgroundColor = "#e1e8e4";
+      }
+
       //updating progress bar UI based on percentage time elapsed
       let progressPercentage = Math.floor(((countdownStarting - countdownTracking) / countdownStarting) * 100);
       $("#progress-bar-progress")[0].style.width = progressPercentage + "%";
