@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css?family=Cabin+Sketch|Fontdiner+Swanky|Freckle+Face|Love+Ya+Like+A+Sister|Poiret+One|Special+Elite');
+
+/*
+font-family: "Cabin Sketch";
+font-family: "Fontdiner Swanky"; ;
+font-family: "Freckle Face"; ;
+font-family: "Love Ya Like A Sister"; ;
+font-family: "Poiret One"; ;
+font-family: "Special Elite"; ;
+*/
+
+
+* {
+/*   border: 1px solid black; */
+}
+
+/******************************
+BODY
+******************************/
+
+body {
+  /* http://www.w3schools.com/css/css3_gradients.asp */
+  background: green; /* For browsers that do not support gradients */
+    background: -webkit-radial-gradient(green, black); /* Safari 5.1 to 6.0 */
+    background: -o-radial-gradient(green, black); /* For Opera 11.6 to 12.0 */
+    background: -moz-radial-gradient(green, black); /* For Firefox 3.6 to 15 */
+    background: radial-gradient(green, black); /* Standard syntax (must be last) */
+}
+
+
+/******************************
+TITLE
+******************************/
+
+#title > h1 {
+  font-family: "Fontdiner Swanky";
+  font-size: 4em;
+  margin: 2% auto;
+  color: rgb(92, 184, 92);
+  /* http://markdotto.com/playground/3d-text/ */
+  text-shadow: 0 1px 0 #ccc,
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #b9b9b9,
+               0 5px 0 #aaa,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);
+}
+
+
+
+/******************************
+LEFT (SCOREBOARD)
+******************************/
+
+.left {
+  display: table;
+}
+
+.left-inner {
+  background-color: white;
+  padding: 10% 5%;
+  border-radius: 20px;
+  margin: 15%;
+
+}
+
+.turn {
+  font-family: "Love Ya Like A Sister";
+  font-size: 2em;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.score {
+  font-family: "Poiret One";
+  font-size: 1.2em;
+}
+
+.btn-reset {
+  font-family: "Freckle Face";
+  font-size: 1.2em;
+  margin-top: 5%;
+}
+
+
+
+/******************************
+RIGHT (GAME)
+******************************/
+
+.right {
+  margin: 0 auto;
+}
+
+.game {
+  height: 180px;
+  max-width: 180px;
+  font-family: "Cabin Sketch";
+  font-size: 10em;
+  /* http://markdotto.com/playground/3d-text/ */
+  text-shadow: 0 1px 0 #ccc,
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #b9b9b9,
+               0 5px 0 #aaa,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);
+}
+
+.row-a,
+.row-b {
+  border-bottom: 5px ridge white;
+}
+
+.col-a,
+.col-b {
+  border-right: 5px ridge white;
+}
+
+
+
+/******************************
+RIGHT (SELECT X/O)
+******************************/
+
+
+
+/******************************
+RIGHT (GAME RESULT)
+******************************/
+
+
+.note {
+  margin: 2% auto 5% auto;
+}
+
+#note {
+  font-family: "Special Elite";
+  font-size: 1.2em;
+
+}
