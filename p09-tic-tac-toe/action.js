@@ -1,10 +1,20 @@
 $(document).ready(function(){
 
+ /* ================================================== *///variables
+
+  let gameHeight;
   let user;
   let computer;
+  let playerX;
+  let playerO;
   let scoreX = 0;
-  let scoreY = 0;
+  let scoreO = 0;
   let turn;
+  let userTurnEnabled = false;
+  let turnMessage = {
+    "user": "Your turn, go!",
+    "computer": "Computer's turn"
+  }
   let boardTracking = {
     "aa": "",
     "ab": "",
@@ -17,77 +27,84 @@ $(document).ready(function(){
     "cc": ""
   };
 
+ /* ================================================== *///execution
 
   openGame();
 
-
   function openGame() {
-    clearBoard();
-    fadeGame();
-    getTurn();
-    askUserXO();
-  }
-
-  function startGame() {
-    playGame();
-  }
-
-  function clearBoard() {
     $(".game").html("");
+    $(".left, .right").fadeTo(1000, 0.12);
+    showStartScreen();
   }
 
-  function fadeGame() {
-    $(".left").fadeTo(1000, 0.12);
-    $(".right").fadeTo(1000, 0.12);
-  }
 
+
+
+
+/* ================================================== *///
+
+  //assigns turn to either x or o using random
   function getTurn() {
-    let randomNum = Math.floor(Math.random() * (2-1+1) + 1);
-    if (randomNum === 1) turn = 'x';
-    else turn = 'y';
-    console.log("turn num is " + randomNum + " so turn is " + turn);
+    turn = (Math.floor(Math.random() * (2-1+1) + 1)===1)? 'x' : 'y';
+    return turn;
   }
 
-  function askUserXO() {
-    //set start screen height to game height
-    let viewHeight = $('.right').height();
-    //hide game to show start screen in its place
-    $(".right").hide();
-    $(".right-start")[0].style.height = viewHeight + "px";
-    $("#start-x, #start-y").on('click', function(){
-      //get user player and disable computer player
-      user = this.id.split("-")[1];
-      computer = (user==='x')? 'y' : 'x';
-      $("#start-"+user)[0].style.backgroundColor = "#000";
-      $("#start-"+computer).prop("disabled", true);
-      //revealing which goes first
-      $("#first-turn").html(turn.toUpperCase());
-      $(".right-start").delay(1000).fadeOut(500, function(){
-        presentGame();
+  //uses game height for start and result screens
+  function getGameHeight() {
+    return $('.right').height();
+  }
+
+  //assigns x and o players based on user selection in start screen
+  function getPlayers(userSelection) {
+    console.log("user selected " + userSelection);
+    if (userSelection==="start-x") {
+      user = "x"; computer = "o";
+      playerX = "user"; playerO = "computer";
+    } else {
+      user = "o"; computer = "x";
+      playerX = "computer"; playerO = "user";
+    }
+    $("#start-"+user)[0].style.backgroundColor = "#000";
+    $("#start-"+computer).prop("disabled", true);
+  }
+
+  //reveals randomnly assigned first turn after user completes selection
+  function revealFirstTurn() {
+    $("#first-turn").html(turn.toUpperCase());
+  }
+
+  //transitions from start screen to game screen
+  function transitionStartToGame() {
+    $(".right-start").delay(1000).fadeOut(500, function(){
+      $(".right").fadeTo(400, 1);
+      $(".left").fadeTo(400, 1, function(){
+        //display correct turn
+        let startTurn = (turn===user)? turnMessage.user : turnMessage.computer;
+        $(".turn").html(startTurn);
+        //display correct player next to each score
+        $("#score-x-ref").html(playerX);
+        $("#score-o-ref").html(playerO);
       });
     });
   }
 
-  function presentGame() {
-    $(".right").fadeTo(400, 1);
-    $(".left").fadeTo(400, 1, function(){
-      //display who's turn is next
-      if (turn===user) $(".turn").html("Your turn, go!");
-      else $(".turn").html("Computer's turn");
-      //display player references next to score
-      if (user==="x") {
-        $("#score-x-ref").html("You");
-        $("#score-y-ref").html("Computer");
-      } else {
-        $("#score-x-ref").html("Computer");
-        $("#score-y-ref").html("You");
-      }
-      startGame();
+  //start screen asking user to select player
+  function showStartScreen() {
+    gameHeight = getGameHeight();
+    $(".right").hide();
+    $(".right-start")[0].style.height = gameHeight + "px";
+    $("#start-x, #start-y").on('click', function(){
+      getPlayers(this.id);
+      revealFirstTurn(getTurn());
+      transitionStartToGame();
     });
   }
 
-  function playGame(){
-    console.log("Playing game");
-  }
+
+  
+
+/* ================================================== *///
+
+
 
 });
