@@ -40,6 +40,7 @@ $(document).ready(function(){
   //functions - teardown
   let revertPlayerHighlightDisable;
   let clearGame;
+  let clearBoardTracking;
   let resetGame;
   //functions - display
   let highlightPlayerDisableOther;
@@ -137,11 +138,18 @@ $(document).ready(function(){
     //GAME SCREEN - CLEARS BOARD & ASSIGNMENTS
     clearGame = function clearGame() {
       $(".game").html("");
+      clearBoardTracking();
       xMoves = [];
       oMoves = [];
       xMovesBrokenDown = [[], []];
       oMovesBrokenDown = [[], []];
       winner = null;
+    }
+
+    clearBoardTracking = function() {
+      for (var i=0; i<Object.keys(boardTracking).length; i++){
+	      boardTracking[Object.keys(boardTracking)[i]] = "";
+      }
     }
 
     //GAME ALL - RESET
@@ -170,7 +178,8 @@ $(document).ready(function(){
     }
 
     //GAME OVER SCREEN
-    showGameOverScreen = function showGameOverScreen(selector) {
+    showGameOverScreen = function(selector) {
+      console.log("[FUNC] - showGameOverScreen()");
       gameHeight = getGameHeight();
       $(".right").fadeTo("slow", 0, function(){
         $(".right").hide();
@@ -178,13 +187,14 @@ $(document).ready(function(){
           $(selector)[0].style.height = gameHeight + "px";
           $(selector).fadeTo(2000, 1); //screen with game message
           transitionOverToGame();
-          // playGame();
+          playGame();
         });
       });
     }
 
     //TRANSITION - START SCREEN => GAME
     transitionStartToGame = function() {
+      console.log("[FUNC] - transitionStartToGame()");
       $(".right-start").delay(1000).fadeOut(500, function(){
         $(".right").fadeTo(400, 1);
         $(".left").fadeTo(400, 1, function(){
@@ -202,6 +212,7 @@ $(document).ready(function(){
 
     //TRANSITION - OVER SCREEN => GAME
     transitionOverToGame = function() {
+      console.log("[FUNC] - transitionOverToGame()");
       $(".right").delay(1500).fadeOut(500, function(){
         $(".parent").hide();
         clearGame();
@@ -220,6 +231,7 @@ $(document).ready(function(){
 
     //BREAK DOWN PLAYER MOVES
     getPlayerMovesBreakdown = function() {
+      console.log("[FUNC] - getPlayerMovesBreakdown()");
       //clearing old values first
       xMoves = [];
       oMoves = [];
@@ -245,7 +257,7 @@ $(document).ready(function(){
 
     //PLAY USER MOVE
     playUserMove = function(move) {
-      // console.log("function - playUserMove (" + new Date() + ")");
+      console.log("[FUNC] - playUserMove()");
       if (boardTracking[move].length===0) {
         let target = "#" + move;
         $(target).html(user.toUpperCase()); //updates board
@@ -258,6 +270,7 @@ $(document).ready(function(){
 
     //PLAY COMPUTER MOVE
     playComputerMove = function() {
+      console.log("[FUNC] - playComputerMove()");
       let availableMoves = Object.keys(boardTracking).filter(function(val){
         return boardTracking[val].length === 0;
       });
@@ -272,12 +285,12 @@ $(document).ready(function(){
 
     //PLAY NEXT MOVE (USER/COMPUTER)
     playGame = function() {
-      // console.log("[function] playGame()");
+      console.log("[FUNC] - playGame()");
       if (turn === user) {
-        $(".game").prop("disabled", false);
+        // $(".game").prop("disabled", false);
         $(".game").on("click", function(){
           playUserMove(this.id);
-          $(".game").prop("disabled", true);
+          // $(".game").prop("disabled", true);
         });
       } else {
         playComputerMove();
@@ -289,7 +302,7 @@ $(document).ready(function(){
 
     //CHECK - GAME OVER?
     checkGameStatus = function() {
-      // console.log("[function] checkGameStatus");
+      console.log("[FUNC] - checkGameStatus()");
       let getUnused = Object.values(boardTracking).filter(function(val){
         return val.length === 0;
       });
@@ -307,7 +320,8 @@ $(document).ready(function(){
     }
 
     //CHECK - WINNING PLAYER?
-    didAnyoneWin = function didAnyoneWin() {
+    didAnyoneWin = function() {
+      console.log("[FUNC] - didAnyoneWin()");
       getPlayerMovesBreakdown();
       //check if either row(0) or col(1) has 3 of same value (a|b|c)
       for (var i=0; i<xMovesBrokenDown.length; i++) {
@@ -316,12 +330,8 @@ $(document).ready(function(){
           //http://stackoverflow.com/a/881111
           let xCount = (xMovesBrokenDown[i].join("").match(xRe) || []).length;
           if (xCount === 3) {
-
-            console.log("\n\n\n@@@ adding points again");
-            console.log(xMovesBrokenDown[i] + " : " + xRe);
-
             scoreX += 1;
-            winner = "x";
+            return "x";
           }
         }
       }
@@ -330,10 +340,6 @@ $(document).ready(function(){
           let oRe = new RegExp(roColRef[jj],"g");
           let oCount = (oMovesBrokenDown[j].join("").match(oRe) || []).length;
           if (oCount === 3) {
-
-            console.log("\n\n\n@@@ adding points again");
-            console.log(xMovesBrokenDown[i] + " : " + xRe);
-
             scoreO += 1;
             return "o";
           }
