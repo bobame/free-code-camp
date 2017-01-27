@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
- /* ================================================== *///variables
+ /* ================================================== *///variables & functions
 
   let gameHeight;
   let user;
@@ -27,25 +27,36 @@ $(document).ready(function(){
     "cc": ""
   };
 
+  let playGame;
+  let showGameOverScreen;
+  let showUserWinScreen;
+  let showComputerWinScreen;
+  let didAnyoneWin;
+  let resetGame;
+
  /* ================================================== *///execution
 
+  //starts execution
   openGame();
-
   function openGame() {
+    $(".right-over").hide();
+    $(".right-win-user").hide();
+    $(".right-win-computer").hide();
     $(".game").html("");
     $(".left, .right").fadeTo(1000, 0.12);
     showStartScreen();
   }
 
-
-
-
+  $(".btn-reset").on('click', function(){
+    resetGame();
+  });
 
 /* ================================================== *///
 
   //assigns turn to either x or o using random
   function getTurn() {
-    turn = (Math.floor(Math.random() * (2-1+1) + 1)===1)? 'x' : 'y';
+    // turn = (Math.floor(Math.random() * (2-1+1) + 1)===1)? 'x' : 'o';
+    turn = 'x';
     return turn;
   }
 
@@ -54,9 +65,22 @@ $(document).ready(function(){
     return $('.right').height();
   }
 
+  //highlights user player selection and disables other player
+  function highlightPlayerDisableOther(/*selected, other*/) {
+    $("#start-"+user)[0].style.backgroundColor = "#000";
+    $("#start-"+computer).prop("disabled", true);
+    // $(selected)[0].style.backgroundColor = "#000";
+    // $(selected).prop("disabled", true);
+  }
+
+  //reverts highlightPlayerDisableOther()
+  function revertPlayerHighlightDisable() {
+    $("#start-"+user)[0].style.removeProperty("background-color");
+    $("#start-"+computer).prop("disabled", false);
+  }
+
   //assigns x and o players based on user selection in start screen
   function getPlayers(userSelection) {
-    console.log("user selected " + userSelection);
     if (userSelection==="start-x") {
       user = "x"; computer = "o";
       playerX = "user"; playerO = "computer";
@@ -64,13 +88,18 @@ $(document).ready(function(){
       user = "o"; computer = "x";
       playerX = "computer"; playerO = "user";
     }
-    $("#start-"+user)[0].style.backgroundColor = "#000";
-    $("#start-"+computer).prop("disabled", true);
+    highlightPlayerDisableOther();
   }
 
   //reveals randomnly assigned first turn after user completes selection
   function revealFirstTurn() {
     $("#first-turn").html(turn.toUpperCase());
+  }
+
+  //display turn
+  function displayTurn() {
+    let currentTurn = (turn===user)? turnMessage.user : turnMessage.computer;
+    $(".turn").html(currentTurn);
   }
 
   //transitions from start screen to game screen
@@ -79,29 +108,179 @@ $(document).ready(function(){
       $(".right").fadeTo(400, 1);
       $(".left").fadeTo(400, 1, function(){
         //display correct turn
+        displayTurn();
+        //display correct player next to each score
+        $("#score-x-ref").html(playerX);
+        $("#score-o-ref").html(playerO);
+        //display correct score for each player (adding to accommodate reset flow)
+        $('#score-x').html(scoreX);
+        $('#score-o').html(scoreO);
+      });
+    });
+  }
+
+  //transitions from start screen to game screen
+  function transitionOverToGame() {
+    $(".right-over").delay(1000).fadeOut(500, function(){
+      $(".right").fadeTo(400, 1, function(){
+        //display correct turn
         let startTurn = (turn===user)? turnMessage.user : turnMessage.computer;
         $(".turn").html(startTurn);
-        //display correct player next to each score
         $("#score-x-ref").html(playerX);
         $("#score-o-ref").html(playerO);
       });
     });
   }
 
-  //start screen asking user to select player
-  function showStartScreen() {
-    gameHeight = getGameHeight();
-    $(".right").hide();
-    $(".right-start")[0].style.height = gameHeight + "px";
-    $("#start-x, #start-y").on('click', function(){
-      getPlayers(this.id);
-      revealFirstTurn(getTurn());
-      transitionStartToGame();
+  //check status to continue game
+  function checkGameStatus() {
+    // console.log("[function] checkGameStatus");
+    let getUnused = Object.values(boardTracking).filter(function(val){
+      return val.length === 0;
     });
+
+    //check if either player has won
+    let winner = didAnyoneWin();
+    if (winner != null) {
+      console.log("winner is " + winner);
+    }
+    else if (getUnused.length > 0) playGame();
+    else showGameOverScreen(".right-over");
+  }
+
+  //checking if either player has won //
+  didAnyoneWin = function didAnyoneWin() {
+    let won;
+    //criteria for win status
+      //char repeating 3x in row
+      //char repeating 3x in col
+      //each char in row and col
+
+    //0 for row, 1 for columns
+    let xMovesBrokenDown = [[], []];
+    let oMovesBrokenDown = [[], []];
+    //count per a|b|c
+
+    //filter for player moves
+    let xMoves = Object.keys(boardTracking).filter(function(val){
+      return boardTracking[val] === "x";
+    });
+    let oMoves = Object.keys(boardTracking).filter(function(val){
+      return boardTracking[val] === "o";
+    });
+    //break down row and col
+    for (var i=0; i<xMoves.length; i++) {
+      xMovesBrokenDown[0].push(xMoves[i].charAt(0));
+      xMovesBrokenDown[1].push(xMoves[i].charAt(1));
+    }
+    for (var j=0; j<oMoves.length; j++) {
+      oMovesBrokenDown[0].push(oMoves[j].charAt(0));
+      oMovesBrokenDown[1].push(oMoves[j].charAt(1));
+    }
+    //printing for reference
+    console.log("xMovesBrokenDown => " + xMovesBrokenDown);
+    console.log("oMovesBrokenDown => " + oMovesBrokenDown);
+
+    console.log("x rows => " + xMovesBrokenDown[0].join(""));
+    console.log("x col => " + xMovesBrokenDown[1].join(""));
+
+    console.log("o rows => " + oMovesBrokenDown[0].join(""));
+    console.log("o col => " + oMovesBrokenDown[1].join(""));
+
+
+
+    return won;
   }
 
 
-  
+  //user move
+  function playUserMove(move) {
+    console.log("function - playUserMove (" + new Date() + ")");
+    if (boardTracking[move].length===0) {
+      let target = "#" + move;
+      $(target).html(user.toUpperCase()); //updates board
+      boardTracking[move] = user; //updates boardTracking
+      turn = computer;
+      displayTurn();
+      checkGameStatus();
+    }
+  }
+
+  //get computer's next move
+  function getComputerMove(availableMoves) {
+    let randomMove = availableMoves[Math.floor(Math.random()*availableMoves.length)];
+    console.log("random move " + randomMove);
+    return randomMove;
+  }
+
+  //computer move
+  function playComputerMove() {
+    console.log("function - playComputerMove (" + new Date() + ")");
+    let availableMoves = Object.keys(boardTracking).filter(function(val){
+      return boardTracking[val].length === 0;
+    });
+    console.log("availableMoves => " + availableMoves);
+    let nextMove = getComputerMove(availableMoves);
+    let target = "#" + nextMove;
+    // $(target).append(computer.toUpperCase());
+    $('<div></div>').appendTo(target).hide().append(computer.toUpperCase()).fadeIn(2000);
+    boardTracking[nextMove] = computer;
+    turn = user;
+    displayTurn();
+    checkGameStatus();
+  }
+
+  //game screen
+  playGame = function playGame() {
+    // console.log("[function] playGame()");
+    if (turn === user) {
+      $(".game").on("click", function(){
+        //need this layer else user allowed continued moves
+        if (turn === user) playUserMove(this.id);
+      });
+    } else {
+      playComputerMove();
+    }
+  }
+
+  //start screen asking user to select player
+  function showStartScreen() {
+    gameHeight = getGameHeight();
+    //hiding game board
+    $(".right").hide();
+    //showing start screen slowly, and settnig height equal to game board height
+    $(".right-start").show().fadeTo(0, 1, function(){
+        $(".right-start")[0].style.height = gameHeight + "px";
+    });
+    $(".right-start")[0].style.height = gameHeight + "px";
+    $("#start-x, #start-o").on('click', function(){
+      getPlayers(this.id);
+      revealFirstTurn(getTurn());
+      transitionStartToGame();
+      playGame();
+    });
+  }
+
+  //game over screen selector reference
+  //no win - ".right-over"
+  //user win - ".right-win-user"
+  //computer win - ".right-win-computer"
+  showGameOverScreen = function showGameOverScreen(selector) {
+    gameHeight = getGameHeight();
+    $(".right").fadeTo("slow", 0, function(){
+      $(".right").hide();
+      $(selector).show().fadeTo(0, 0, function(){
+        $(selector)[0].style.height = gameHeight + "px";
+        $(selector).fadeTo(2000, 1);
+      });
+    });
+  }
+
+  //resets game to starting defaults
+  resetGame = function resetGame() {
+    console.log("Clicked reset button");
+  }
+
 
 /* ================================================== *///
 

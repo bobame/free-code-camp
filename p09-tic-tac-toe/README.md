@@ -34,7 +34,7 @@ see [instructions](https://www.freecodecamp.com/challenges/build-a-tic-tac-toe-g
         - [] css opacity to fade out background
         - [] user win
         - [] computer win
-        - [] tie
+        - [X] tie
 2. Functionality
     - game
         - [] TBD
@@ -49,3 +49,7 @@ see [instructions](https://www.freecodecamp.com/challenges/build-a-tic-tac-toe-g
 - binding click event to multiple buttons [here](http://stackoverflow.com/a/17715413)
 - disable button [here](http://stackoverflow.com/a/15122550)
 - specify callback function after fadeOut [here](http://stackoverflow.com/a/1065809)
+- random item from array [here](http://stackoverflow.com/a/5915122)
+- fade in appended html jquery [here](http://stackoverflow.com/a/1262367)
+- show/hide after delay [here](http://stackoverflow.com/a/7288683)
+- 8 strategies to never lose tic tac toe [here](https://www.quora.com/Is-there-a-way-to-never-lose-at-Tic-Tac-Toe/answer/Victoria-Vita)

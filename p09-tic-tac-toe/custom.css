@@ -11,7 +11,7 @@ font-family: "Special Elite"; ;
 
 
 * {
-  border: 1px solid black;
+/*   border: 1px solid black; */
 }
 
 /* ==============================
@@ -138,7 +138,10 @@ RIGHT (SELECT X/O)
 ============================== */
 
 
-.right-start {
+.right-start,
+.right-over,
+.right-win-user,
+.right-win-computer {
   background-color: rgba(10,10,10, .6);
 
 }
@@ -148,7 +151,8 @@ RIGHT (SELECT X/O)
   font-family: "Fontdiner Swanky";
 }
 
-.child-start {
+.child-start,
+.child {
   display: table-cell;
   vertical-align: middle;
   font-size: 5em;

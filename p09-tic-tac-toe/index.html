@@ -27,10 +27,10 @@
               Who's turn?
             </div>
             <div class="row score">
-              Player X: <span id='score-x'>0</span> (<span id='score-x-ref'></span>)
+              Player X: <span id='score-x'>0</span> (<span id='score-x-ref'>player</span>)
             </div>
             <div class="row score">
-              Player O: <span id='score-o'>0</span> (<span id='score-o-ref'></span>)
+              Player O: <span id='score-o'>0</span> (<span id='score-o-ref'>player</span>)
             </div>
             <div class="row btn-reset">
               <button class="btn btn-success">Reset</button>
@@ -81,16 +81,36 @@
           </div> <!-- /ROW-C -->
         </div> <!-- /COL-RIGHT -->
 
+        <!-- START SCREEN -->
         <div class="col-sm-7 text-center right-start parent">
-
           <div class="child-start">
             <h1>Select player...</h1>
             <button id="start-x">X</button>
-            <button id="start-y">O</button>
+            <button id="start-o">O</button>
             <h1>Player <span id="first-turn"> *</span> goes first.</h1>
           </div>
+        </div> <!-- /START SCREEN -->
 
-        </div>
+        <!-- GAME OVER SCREEN -->
+        <div class="col-sm-7 text-center right-over parent">
+          <div class="child">
+            <h1>It's a draw...</h1>
+          </div>
+        </div> <!-- /GAME OVER SCREEN -->
+
+        <!-- USER WIN SCREEN -->
+        <div class="col-sm-7 text-center right-win-user parent">
+          <div class="child">
+            <h1>You win!</h1>
+          </div>
+        </div> <!-- /USER WIN SCREEN -->
+
+        <!-- COMPUTER WIN SCREEN -->
+        <div class="col-sm-7 text-center right-win-computer parent">
+          <div class="child">
+            <h1>Computer wins this round...</h1>
+          </div>
+        </div> <!-- /COMPUTER WIN SCREEN -->
 
       </div> <!-- /ROW-2: BODY -->
 
