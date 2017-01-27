@@ -180,6 +180,7 @@ $(document).ready(function(){
         $(".turn").html(startTurn);
         $("#score-x").html(scoreX);
         $("#score-o").html(scoreO);
+
       });
     });
   }
@@ -196,12 +197,10 @@ $(document).ready(function(){
     if (winner != null) {
       if (winner === user) showGameOverScreen(".right-win-user");
       else if (winner === computer) showGameOverScreen(".right-win-computer");
-      transitionOverToGame();
     }
     else if (getUnused.length > 0) playGame();
     else {
       showGameOverScreen(".right-over");
-      transitionOverToGame();
     }
   }
 
@@ -239,7 +238,6 @@ $(document).ready(function(){
         let xRe = new RegExp(roColRef[ii],"g");
         //http://stackoverflow.com/a/881111
         let xCount = (xMovesBrokenDown[i].join("").match(xRe) || []).length;
-        console.log("xMovesBrokenDown +++ " + xMovesBrokenDown[i] + " : " + roColRef[ii] + " : " + xCount);
         if (xCount === 3) {
           scoreX += 1;
           winner = "x";
@@ -250,20 +248,18 @@ $(document).ready(function(){
       for (var jj=0; jj<roColRef.length; jj++) {
         let oRe = new RegExp(roColRef[jj],"g");
         let oCount = (oMovesBrokenDown[j].join("").match(oRe) || []).length;
-        console.log("oMovesBrokenDown +++ " + oMovesBrokenDown[j] + " : " + roColRef[jj] + " : " + oCount);
         if (oCount === 3) {
           scoreO += 1;
-          return "y";
+          return "o";
         }
       }
     }
     return winner;
   }
 
-
   //user move
   playUserMove = function(move) {
-    console.log("function - playUserMove (" + new Date() + ")");
+    // console.log("function - playUserMove (" + new Date() + ")");
     if (boardTracking[move].length===0) {
       let target = "#" + move;
       $(target).html(user.toUpperCase()); //updates board
@@ -277,7 +273,6 @@ $(document).ready(function(){
   //get computer's next move
   getComputerMove = function(availableMoves) {
     let randomMove = availableMoves[Math.floor(Math.random()*availableMoves.length)];
-    console.log("random move " + randomMove);
     return randomMove;
   }
 
@@ -288,7 +283,6 @@ $(document).ready(function(){
     });
     let nextMove = getComputerMove(availableMoves);
     let target = "#" + nextMove;
-    // $(target).append(computer.toUpperCase());
     $('<div></div>').appendTo(target).hide().append(computer.toUpperCase()).fadeIn(2000);
     boardTracking[nextMove] = computer;
     turn = user;
@@ -309,8 +303,6 @@ $(document).ready(function(){
     }
   }
 
-
-
   //game over screen selector reference
   //no win - ".right-over"
   //user win - ".right-win-user"
@@ -322,6 +314,8 @@ $(document).ready(function(){
       $(selector).show().fadeTo(0, 0, function(){
         $(selector)[0].style.height = gameHeight + "px";
         $(selector).fadeTo(2000, 1);
+        transitionOverToGame();
+        // playGame();
       });
     });
   }
@@ -330,7 +324,6 @@ $(document).ready(function(){
   resetGame = function resetGame() {
     console.log("Clicked reset button");
   }
-
 
 /* ================================================== *///
 
