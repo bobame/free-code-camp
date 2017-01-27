@@ -170,8 +170,9 @@ $(document).ready(function(){
   }
 
   //transitions from over screen to game screen
-  transitionOverToGame = function() {
-    $(".right-over").delay(2500).fadeOut(500, function(){
+  transitionOverToGame = function(selector) {
+    $(".right").delay(2500).fadeOut(500, function(){
+      $(selector).hide();
       $(".right").fadeTo(1500, 1, function(){
         //display correct turn
         let startTurn = (turn===user)? turnMessage.user : turnMessage.computer;
@@ -193,12 +194,23 @@ $(document).ready(function(){
     //check if either player has won
     winner = didAnyoneWin();
     if (winner != null) {
-      if (winner === user) showGameOverScreen(".right-win-user");
-      else if (winner === computer) showGameOverScreen(".right-win-computer");
-      transitionOverToGame();
+      if (winner === user) {
+        showGameOverScreen(".right-win-user");
+        transitionOverToGame(".right-win-user");
+      }
+      else if (winner === computer) {
+        showGameOverScreen(".right-win-computer");
+        transitionOverToGame(".right-win-computer");
+      }
+
     }
-    else if (getUnused.length > 0) playGame();
-    else showGameOverScreen(".right-over");
+    else if (getUnused.length > 0) {
+      playGame();
+    }
+    else {
+      showGameOverScreen(".right-over");
+      transitionOverToGame(".right-over");
+    }
   }
 
   //get player moves
@@ -249,7 +261,7 @@ $(document).ready(function(){
         console.log("oMovesBrokenDown +++ " + oMovesBrokenDown[j] + " : " + roColRef[jj] + " : " + oCount);
         if (oCount === 3) {
           scoreO += 1;
-          return "y";
+          return "o";
         }
       }
     }
