@@ -187,7 +187,7 @@ $(document).ready(function(){
           $(selector)[0].style.height = gameHeight + "px";
           $(selector).fadeTo(2000, 1); //screen with game message
           transitionOverToGame();
-          playGame();
+          // playGame();
         });
       });
     }
@@ -222,6 +222,7 @@ $(document).ready(function(){
           $(".turn").html(startTurn);
           $("#score-x").html(scoreX);
           $("#score-o").html(scoreO);
+          playGame(); //***JUST MOVED HERE, NO LONGER SCORING DUPS
         });
       });
     }
@@ -291,6 +292,7 @@ $(document).ready(function(){
         $(".game").on("click", function(){
           playUserMove(this.id);
           // $(".game").prop("disabled", true);
+          turn = computer;
         });
       } else {
         playComputerMove();
