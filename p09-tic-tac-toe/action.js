@@ -172,11 +172,11 @@ $(document).ready(function(){
   //transitions from over screen to game screen
   transitionOverToGame = function(selector) {
     $(".right").delay(2500).fadeOut(500, function(){
+      clearGame();
       $(selector).hide();
       $(".right").fadeTo(1500, 1, function(){
         //display correct turn
         let startTurn = (turn===user)? turnMessage.user : turnMessage.computer;
-        clearGame();
         $(".turn").html(startTurn);
         $("#score-x").html(scoreX);
         $("#score-o").html(scoreO);
