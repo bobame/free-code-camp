@@ -174,9 +174,9 @@ $(document).ready(function(){
       gameHeight = getGameHeight();
       $(".right").fadeTo("slow", 0, function(){
         $(".right").hide();
-        $(selector).show().fadeTo(0, 0, function(){
+        $(selector).show().fadeTo(200, 0, function(){
           $(selector)[0].style.height = gameHeight + "px";
-          $(selector).fadeTo(2000, 1);
+          $(selector).fadeTo(2000, 1); //screen with game message
           transitionOverToGame();
           // playGame();
         });
@@ -202,16 +202,15 @@ $(document).ready(function(){
 
     //TRANSITION - OVER SCREEN => GAME
     transitionOverToGame = function() {
-      $(".right").delay(2500).fadeOut(500, function(){
-        clearGame();
+      $(".right").delay(1500).fadeOut(500, function(){
         $(".parent").hide();
-        $(".right").fadeTo(1500, 1, function(){
+        clearGame();
+        $(".right").fadeTo(1000, 1, function(){
           //display correct turn
           let startTurn = (turn===user)? turnMessage.user : turnMessage.computer;
           $(".turn").html(startTurn);
           $("#score-x").html(scoreX);
           $("#score-o").html(scoreO);
-
         });
       });
     }
@@ -273,17 +272,12 @@ $(document).ready(function(){
 
     //PLAY NEXT MOVE (USER/COMPUTER)
     playGame = function() {
-      console.log("[function] playGame()");
+      // console.log("[function] playGame()");
       if (turn === user) {
         $(".game").prop("disabled", false);
-
         $(".game").on("click", function(){
-
           playUserMove(this.id);
           $(".game").prop("disabled", true);
-
-          //need this layer else user allowed continued moves
-          // if (turn === user) playUserMove(this.id);
         });
       } else {
         playComputerMove();
@@ -306,9 +300,9 @@ $(document).ready(function(){
         if (winner === user) showGameOverScreen(".right-win-user");
         else if (winner === computer) showGameOverScreen(".right-win-computer");
       }
-      else if (getUnused.length > 0) playGame();
       else {
-        showGameOverScreen(".right-over");
+        if (getUnused.length > 0) playGame();
+        else showGameOverScreen(".right-over");
       }
     }
 
@@ -322,6 +316,10 @@ $(document).ready(function(){
           //http://stackoverflow.com/a/881111
           let xCount = (xMovesBrokenDown[i].join("").match(xRe) || []).length;
           if (xCount === 3) {
+
+            console.log("\n\n\n@@@ adding points again");
+            console.log(xMovesBrokenDown[i] + " : " + xRe);
+
             scoreX += 1;
             winner = "x";
           }
@@ -332,6 +330,10 @@ $(document).ready(function(){
           let oRe = new RegExp(roColRef[jj],"g");
           let oCount = (oMovesBrokenDown[j].join("").match(oRe) || []).length;
           if (oCount === 3) {
+
+            console.log("\n\n\n@@@ adding points again");
+            console.log(xMovesBrokenDown[i] + " : " + xRe);
+
             scoreO += 1;
             return "o";
           }
