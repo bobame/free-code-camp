@@ -10,7 +10,14 @@ $(document).ready(function(){
   let scoreX = 0;
   let scoreO = 0;
   let turn;
-  let userTurnEnabled = false;
+
+  let winner;
+  let xMoves = [];
+  let oMoves = [];
+  let xMovesBrokenDown = [[], []]; //0 for row, 1 for columns
+  let oMovesBrokenDown = [[], []];
+  let roColRef = ['a', 'b', 'c'];
+
   let turnMessage = {
     "user": "Your turn, go!",
     "computer": "Computer's turn"
@@ -140,32 +147,27 @@ $(document).ready(function(){
     });
 
     //check if either player has won
-    let winner = didAnyoneWin();
+    winner = didAnyoneWin();
     if (winner != null) {
-      console.log("winner is " + winner);
+      if (winner === user) showGameOverScreen(".right-win-user");
+      else if (winner === computer) showGameOverScreen(".right-win-computer");
     }
     else if (getUnused.length > 0) playGame();
     else showGameOverScreen(".right-over");
   }
 
-  //checking if either player has won //
-  didAnyoneWin = function didAnyoneWin() {
-    let won;
-    //criteria for win status
-      //char repeating 3x in row
-      //char repeating 3x in col
-      //each char in row and col
-
-    //0 for row, 1 for columns
-    let xMovesBrokenDown = [[], []];
-    let oMovesBrokenDown = [[], []];
-    //count per a|b|c
-
+  //get player moves
+  function getPlayerMovesBreakdown() {
+    //clearing old values first
+    xMoves = [];
+    oMoves = [];
+    xMovesBrokenDown = [[], []];
+    oMovesBrokenDown = [[], []];
     //filter for player moves
-    let xMoves = Object.keys(boardTracking).filter(function(val){
+    xMoves = Object.keys(boardTracking).filter(function(val){
       return boardTracking[val] === "x";
     });
-    let oMoves = Object.keys(boardTracking).filter(function(val){
+    oMoves = Object.keys(boardTracking).filter(function(val){
       return boardTracking[val] === "o";
     });
     //break down row and col
@@ -177,19 +179,40 @@ $(document).ready(function(){
       oMovesBrokenDown[0].push(oMoves[j].charAt(0));
       oMovesBrokenDown[1].push(oMoves[j].charAt(1));
     }
+
     //printing for reference
-    console.log("xMovesBrokenDown => " + xMovesBrokenDown);
-    console.log("oMovesBrokenDown => " + oMovesBrokenDown);
+    console.log("moves broken down(x:o) => " + xMovesBrokenDown + " : " + oMovesBrokenDown);
+    console.log("x (rows:col) => " + xMovesBrokenDown[0].join('') + " : " + xMovesBrokenDown[1].join(''));
+    console.log("o (rows:col) => " + oMovesBrokenDown[0].join('') + " : " + oMovesBrokenDown[1].join(''));
+  }
 
-    console.log("x rows => " + xMovesBrokenDown[0].join(""));
-    console.log("x col => " + xMovesBrokenDown[1].join(""));
+  //checking if either player has won
+  didAnyoneWin = function didAnyoneWin() {
+    getPlayerMovesBreakdown();
+    //check if either row(0) or col(1) has 3 of same value (a|b|c)
+    for (var i=0; i<xMovesBrokenDown.length; i++) {
+      for (var ii=0; ii<roColRef.length; ii++) {
+        let xRe = new RegExp(roColRef[ii],"g");
+        //http://stackoverflow.com/a/881111
+        let xCount = (xMovesBrokenDown[i].join("").match(xRe) || []).length;
+        console.log("xMovesBrokenDown +++ " + xMovesBrokenDown[i] + " : " + roColRef[ii] + " : " + xCount);
+        if (xCount === 3) {
+          winner = "x";
+        }
+      }
+    }
+    for (var j=0; j<oMovesBrokenDown.length; j++) {
+      for (var jj=0; jj<roColRef.length; jj++) {
+        let oRe = new RegExp(roColRef[jj],"g");
+        let oCount = (oMovesBrokenDown[j].join("").match(oRe) || []).length;
+        console.log("oMovesBrokenDown +++ " + oMovesBrokenDown[j] + " : " + roColRef[jj] + " : " + oCount);
+        if (oCount === 3) {
+          return "y";
+        }
+      }
+    }
 
-    console.log("o rows => " + oMovesBrokenDown[0].join(""));
-    console.log("o col => " + oMovesBrokenDown[1].join(""));
-
-
-
-    return won;
+    return winner;
   }
 
 

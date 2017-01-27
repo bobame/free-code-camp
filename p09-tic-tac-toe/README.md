@@ -31,9 +31,9 @@ see [instructions](https://www.freecodecamp.com/challenges/build-a-tic-tac-toe-g
             - [X] gradient css for chalk-like effect
             - [X] thick borders
     - screen-3, game status
-        - [] css opacity to fade out background
-        - [] user win
-        - [] computer win
+        - [X] css opacity to fade out background
+        - [X] user win
+        - [X] computer win
         - [X] tie
 2. Functionality
     - game
@@ -53,3 +53,4 @@ see [instructions](https://www.freecodecamp.com/challenges/build-a-tic-tac-toe-g
 - fade in appended html jquery [here](http://stackoverflow.com/a/1262367)
 - show/hide after delay [here](http://stackoverflow.com/a/7288683)
 - 8 strategies to never lose tic tac toe [here](https://www.quora.com/Is-there-a-way-to-never-lose-at-Tic-Tac-Toe/answer/Victoria-Vita)
+- match countes [here](http://stackoverflow.com/a/881111)
