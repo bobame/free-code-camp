@@ -3,7 +3,7 @@
 }
 
 #main {
-  margin: 5%;
+  margin: 5% auto;
   padding: 2%;
   color: #337ab7;
 }
@@ -21,6 +21,10 @@
 #picture p {
   color: slategray;
   padding: 1%;
+}
+
+#picture img {
+  margin: 0 auto;
 }
 
 #timeline ul {
