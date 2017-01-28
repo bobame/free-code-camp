@@ -184,7 +184,7 @@ $(document).ready(function(){
       gameHeight = getGameHeight();
       $(".right").fadeTo("slow", 0, function(){
         $(".right").hide();
-        $(selector).show().fadeTo(200, 0, function(){
+        $(selector).show().fadeTo(0, 0, function(){ //0,0 otherwise flashing in default height
           $(selector)[0].style.height = gameHeight + "px";
           $(selector).fadeTo(2000, 1); //screen with game message
           transitionOverToGame();
@@ -365,14 +365,18 @@ $(document).ready(function(){
         scoreO += 1;
         return "o";
       }
-
       return winner;
     }
 
     //GET - COMPUTER'S NEXT MOVE
     getComputerMove = function(availableMoves) {
       let randomMove = availableMoves[Math.floor(Math.random()*availableMoves.length)];
-      return randomMove;
+      let nextMove = randomMove;
+
+
+
+
+      return nextMove;
     }
 
 });
