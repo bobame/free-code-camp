@@ -22,9 +22,9 @@ see [instructions](https://www.freecodecamp.com/challenges/build-a-tic-tac-toe-g
         - [X] fade out div
     - screen-2, 2 columns
         - column-1
-            - [X] row-1, player turn
-            - [] row-2, score player X (you/computer)
-            - [] row-3, score player O (you/computer)
+            - [] row-1, player turn
+            - [X] row-2, score player X (you/computer)
+            - [X] row-3, score player O (you/computer)
             - [] row-4, reset button
         - column-2
             - [X] 3 by 3 divs equal size
@@ -36,11 +36,14 @@ see [instructions](https://www.freecodecamp.com/challenges/build-a-tic-tac-toe-g
         - [X] computer win
         - [X] tie
 2. Functionality
-    - game
-        - [] TBD
+    - game logic based on [Quora answer](https://www.quora.com/Is-there-a-way-to-never-lose-at-Tic-Tac-Toe/answer/Victoria-Vita)
+        - [] breakdown center, corner, edge
+        - [] array for moves 1st, 2nd, 3rd
+        - [] 
     - scoreboard
         - [] highlight style for higher score
         - [] highlight style for tie score
+        - [] animate next turn
 
 
 ## Note
