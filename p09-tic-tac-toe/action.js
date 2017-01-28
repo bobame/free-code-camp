@@ -173,6 +173,7 @@ $(document).ready(function(){
 
     //LEFT SCOREBOARD - UPDATE TURN MESSAGE
     displayTurn = function() {
+      console.log("\n***TEST***:\tDisplaying Turn\n>\t" + turn);
       let currentTurn = (turn===user)? turnMessage.user : turnMessage.computer;
       $(".turn").html(currentTurn);
     }
@@ -199,7 +200,7 @@ $(document).ready(function(){
         $(".right").fadeTo(400, 1);
         $(".left").fadeTo(400, 1, function(){
           //display correct turn
-          displayTurn();
+          // displayTurn();
           //display correct player next to each score
           $("#score-x-ref").html(playerX);
           $("#score-o-ref").html(playerO);
@@ -218,8 +219,6 @@ $(document).ready(function(){
         clearGame();
         $(".right").fadeTo(1000, 1, function(){
           //display correct turn
-          let startTurn = (turn===user)? turnMessage.user : turnMessage.computer;
-          $(".turn").html(startTurn);
           $("#score-x").html(scoreX);
           $("#score-o").html(scoreO);
           playGame(); //***JUST MOVED HERE, NO LONGER SCORING DUPS
@@ -264,7 +263,7 @@ $(document).ready(function(){
         $(target).html(user.toUpperCase()); //updates board
         boardTracking[move] = user; //updates boardTracking
         turn = computer;
-        displayTurn();
+        // displayTurn(); //computer message not displaying long enough
         checkGameStatus();
       }
     }
@@ -280,7 +279,7 @@ $(document).ready(function(){
       $('<div></div>').appendTo(target).hide().append(computer.toUpperCase()).fadeIn(2000);
       boardTracking[nextMove] = computer;
       turn = user;
-      displayTurn();
+      // displayTurn();
       checkGameStatus();
     }
 
@@ -293,6 +292,7 @@ $(document).ready(function(){
           playUserMove(this.id);
           // $(".game").prop("disabled", true);
           turn = computer;
+
         });
       } else {
         playComputerMove();
@@ -347,6 +347,25 @@ $(document).ready(function(){
           }
         }
       }
+      //http://stackoverflow.com/a/28798478
+      function getUniqueChars(str) {
+        return str.filter(function(item, i, arr){
+          return arr.indexOf(item) === i;
+        }).sort().join('');
+      }
+
+      //check if both row and col have each of (a,b,c)
+      if (getUniqueChars(xMovesBrokenDown[0])==="abc"
+          && getUniqueChars(xMovesBrokenDown[1])==="abc") {
+        scoreX += 1;
+        return "x";
+      }
+      if (getUniqueChars(oMovesBrokenDown[0])==="abc" &&
+          getUniqueChars(oMovesBrokenDown[1])==="abc") {
+        scoreO += 1;
+        return "o";
+      }
+
       return winner;
     }
 
