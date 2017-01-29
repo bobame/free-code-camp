@@ -18,6 +18,7 @@ $(document).ready(function(){
   let oMovesBrokenDown = [[], []];
   let rowColRef = ['a', 'b', 'c'];
   let reHolder;
+  let firstMoveOwner;
 
 
   let turnMessage = {
@@ -44,6 +45,8 @@ $(document).ready(function(){
   let moveChoices = [];
   let movesOrder = ["aa", "ab", "ac", "bc", "cc", "cb", "ca", "ba"];
   let blockMove;
+  let availableMoves;
+  let nextMove;
 
   //functions - setup
   let getTurn;
@@ -73,13 +76,14 @@ $(document).ready(function(){
   //functions - computer moves, user goes first
   let getSecondMove;
   let getFourthMove;
-
   //functions - computer moves, computer goes first
   let getFirstMove;
   let getThirdMove;
+  let getFifthMove;
 
-  //functions - block move
+  //functions - block and default moves
   let getBlockMove;
+  let getDefaultMove;
 
  /* ================================================== *///execution
 
@@ -147,6 +151,7 @@ $(document).ready(function(){
       }
       highlightPlayerDisableOther();
     }
+
 
     /* ================================================== *///teardowns
 
@@ -303,10 +308,10 @@ $(document).ready(function(){
     playComputerMove = function() {
       // console.log("[FUNC] - playComputerMove()");
 
-      let availableMoves = Object.keys(boardTracking).filter(function(val){
+      availableMoves = Object.keys(boardTracking).filter(function(val){
         return boardTracking[val].length === 0;
       });
-      let nextMove = getComputerMove(availableMoves);
+      nextMove = getComputerMove(availableMoves);
       let target = "#" + nextMove;
       $('<div></div>').appendTo(target).hide().append(computer.toUpperCase()).fadeIn(2000);
       boardTracking[nextMove] = computer;
@@ -403,19 +408,27 @@ $(document).ready(function(){
     //GET - COMPUTER'S NEXT MOVE
     getComputerMove = function(availableMoves) {
       moveChoices = [];
+      nextMove = null;
       console.log("MOVE " + (movesTracking.length+1) + " => " + turn + " (" + $("#score-"+user+"-ref").text() + ")");
       if (movesTracking.length === 0) {
         return getFirstMove();
       }
       //SCENARIO A - user played first
-      else if (movesTracking.length === 1) { return getSecondMove(); }
-      else if (movesTracking.length === 3) { return getFourthMove(); }
+      else if (movesTracking.length === 1) { nextMove = getSecondMove(); }
+      else if (movesTracking.length === 3) { nextMove = getFourthMove(); }
       //SCENARIO B - computer played first
-      else if (movesTracking.length === 2) { return getThirdMove(); }
-      //SCENARIO C - games continues beyond 4 moves
-      else { //default
-        return availableMoves[Math.floor(Math.random()*availableMoves.length)];
+      else if (movesTracking.length === 2) { nextMove = getThirdMove(); }
+      //SCENARIO C - all others
+      // else nextMove = getDefaultMove();
+
+      if (nextMove != null) {
+        return nextMove;
+      } else {
+        getDefaultMove();
+        // return availableMoves[Math.floor(Math.random()*availableMoves.length)];
+
       }
+
     }
 
     /* ================================================== *///functions - computer moves, user played first
@@ -423,6 +436,7 @@ $(document).ready(function(){
     getSecondMove = function(){
       //opponent in corner, play move in center
       console.log("\t~ getting 2nd move");
+      firstMoveOwner = "user"; //needed fot getFourthMove() variations
       if (mCorner.indexOf(movesTracking[0]) > -1) {
         return mCenter;
       }
@@ -490,6 +504,7 @@ $(document).ready(function(){
 
     getFirstMove = function(){
       console.log("\t~ getting 1st move");
+      firstMoveOwner = "computer";
       moveChoices = mCorner.concat(mCenter);
       return moveChoices[Math.floor(Math.random()*moveChoices.length)];
       // return mCenter; //TEST
@@ -522,11 +537,11 @@ $(document).ready(function(){
       }
       //computer played center, opponent played edge, computer should play in any corner
       else if (movesTracking[0] === mCenter && mEdge.indexOf(movesTracking[1]) !== -1) {
-        console.log("=> " + mCorner[Math.floor(Math.random() * mCorner.length)]);
         return mCorner[Math.floor(Math.random() * mCorner.length)];
       }
       //computer played center, opponent played corner, play default
     }
+
 
     /* ================================================== *///functions - block move
 
@@ -561,7 +576,47 @@ $(document).ready(function(){
       return other;
     }
 
+    getDefaultMove = function() {
 
+      let computerMoves;
+      let userMoves;
+      let usedComputerRow;
+      let usedComputerCol;
+      let usedUserRow;
+      let usedUserCol;
+
+      //get computer and user moves
+      if (computer === "x") {
+        computerMoves = xMovesBrokenDown;
+        userMoves = oMovesBrokenDown;
+      }
+      else {
+        computerMoves = oMovesBrokenDown;
+        userMoves = xMovesBrokenDown;
+      }
+
+      console.log("computerMoves => " + computerMoves)
+      console.log("userMoves => " + userMoves)
+      console.log("test => " + computerMoves[0].sort().toString() == computerMoves[1].sort().toString())
+
+      //1. make winning move
+
+      if (computerMoves[0].sort().toString() == computerMoves[1].sort().toString()) { //diagonal win
+        reHolder = new RegExp("[^"+movesTracking[0].charAt(0)+"][^" + movesTracking[0].charAt(1) + "]", "g");
+        blockMove = "abc".match(reHolder).concat("abc".match(reHolder));
+        console.log("blockMove ==> " + blockMove);
+      }
+
+      let reCol = new RegExp("[^"+usedCol+"]", "g");
+        //concats shared row and col not in 1st or 3rd move
+        blockMove = movesTracking[compare1].charAt(0).concat("abc".match(reCol));
+
+      //2. block opponent from making winning move
+
+
+
+
+    }
 
     // end
 });
