@@ -16,7 +16,9 @@ $(document).ready(function(){
   let oMoves = [];
   let xMovesBrokenDown = [[], []]; //0 for row, 1 for columns
   let oMovesBrokenDown = [[], []];
-  let roColRef = ['a', 'b', 'c'];
+  let rowColRef = ['a', 'b', 'c'];
+  let reHolder;
+
 
   let turnMessage = {
     "user": "Your turn, go!",
@@ -357,8 +359,8 @@ $(document).ready(function(){
       getPlayerMovesBreakdown();
       //check if either row(0) or col(1) has 3 of same value (a|b|c)
       for (var i=0; i<xMovesBrokenDown.length; i++) {
-        for (var ii=0; ii<roColRef.length; ii++) {
-          let xRe = new RegExp(roColRef[ii],"g");
+        for (var ii=0; ii<rowColRef.length; ii++) {
+          let xRe = new RegExp(rowColRef[ii],"g");
           //http://stackoverflow.com/a/881111
           let xCount = (xMovesBrokenDown[i].join("").match(xRe) || []).length;
           if (xCount === 3) {
@@ -368,8 +370,8 @@ $(document).ready(function(){
         }
       }
       for (var j=0; j<oMovesBrokenDown.length; j++) {
-        for (var jj=0; jj<roColRef.length; jj++) {
-          let oRe = new RegExp(roColRef[jj],"g");
+        for (var jj=0; jj<rowColRef.length; jj++) {
+          let oRe = new RegExp(rowColRef[jj],"g");
           let oCount = (oMovesBrokenDown[j].join("").match(oRe) || []).length;
           if (oCount === 3) {
             scoreO += 1;
@@ -403,7 +405,7 @@ $(document).ready(function(){
       moveChoices = [];
       console.log("MOVE " + (movesTracking.length+1) + " => " + turn + " (" + $("#score-"+user+"-ref").text() + ")");
       if (movesTracking.length === 0) {
-        getFirstMove();
+        return getFirstMove();
       }
       //SCENARIO A - user played first
       else if (movesTracking.length === 1) { return getSecondMove(); }
@@ -494,6 +496,36 @@ $(document).ready(function(){
 
     getThirdMove = function(){
       console.log("\t~ getting 3rd move");
+      //computer played corner, opponent played edge, computer should play center
+      if (mCorner.indexOf(movesTracking[0]) !== -1 && mEdge.indexOf(movesTracking[1]) !== -1) {
+        return mCenter;
+      }
+      //computer played corner, opponent played corner, computer should play any free corner
+      else if (mCorner.indexOf(movesTracking[0]) !== -1 && mCorner.indexOf(movesTracking[1]) !== -1 ) {
+        moveChoices = mCorner.filter(function(val){
+          return movesTracking.indexOf(val) === -1;
+        });
+        return moveChoices[Math.round(Math.random())];
+      }
+      //computer played corner, opponent played center, computer should play opposite corner
+      else if (mCorner.indexOf(movesTracking[0]) !== -1 && movesTracking[1] === mCenter) {
+        //matched whichever is not yet played, need to join back into string
+        if (/aa|cc/g.test(movesTracking[0])) {
+          reHolder = new RegExp("[^"+movesTracking[0]+"]", "g"); //works because same letters, aa or cc
+          return "aacc".match(reHolder).join('');
+        } else if (/ca|ac/g.test(movesTracking[0])) {
+          // [^c][^a] because not same letters, else returning null
+          reHolder = new RegExp("[^"+movesTracking[0].charAt(0)+"][^" + movesTracking[0].charAt(1) + "]", "g");
+          return "caac".match(reHolder).join('');
+        }
+      }
+
+
+      //computer played center, opponent played edge, computer should play in any corner
+
+
+      //computer played center, opponent played corner, play default
+
 
     }
 
@@ -508,7 +540,6 @@ $(document).ready(function(){
         let reCol = new RegExp("[^"+usedCol+"]", "g");
         //concats shared row and col not in 1st or 3rd move
         blockMove = movesTracking[compare1].charAt(0).concat("abc".match(reCol));
-        console.log("blockMove " + blockMove);
         //if not in used moves plays move, else plays center
         if (movesTracking.indexOf(blockMove) === -1) {
           return blockMove;
@@ -517,11 +548,11 @@ $(document).ready(function(){
         }
       }
       //block if col is shared
-      if (movesTracking[0].charAt(1) === movesTracking[compare2].charAt(1)) {
+      else if (movesTracking[0].charAt(1) === movesTracking[compare2].charAt(1)) {
         //same logic except for row instead col
         let usedRow = movesTracking[compare1].charAt(0).concat(movesTracking[compare2].charAt(0));
         let reRow = new RegExp("[^"+usedRow+"]", "g");
-        blockMove = "abc".match(reRow).join('').concat(movesTracking[compare1v].charAt(1));
+        blockMove = "abc".match(reRow).join('').concat(movesTracking[compare1].charAt(1));
         if (movesTracking.indexOf(blockMove) === -1) {
           return blockMove;
         } else {
