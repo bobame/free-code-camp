@@ -492,6 +492,7 @@ $(document).ready(function(){
       console.log("\t~ getting 1st move");
       moveChoices = mCorner.concat(mCenter);
       return moveChoices[Math.floor(Math.random()*moveChoices.length)];
+      // return mCenter; //TEST
     }
 
     getThirdMove = function(){
@@ -519,14 +520,12 @@ $(document).ready(function(){
           return "caac".match(reHolder).join('');
         }
       }
-
-
       //computer played center, opponent played edge, computer should play in any corner
-
-
+      else if (movesTracking[0] === mCenter && mEdge.indexOf(movesTracking[1]) !== -1) {
+        console.log("=> " + mCorner[Math.floor(Math.random() * mCorner.length)]);
+        return mCorner[Math.floor(Math.random() * mCorner.length)];
+      }
       //computer played center, opponent played corner, play default
-
-
     }
 
     /* ================================================== *///functions - block move
