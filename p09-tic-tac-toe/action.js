@@ -34,6 +34,14 @@ $(document).ready(function(){
     "cc": ""
   };
 
+  //for computer moves
+  const mCenter = "bb";
+  const mCorner = ["aa", "ac", "ca", "cc"];
+  const mEdge = ["ab", "bc", "cb", "ba"];
+  let movesTracking = [];
+  let moveChoices = [];
+  let movesOrder = ["aa", "ab", "ac", "bc", "cc", "cb", "ca", "ba"];
+
   //functions - setup
   let getTurn;
   let getPlayers;
@@ -41,6 +49,7 @@ $(document).ready(function(){
   let revertPlayerHighlightDisable;
   let clearGame;
   let clearBoardTracking;
+  let clearScoresAndTurn;
   let resetGame;
   //functions - display
   let highlightPlayerDisableOther;
@@ -58,6 +67,13 @@ $(document).ready(function(){
   let checkGameStatus;
   let didAnyoneWin;
   let getComputerMove;
+  //functions - computer moves, user goes first
+  let getSecondMove;
+  let getFourthMove;
+
+  //functions - computer moves, computer goes first
+  let getFirstMove;
+  let getThirdMove;
 
 
  /* ================================================== *///execution
@@ -133,6 +149,7 @@ $(document).ready(function(){
     revertPlayerHighlightDisable = function() {
       $("#start-"+user)[0].style.removeProperty("background-color");
       $("#start-"+computer).prop("disabled", false);
+      $("#first-turn").html("*");
     }
 
     //GAME SCREEN - CLEARS BOARD & ASSIGNMENTS
@@ -152,9 +169,20 @@ $(document).ready(function(){
       }
     }
 
+    clearScoresAndTurn = function() {
+      scoreX = 0;
+      scoreO = 0;
+      turn = null;
+    }
+
     //GAME ALL - RESET
     resetGame = function resetGame() {
-      console.log("Clicked reset button");
+      // console.log("Clicked reset button");
+      clearGame();
+      clearBoardTracking();
+      clearScoresAndTurn();
+      revertPlayerHighlightDisable();
+      openGame();
     }
 
 
@@ -173,14 +201,14 @@ $(document).ready(function(){
 
     //LEFT SCOREBOARD - UPDATE TURN MESSAGE
     displayTurn = function() {
-      console.log("\n***TEST***:\tDisplaying Turn\n>\t" + turn);
+      // console.log("[FUNC] - displayTurn()");
       let currentTurn = (turn===user)? turnMessage.user : turnMessage.computer;
       $(".turn").html(currentTurn);
     }
 
     //GAME OVER SCREEN
     showGameOverScreen = function(selector) {
-      console.log("[FUNC] - showGameOverScreen()");
+      // console.log("[FUNC] - showGameOverScreen()");
       gameHeight = getGameHeight();
       $(".right").fadeTo("slow", 0, function(){
         $(".right").hide();
@@ -195,12 +223,10 @@ $(document).ready(function(){
 
     //TRANSITION - START SCREEN => GAME
     transitionStartToGame = function() {
-      console.log("[FUNC] - transitionStartToGame()");
+      // console.log("[FUNC] - transitionStartToGame()");
       $(".right-start").delay(1000).fadeOut(500, function(){
         $(".right").fadeTo(400, 1);
         $(".left").fadeTo(400, 1, function(){
-          //display correct turn
-          // displayTurn();
           //display correct player next to each score
           $("#score-x-ref").html(playerX);
           $("#score-o-ref").html(playerO);
@@ -213,7 +239,7 @@ $(document).ready(function(){
 
     //TRANSITION - OVER SCREEN => GAME
     transitionOverToGame = function() {
-      console.log("[FUNC] - transitionOverToGame()");
+      // console.log("[FUNC] - transitionOverToGame()");
       $(".right").delay(1500).fadeOut(500, function(){
         $(".parent").hide();
         clearGame();
@@ -231,7 +257,7 @@ $(document).ready(function(){
 
     //BREAK DOWN PLAYER MOVES
     getPlayerMovesBreakdown = function() {
-      console.log("[FUNC] - getPlayerMovesBreakdown()");
+      // console.log("[FUNC] - getPlayerMovesBreakdown()");
       //clearing old values first
       xMoves = [];
       oMoves = [];
@@ -257,20 +283,21 @@ $(document).ready(function(){
 
     //PLAY USER MOVE
     playUserMove = function(move) {
-      console.log("[FUNC] - playUserMove()");
+      // console.log("[FUNC] - playUserMove()");
       if (boardTracking[move].length===0) {
         let target = "#" + move;
         $(target).html(user.toUpperCase()); //updates board
         boardTracking[move] = user; //updates boardTracking
+        movesTracking.push(move);  //updates movesTracking
         turn = computer;
-        // displayTurn(); //computer message not displaying long enough
         checkGameStatus();
       }
     }
 
     //PLAY COMPUTER MOVE
     playComputerMove = function() {
-      console.log("[FUNC] - playComputerMove()");
+      // console.log("[FUNC] - playComputerMove()");
+
       let availableMoves = Object.keys(boardTracking).filter(function(val){
         return boardTracking[val].length === 0;
       });
@@ -278,25 +305,25 @@ $(document).ready(function(){
       let target = "#" + nextMove;
       $('<div></div>').appendTo(target).hide().append(computer.toUpperCase()).fadeIn(2000);
       boardTracking[nextMove] = computer;
+      movesTracking.push(nextMove);  //updates movesTracking
       turn = user;
-      // displayTurn();
       checkGameStatus();
     }
 
     //PLAY NEXT MOVE (USER/COMPUTER)
     playGame = function() {
-      console.log("[FUNC] - playGame()");
+      // console.log("[FUNC] - playGame()");
       if (turn === user) {
         // $(".game").prop("disabled", false);
         $(".game").on("click", function(){
           playUserMove(this.id);
           // $(".game").prop("disabled", true);
           turn = computer;
-
         });
       } else {
         playComputerMove();
       }
+      displayTurn(); //come back to this one ** TODO **
     }
 
 
@@ -304,7 +331,7 @@ $(document).ready(function(){
 
     //CHECK - GAME OVER?
     checkGameStatus = function() {
-      console.log("[FUNC] - checkGameStatus()");
+      // console.log("[FUNC] - checkGameStatus()");
       let getUnused = Object.values(boardTracking).filter(function(val){
         return val.length === 0;
       });
@@ -323,7 +350,7 @@ $(document).ready(function(){
 
     //CHECK - WINNING PLAYER?
     didAnyoneWin = function() {
-      console.log("[FUNC] - didAnyoneWin()");
+      // console.log("[FUNC] - didAnyoneWin()");
       getPlayerMovesBreakdown();
       //check if either row(0) or col(1) has 3 of same value (a|b|c)
       for (var i=0; i<xMovesBrokenDown.length; i++) {
@@ -370,13 +397,108 @@ $(document).ready(function(){
 
     //GET - COMPUTER'S NEXT MOVE
     getComputerMove = function(availableMoves) {
-      let randomMove = availableMoves[Math.floor(Math.random()*availableMoves.length)];
-      let nextMove = randomMove;
-
-
-
-
-      return nextMove;
+      moveChoices = [];
+      console.log("MOVE " + (movesTracking.length+1) + " => " + turn + " (" + $("#score-"+user+"-ref").text() + ")");
+      if (movesTracking.length === 0) {
+        getFirstMove();
+      }
+      //SCENARIO A - user played first
+      else if (movesTracking.length === 1) { return getSecondMove(); }
+      else if (movesTracking.length === 3) { return getFourthMove(); }
+      //SCENARIO B - computer played first
+      else if (movesTracking.length === 2) { return getThirdMove(); }
+      //SCENARIO C - games continues beyond 4 moves
+      else { //default
+        return availableMoves[Math.floor(Math.random()*availableMoves.length)];
+      }
     }
 
+    /* ================================================== *///functions - computer moves, user played first
+
+    getSecondMove = function(){
+      //opponent in corner, play move in center
+      console.log("\t~ getting 2nd move");
+      if (mCorner.indexOf(movesTracking[0]) > -1) {
+        return mCenter;
+      }
+      //opponent in edge, play move in corner next to opponent
+      else if (mEdge.indexOf(movesTracking[0]) > -1) {
+        if (movesTracking[0]==="ab") {
+          return ["aa","ac"][Math.round(Math.random())];
+        } else if (movesTracking[0]==="bc") {
+          return ["ac","cc"][Math.round(Math.random())];
+        } else if (movesTracking[0]==="cb") {
+          return ["ca","cc"][Math.round(Math.random())];
+        } else {
+          return ["ca","aa"][Math.round(Math.random())];
+        }
+      }
+      //opponent in center, play move in corner
+      else {
+        return mCorner[Math.floor(Math.random() * mCorner.length)];
+      }
+    }
+
+    getFourthMove = function(){
+      console.log("\t~ getting 4th move");
+      //opponent played corner then corner, play move in edge
+      if (mCorner.indexOf(movesTracking[0]) !== -1 && mCorner.indexOf(movesTracking[2]) !== -1) {
+        //opponent corner plays are diagonal, play any edge
+        if ( (/aa|cc/g.test(movesTracking[0]) && /aa|cc/g.test(movesTracking[2])) ||
+             (/ca|ac/g.test(movesTracking[0]) && /ca|ac/g.test(movesTracking[2])) ) {
+          return mEdge[Math.floor(Math.random() * mEdge.length)];
+        }
+        //opponent corners are aa (movesOrder[0]) and ca (movesOrder[6])
+        else if (/aa|ca/g.test(movesTracking[0]) && /aa|ca/g.test(movesTracking[2])) {
+          return "ba";
+        }
+        //opponent corner plays 2 indexes apart, play in-between
+        else {
+          //sum of 2 corner moves indices divided by 2 for in-between index
+          return movesOrder[(movesOrder.indexOf(movesTracking[0]) + movesOrder.indexOf(movesTracking[2])) / 2];
+        }
+      }
+      //opponent played corner then edge, play move in corner blocking both
+      else if (mCorner.indexOf(movesTracking[0]) !== -1 && mEdge.indexOf(movesTracking[2]) !== -1) {
+        //aa-ba-ca line is edge case because movesOrder index 0-7-6
+        if (/aa/g.test(movesTracking[0]) && /ba/g.test(movesTracking[2])) {
+          return "ca";
+        } else if (/ca/g.test(movesTracking[0]) && /ba/g.test(movesTracking[2])) {
+          return "aa";
+        }
+        //otherwise corner+2 if edge >corner, corner-2 if edge<corner
+        else if (movesOrder.indexOf(movesTracking[2]) > movesOrder.indexOf(movesTracking[0])) {
+          return movesOrder[movesOrder.indexOf(movesTracking[0]) + 2];
+        } else {
+          return movesOrder[movesOrder.indexOf(movesTracking[0]) - 2];
+        }
+      }
+      //opponent played edge then corner, play center unless required to block
+      else if (mEdge.indexOf(movesTracking[0]) !== -1 && mCorner.indexOf(movesTracking[2]) !== -1) {
+        //block if required
+
+
+        //else play center
+
+      }
+
+
+    }
+
+
+    /* ================================================== *///functions - computer moves, computer played first
+
+    getFirstMove = function(){
+      console.log("\t~ getting 1st move");
+      moveChoices = mCorner.concat(mCenter);
+      return moveChoices[Math.floor(Math.random()*moveChoices.length)];
+    }
+
+    getThirdMove = function(){
+      console.log("\t~ getting 3rd move");
+
+    }
+
+
+    // end
 });
