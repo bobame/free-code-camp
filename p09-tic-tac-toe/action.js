@@ -41,6 +41,7 @@ $(document).ready(function(){
   let movesTracking = [];
   let moveChoices = [];
   let movesOrder = ["aa", "ab", "ac", "bc", "cc", "cb", "ca", "ba"];
+  let blockMove;
 
   //functions - setup
   let getTurn;
@@ -75,6 +76,8 @@ $(document).ready(function(){
   let getFirstMove;
   let getThirdMove;
 
+  //functions - block move
+  let getBlockMove;
 
  /* ================================================== *///execution
 
@@ -474,17 +477,12 @@ $(document).ready(function(){
         }
       }
       //opponent played edge then corner, play center unless required to block
-      else if (mEdge.indexOf(movesTracking[0]) !== -1 && mCorner.indexOf(movesTracking[2]) !== -1) {
-        //block if required
-
-
-        //else play center
-
+      //opponent played center also played same
+      else if ( ((mEdge.indexOf(movesTracking[0]) !== -1 && mCorner.indexOf(movesTracking[2]) !== -1)) ||
+                (movesTracking[0] === mCenter)) {
+          return getBlockMove(0, 2, mCenter);
       }
-
-
     }
-
 
     /* ================================================== *///functions - computer moves, computer played first
 
@@ -498,6 +496,41 @@ $(document).ready(function(){
       console.log("\t~ getting 3rd move");
 
     }
+
+    /* ================================================== *///functions - block move
+
+    getBlockMove = function(compare1, compare2, other){
+      //block if row is shared
+      if (movesTracking[compare1].charAt(0) === movesTracking[compare2].charAt(0)) {
+        //gets col of opponent 1st & 3rd move
+        let usedCol = movesTracking[compare1].charAt(1).concat(movesTracking[compare2].charAt(1));
+        //matches if not in opponent 1st or 3rd move
+        let reCol = new RegExp("[^"+usedCol+"]", "g");
+        //concats shared row and col not in 1st or 3rd move
+        blockMove = movesTracking[compare1].charAt(0).concat("abc".match(reCol));
+        console.log("blockMove " + blockMove);
+        //if not in used moves plays move, else plays center
+        if (movesTracking.indexOf(blockMove) === -1) {
+          return blockMove;
+        } else {
+          return other;
+        }
+      }
+      //block if col is shared
+      if (movesTracking[0].charAt(1) === movesTracking[compare2].charAt(1)) {
+        //same logic except for row instead col
+        let usedRow = movesTracking[compare1].charAt(0).concat(movesTracking[compare2].charAt(0));
+        let reRow = new RegExp("[^"+usedRow+"]", "g");
+        blockMove = "abc".match(reRow).join('').concat(movesTracking[compare1v].charAt(1));
+        if (movesTracking.indexOf(blockMove) === -1) {
+          return blockMove;
+        } else {
+          return other;
+        }
+      }
+      return other;
+    }
+
 
 
     // end
