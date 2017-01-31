@@ -200,7 +200,7 @@ $(document).ready(function(){
         $(".right").fadeTo(400, 1);
         $(".left").fadeTo(400, 1, function(){
           //display correct turn
-          // displayTurn();
+          displayTurn();
           //display correct player next to each score
           $("#score-x-ref").html(playerX);
           $("#score-o-ref").html(playerO);
@@ -372,10 +372,6 @@ $(document).ready(function(){
     getComputerMove = function(availableMoves) {
       let randomMove = availableMoves[Math.floor(Math.random()*availableMoves.length)];
       let nextMove = randomMove;
-
-
-
-
       return nextMove;
     }
 

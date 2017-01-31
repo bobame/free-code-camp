@@ -14,46 +14,21 @@ Build a CodePen.io app that is functionally similar to [this](https://codepen.io
 see [instructions](https://www.freecodecamp.com/challenges/build-a-tic-tac-toe-game)
 
 ## Plan
-1. UI
-    - screen-1, select player X or O
-        - [X] text indicating either player X or O already selected to go first
-        - [X] ask user to select either X or O
-        - [X] reveal which player selected to go first
-        - [X] fade out div
-    - screen-2, 2 columns
-        - column-1
-            - [] row-1, player turn
-            - [X] row-2, score player X (you/computer)
-            - [X] row-3, score player O (you/computer)
-            - [] row-4, reset button
-        - column-2
-            - [X] 3 by 3 divs equal size
-            - [X] gradient css for chalk-like effect
-            - [X] thick borders
-    - screen-3, game status
-        - [X] css opacity to fade out background
-        - [X] user win
-        - [X] computer win
-        - [X] tie
-2. Functionality
-    - game logic based on [Quora answer](https://www.quora.com/Is-there-a-way-to-never-lose-at-Tic-Tac-Toe/answer/Victoria-Vita)
-        - [] breakdown center, corner, edge
-        - [] array for moves 1st, 2nd, 3rd
-        - [] 
-    - scoreboard
-        - [] highlight style for higher score
-        - [] highlight style for tie score
-        - [] animate next turn
+1. Overall
+    - [X] keep it simple, keep it going
+    - [X] satisfy user reqs
+2. UI
+    - [X] show score
+    - [-] show turn (**Future Enhancement**)
+3. Functionality
+    - [X] allow user to select X or O
+    - [X] check if game over
+    - [X] show game tied
+    - [X] show player win
+    - [X] show computer win
+4. [-] Game Logic (**Future Enhancement**)
 
+## Future Enhancements
 
-## Note
-
-- radial-gradient [here](http://www.w3schools.com/css/tryit.asp?filename=trycss3_gradient-radial)
-- binding click event to multiple buttons [here](http://stackoverflow.com/a/17715413)
-- disable button [here](http://stackoverflow.com/a/15122550)
-- specify callback function after fadeOut [here](http://stackoverflow.com/a/1065809)
-- random item from array [here](http://stackoverflow.com/a/5915122)
-- fade in appended html jquery [here](http://stackoverflow.com/a/1262367)
-- show/hide after delay [here](http://stackoverflow.com/a/7288683)
-- 8 strategies to never lose tic tac toe [here](https://www.quora.com/Is-there-a-way-to-never-lose-at-Tic-Tac-Toe/answer/Victoria-Vita)
-- match countes [here](http://stackoverflow.com/a/881111)
+- Actual logic, was getting lost in complexity of implementing [Quora](https://www.quora.com/Is-there-a-way-to-never-lose-at-Tic-Tac-Toe), refer [version](https://github.com/havefuncoding/free-code-camp/blob/ed6ae29210549e6bb9ba185ed9ba645cb30ebd91/p09-tic-tac-toe/action.js)
+- Show accurate turns
