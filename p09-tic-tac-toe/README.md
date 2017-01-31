@@ -1,6 +1,6 @@
 ## Specifications
 
-- see [CodePen](#) for completed version **UPDATE LINK**
+- see [CodePen](https://codepen.io/gracen/full/RKLrPG/) for completed version
 
 ### Objective:
 Build a CodePen.io app that is functionally similar to [this](https://codepen.io/freeCodeCamp/full/KzXQgy).
