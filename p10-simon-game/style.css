@@ -6,14 +6,15 @@ GENERAL
 
 html, body {
   /*http://www.w3schools.com/css/css3_gradients.asp*/
-  background: repeating-linear-gradient(blue, green 10%, black 20%);
+  /*http://www.colorpicker.com/bbffb9*/
+  background: repeating-linear-gradient(#FFDAB9, #BBFFB9 10%, #B9DEFF 50%);
 
 }
 
 
 
 /* ==============================
-OUTER CIRCLE (COLOR BUTTONS)
+   OUTER CIRCLE (COLOR)
 ============================== */
 
 #outer {
@@ -77,7 +78,7 @@ OUTER CIRCLE (COLOR BUTTONS)
 
 
 /* ==============================
-INNER CIRCLE (SETTINGS BUTTONS)
+   INNER CIRCLE (SETTINGS)
 ============================== */
 
 
@@ -205,4 +206,18 @@ INNER CIRCLE (SETTINGS BUTTONS)
 #settings,
 #switch {
   font-family: "Arsenal";
+}
+
+
+
+/* ==============================
+   CURSOR (POINTER / DEFAULT)
+============================== */
+
+#switch-field {
+  cursor: pointer;
+}
+
+.pointer-when-on {
+  cursor: default;
 }
