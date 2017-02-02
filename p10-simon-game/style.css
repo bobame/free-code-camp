@@ -2,10 +2,12 @@
 GENERAL
 ============================== */
 
-@import url('https://fonts.googleapis.com/css?family=Arsenal|Quintessential');
+@import url('https://fonts.googleapis.com/css?family=Arsenal|Unica+One');
 
-body {
-  background-color: #ffe5f5;
+html, body {
+  /*http://www.w3schools.com/css/css3_gradients.asp*/
+  background: repeating-linear-gradient(blue, green 10%, black 20%);
+
 }
 
 
@@ -92,7 +94,115 @@ INNER CIRCLE (SETTINGS BUTTONS)
   text-align: center;
 }
 
+/***** NAME *****/
+
 #name > h1 {
   font-family: "Berkshire Swash";
-  font-size: 2.5em;
+  font-size: 3.6em;
+}
+
+/***** SETTINGS *****/
+
+#settings {
+  margin-top: -45px;
+  font-family: "Arsenal";
+}
+
+#row-strict-light,
+#row-settings-group {
+  display: flex; /*does the work of inline*/
+  justify-content: center;
+  padding: 0 5px;
+}
+
+#filler {
+  width: 80%;
+}
+
+#strict-light {
+  width: 33%;
+  padding-bottom: 2px;
+}
+
+#strict-light > div {
+  width: 12px;
+  height: 12px;
+  background-color: #444;
+  margin: 0 auto;
+  border-radius: 50%;
+}
+
+#count,#start,#strict {
+  flex-grow: 1; /*stretches to fill horizontally*/
+}
+
+#count-field,
+#start-button,
+#strict-button {
+  margin: 0 auto;
+  height: 30px;
+  border: 3px ridge #444;
+}
+
+#count {
+  width: 30%;
+}
+
+#count-field {
+  background-color: #201938;
+  width: 60px;
+  border-radius: 5px;
+  color: white;
+  font-family: "Unica One";
+  font-size: 1.5em;
+}
+
+#start-button {
+  width: 30px;
+  background-color: red;
+  border-radius: 50%;
+}
+
+#strict-button {
+  width: 30px;
+  background-color: yellow;
+  border-radius: 50%;
+}
+
+/***** SWITCH *****/
+
+#switch {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+#switch-field {
+  width: 40px;
+  height: 20px;
+  background-color: #201938;
+  margin: 0 4px;
+  border-radius: 5px;
+}
+
+.toggle-off {
+  width: 16px;
+  height: 16px;
+  background-color: #4286f4;
+  border-radius: 2px;
+  margin: 2px;
+}
+
+.toggle-on {
+  width: 16px;
+  height: 16px;
+  background-color: #4286f4;
+  border-radius: 2px;
+  margin: 2px;
+  float: right;
+}
+
+#settings,
+#switch {
+  font-family: "Arsenal";
 }
