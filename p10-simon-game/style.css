@@ -1,0 +1,90 @@
+/* ==============================
+GENERAL
+============================== */
+
+@import url('https://fonts.googleapis.com/css?family=Arsenal|Quintessential');
+
+body {
+  background-color: #ffe5f5;
+}
+
+
+
+/* ==============================
+OUTER CIRCLE (COLOR BUTTONS)
+============================== */
+
+#outer {
+  width: 455px;
+  height: 455px;
+  margin: 50px auto; /*px instead % else #inner moving around*/
+}
+
+.btnColor {
+  width: 200px;
+  height: 200px;
+  border: 8px solid #444;
+  display: inline-block;
+}
+
+#green {
+  background-color: #42f44e;
+  border-top-left-radius: 100%;
+  border-top: 20px solid #444;
+  border-left: 20px solid #444;
+  overflow: hidden; /*prevent clicks outside curved borders*/
+}
+
+#red {
+  background-color: #ea533f;
+  border-top-right-radius: 100%;
+  float: right;
+  border-top: 20px solid #444;
+  border-right: 20px solid #444;
+}
+
+
+#blue {
+  background-color: #3f45ea;
+  border-bottom-right-radius: 100%;
+  float: right;
+  border-bottom: 20px solid #444;
+  border-right: 20px solid #444;
+}
+
+#yellow {
+  background-color: #f6f927;
+  border-bottom-left-radius: 100%;
+  border-bottom: 20px solid #444;
+  border-left: 20px solid #444;
+}
+
+#bottom {
+  position: relative;
+  top: -4px;
+}
+
+
+
+/* ==============================
+INNER CIRCLE (SETTINGS BUTTONS)
+============================== */
+
+
+#inner {
+  background-color: #f2f6fc;
+  border: 5px solid #444;
+  border-radius: 50%;
+  width: 225px;
+  height: 225px;
+  position: absolute;
+  margin-top: -400px; /*brings #inner up based on #outer height*/
+  left: 50%; /*first aligns left margin to screen center*/
+  margin-left: -118px; /*then pull left from center based on #outer width*/
+  text-align: center;
+}
+
+#name > h1 {
+  font-family: "Berkshire Swash";
+  font-size: 2.5em;
+}

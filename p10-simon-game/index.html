@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Simon Game</title>
+    <!-- style sheet -->
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+    <!-- OUTER CIRCLE -->
+    <div id="outer">
+      <div id="top">
+        <div id="green" class="btnColor"></div>
+        <div id="red" class="btnColor"></div>
+      </div>
+      <div id="bottom">
+        <div id="yellow" class="btnColor"></div>
+        <div id="blue" class="btnColor"></div>
+      </div>
+    </div> <!-- /OUTER CIRCLE -->
+
+    <!-- INNER CIRCLE -->
+    <div id="inner">
+      <div id="name">
+        <h1>Simon</h1>
+      </div>
+      <div id="settings">
+        <div id="count">
+          <div id="count-field"></div>
+          <div class="label">Count</div>
+        </div>
+        <div id="start">
+          <div id="start-button"></div>
+          <div class="label">Start</div>
+        </div>
+        <div id="strict">
+          <div id="strict-button"></div>
+          <div class="label">Strict</div>
+        </div>
+      </div>
+      <div id="switch">
+        <div></div>
+      </div>
+    </div> <!-- /INNER CIRCLE -->
+
+    <!-- jQuery plugin -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+    <!-- javascript file -->
+    <script src="index.js"></script>
+  </body>
+</html>
