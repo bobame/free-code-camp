@@ -15,9 +15,18 @@ OUTER CIRCLE (COLOR BUTTONS)
 ============================== */
 
 #outer {
-  width: 455px;
-  height: 455px;
+  /*455px breaking inline locally but showing gap in codepen*/
+  /*using flex workaround below*/
+  width: 456px;
+  height: 456px;
   margin: 50px auto; /*px instead % else #inner moving around*/
+}
+
+#top,
+#bottom {
+  /*http://stackoverflow.com/a/10277235*/
+  display: flex;
+  justify-content: center;
 }
 
 .btnColor {
@@ -63,7 +72,6 @@ OUTER CIRCLE (COLOR BUTTONS)
   position: relative;
   top: -4px;
 }
-
 
 
 /* ==============================
