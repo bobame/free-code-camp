@@ -12,7 +12,7 @@ $(document).ready(function(){
   var colorsArr = ["green", "red", "blue", "yellow"];
 
   //variables to hold constants
-  var playsMax = 3; //TESTING, update back to 20
+  var playsMax = 5; //TESTING, update back to 20
   var audioRef = {
     "green": "https://s3.amazonaws.com/freecodecamp/simonSound1.mp3",
     "red": "https://s3.amazonaws.com/freecodecamp/simonSound2.mp3",
@@ -73,7 +73,7 @@ $(document).ready(function(){
   //click on strict button
   $("#strict-button").on("click", function(){
     console.log("INFO:\tclicked on strict button, id:" + this.id);
-    if (toggleIsOn) { //should action be blocked mid-game? (&& !gameIsOn)
+    if (toggleIsOn && !gameIsOn) { //should action be blocked mid-game? (&& !gameIsOn)
       if (  $("#strict-light-status").hasClass("strict-light-off") &&
            !$("#strict-light-status").hasClass("strict-light-on") )
       {
@@ -243,6 +243,7 @@ $(document).ready(function(){
       turnIsUser = false;
       deferred1.resolve();
     }, waitTime);
+
     //checking if user moves matching game moves
     console.log("INFO:\tinside getUserPlays(), checking if user plays matches game plays");
     setTimeout(function(){
@@ -255,9 +256,13 @@ $(document).ready(function(){
       } else if (playIsMatching() && !(counter < playsMax)) {
         userWin();
       } else if (!playIsMatching() && !strictIsOn) {
-        replayGame(); //STAGE
+
+        //TEST
+        replayGame();
+
+        // continueGame();
       } else if (!playIsMatching() && strictIsOn) {
-        restartGame(); //STAGE
+        restartGame();
       } else {
         console.log("ERROR:\tshould not reach here");
       }
@@ -303,7 +308,28 @@ $(document).ready(function(){
 
   function replayGame() {
     console.log("INFO:\tcalled function replayGame()");
-    userChance();
+    //1. clear user plays and show message to try again
+    //2. get user plays
+    //3.
+
+    //TEST --->>
+    setTimeout(function() {
+      console.log("\n***Printing this A");
+      //first set of actions
+      userPlays = [];
+      userChance();
+      playMoves();
+      setTimeout(function() {
+        console.log("\n***Printing this B");
+        //second set of actions
+
+
+      }, 2000);
+    }, 2000);
+
+    // <<--- TEST
+
+
   }
 
   function restartGame() {
@@ -339,11 +365,9 @@ $(document).ready(function(){
   }
 
   function userChance() {
-    toggleOff();
     flashMessage("chance");
     setTimeout(function(){
       flashMessage("clear");
-      toggleOn();
     }, 2000);
   }
 
