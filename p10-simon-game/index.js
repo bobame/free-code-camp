@@ -23,6 +23,12 @@ $(document).ready(function(){
     "blue": ["#3f45ea", "rgb(12, 17, 138)"],
     "yellow": ["#f6f927", "rgb(201, 198, 0)"]
   }
+  var messageRef = {
+    "win": "You Win!",
+    "lose": "You lose, try again.",
+    "chance": "Try again.",
+    "clear": ""
+  }
 
   //naming functions to utilize deferreds/promises else getting exception below
   //Uncaught TypeError: Cannot read property 'done' of undefined
@@ -30,6 +36,7 @@ $(document).ready(function(){
   var getUserPlays;
   var updateColor;
   var playIsMatching;
+  var flashMessage;
 
   /* ==================================================
      CLICKS
@@ -208,9 +215,12 @@ $(document).ready(function(){
       console.log("INFO:\tinside getUserPlays(), comparing gamePlays[" + gamePlays + "] vs [" + userPlays + "]");
       console.log("INFO:\tinside getUserPlays(), gamePlays matching userPlays => " + playIsMatching());
 
-      if (playIsMatching()) {
+      if (playIsMatching() && counter < playsMax) {
         console.log("PLAY IS MATCHING");
-        testContinue();
+        continueGame();
+      } else if (playIsMatching() && !(counter < playsMax)) {
+        console.log("PLAY IS MATCHING AND YOU WIN!");
+        userWin();
       } else {
         console.log("PLAY IS NOT MATCHING");
       }
@@ -228,15 +238,10 @@ $(document).ready(function(){
     return isMatching;
   }
 
-  function testContinue() {
-    console.log("CHECKING PRINT");
-    continueGame();
-  }
-
 
 
   /* ==================================================
-     HELPERS - CONTINUE GAME
+     HELPERS - GAME ANALYSIS
   ================================================== */
 
   function continueGame() {
@@ -255,6 +260,20 @@ $(document).ready(function(){
     });
   }
 
+  function userWin() {
+    toggleOff();
+    flashMessage("win");
+    setTimeout(function(){
+      flashMessage("clear");
+      toggleOn();
+    }, 2000);
+  }
+
+
+  flashMessage = function(message) {
+    console.log("INFO:\tcalled function flashMessage() for " + messageRef[message]);
+    $("#message").html(messageRef[message]);
+  }
 
 
   //end
