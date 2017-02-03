@@ -152,14 +152,31 @@ $(document).ready(function(){
     console.log("INFO:\tcalled function playMoves()");
     console.log("INFO:\tinside playMoves(), looping through gamesPlays, " + gamePlays);
 
-    for (var i=0; i<gamePlays.length; i++) {
-      console.log("INFO:\tinside playMoves(), playing move, " + gamePlays[i]);
-      // play corresponding audio sound
-      new Audio(audioRef[gamePlays[i]]).play();
-      console.log("\n*****Playing sound for => " + gamePlays[i]);
-      //highlight corresponding button darker for half second
-      updateColor(gamePlays[i], colorsRef[gamePlays[i]][1], colorsRef[gamePlays[i]][0]);
-    }
+    // ERROR - subsequent plays triggering together
+    // for (var i=0; i<gamePlays.length; i++) {
+    //   console.log("INFO:\tinside playMoves(), playing move, " + gamePlays[i]);
+    //   // play corresponding audio sound
+    //   new Audio(audioRef[gamePlays[i]]).play();
+    //   console.log("\n*****Playing sound for => " + gamePlays[i]);
+    //   //highlight corresponding button darker for half second
+    //   updateColor(gamePlays[i], colorsRef[gamePlays[i]][1], colorsRef[gamePlays[i]][0]);
+    // };
+
+    (function(){
+      for (var i = 0; i < gamePlays.length; i++) {
+      // for each iteration console.log a word
+      // and make a pause after it
+      (function (i) {
+        setTimeout(function () {
+          console.log("Printing here ..." + gamePlays[i]);
+          // new Audio(audioRef[gamePlays[i]]).play();
+          updateColor(gamePlays[i], colorsRef[gamePlays[i]][1], colorsRef[gamePlays[i]][0]);
+          console.log("\t\t" + colorsRef[gamePlays[i]][1]);
+          console.log("\t\t" + colorsRef[gamePlays[i]][0]);
+        }, 1000 * i);
+      })(i);
+    };
+    })();
 
   }
 
@@ -171,13 +188,13 @@ $(document).ready(function(){
     setTimeout(function(){
       $("#"+target).css("background-color", color1);
       deferred1.resolve();
-      new Audio(audioRef[color1]).play();
-    }, 0);
+      new Audio(audioRef[target]).play();
+    }, 200);
     //after half second set back to original color
     setTimeout(function(){
       $("#"+target).css("background-color", color2);
       deferred1.resolve();
-    }, 200);
+    }, 500);
     return $.when(deferred1, deferred2).done().promise();
   }
 
