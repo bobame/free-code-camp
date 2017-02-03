@@ -3,14 +3,16 @@ $(document).ready(function(){
   //variables to capture states
   var toggleIsOn = false;
   var gameIsOn = false;
+  var strictIsOn = false;
   var turnIsUser = false;
+  var readyForNextMove = true;
   var counter = 1;
   var gamePlays = [];
   var userPlays = [];
   var colorsArr = ["green", "red", "blue", "yellow"];
 
   //variables to hold constants
-  var playsMax = 2; //TESTING, update back to 20
+  var playsMax = 3; //TESTING, update back to 20
   var audioRef = {
     "green": "https://s3.amazonaws.com/freecodecamp/simonSound1.mp3",
     "red": "https://s3.amazonaws.com/freecodecamp/simonSound2.mp3",
@@ -68,6 +70,28 @@ $(document).ready(function(){
     }
   });
 
+  //click on strict button
+  $("#strict-button").on("click", function(){
+    console.log("INFO:\tclicked on strict button, id:" + this.id);
+    if (toggleIsOn) { //should action be blocked mid-game? (&& !gameIsOn)
+      if (  $("#strict-light-status").hasClass("strict-light-off") &&
+           !$("#strict-light-status").hasClass("strict-light-on") )
+      {
+        $("#strict-light-status").removeClass("strict-light-off");
+        $("#strict-light-status").addClass("strict-light-on");
+        strictIsOn = true;
+      } else if (  $("#strict-light-status").hasClass("strict-light-on") &&
+                  !$("#strict-light-status").hasClass("strict-light-off") )
+      {
+        $("#strict-light-status").removeClass("strict-light-on");
+        $("#strict-light-status").addClass("strict-light-off");
+        strictIsOn = false;
+      } else {
+        console.log("ERROR:\tExpecting .strict-light-off or .strict-light-on");
+      }
+    }
+  });
+
   //click on color buttons
   $(".btnColor").on("click", function(){
     console.log("INFO:\tclicked on color button, id:" + this.id);
@@ -75,11 +99,6 @@ $(document).ready(function(){
       userPlays.push(this.id);
       new Audio(audioRef[this.id]).play();
     }
-  });
-
-  //click on strict button
-  $("#strict-button").on("click", function(){
-    console.log("INFO:\tclicked on strict button, id:" + this.id);
   });
 
 
@@ -111,7 +130,7 @@ $(document).ready(function(){
   }
 
   /* ==================================================
-     HELPERS - START BUTTON GAME
+     HELPERS - START & STRICT BUTTONS
   ================================================== */
 
   function startGame() {
@@ -127,6 +146,11 @@ $(document).ready(function(){
       });
     });
   }
+
+
+  /* ==================================================
+     HELPERS - GAME PLAYS
+  ================================================== */
 
   getGamePlays = function() {
     console.log("INFO:\tcalled function getGamePlays()");
@@ -147,12 +171,13 @@ $(document).ready(function(){
 
   function getMoves() {
     console.log("INFO:\tcalled function getMoves()");
-    //if moves under 20 add next random move
-    if (gamePlays.length < playsMax) {
+    //if moves under 20 and readyForNextMove then add next random move
+    if (gamePlays.length < playsMax && readyForNextMove) { //STAGE - added readyForNextMove
       var newMove = colorsArr[Math.floor(Math.random() * colorsArr.length)];
       console.log("INFO:\tinside getMoves(), adding new move, " + newMove);
       gamePlays.push(newMove);
     }
+    //STAGE - otherwise should replay same moves
   }
 
   function playMoves() {
@@ -194,7 +219,7 @@ $(document).ready(function(){
 
 
   /* ==================================================
-     HELPERS - START BUTTON USER
+     HELPERS - USER PLAYS
   ================================================== */
 
   getUserPlays = function() {
@@ -216,19 +241,27 @@ $(document).ready(function(){
       console.log("INFO:\tinside getUserPlays(), gamePlays matching userPlays => " + playIsMatching());
 
       if (playIsMatching() && counter < playsMax) {
-        console.log("PLAY IS MATCHING");
+        readyForNextMove = true; //STAGE - setting to true again to take in next move
         continueGame();
       } else if (playIsMatching() && !(counter < playsMax)) {
-        console.log("PLAY IS MATCHING AND YOU WIN!");
         userWin();
+      } else if (!playIsMatching() && !strictIsOn) {
+        replayGame(); //STAGE
+      } else if (!playIsMatching() && strictIsOn) {
+        restartGame(); //STAGE
       } else {
-        console.log("PLAY IS NOT MATCHING");
+        console.log("ERROR:\tshould not reach here");
       }
 
       deferred2.resolve();
     }, waitTime);
     return $.when(deferred1, deferred2).done().promise();
   }
+
+
+  /* ==================================================
+     HELPERS - GAME ANALYSIS
+  ================================================== */
 
   playIsMatching = function() {
     console.log("INFO:\tcalled function playIsMatching()");
@@ -239,9 +272,8 @@ $(document).ready(function(){
   }
 
 
-
   /* ==================================================
-     HELPERS - GAME ANALYSIS
+     HELPERS - GAME (NEXT) FLOW
   ================================================== */
 
   function continueGame() {
@@ -260,6 +292,19 @@ $(document).ready(function(){
     });
   }
 
+  function replayGame() {
+    console.log("INFO:\tcalled function replayGame()");
+  }
+
+  function restartGame() {
+    console.log("INFO:\tcalled function restartGame()");
+  }
+
+
+  /* ==================================================
+     HELPERS - FLASH MESSAGES
+  ================================================== */
+
   function userWin() {
     toggleOff();
     flashMessage("win");
@@ -269,11 +314,29 @@ $(document).ready(function(){
     }, 2000);
   }
 
+  function userLose() {
+    toggleOff();
+    flashMessage("lose");
+    setTimeout(function(){
+      flashMessage("clear");
+      toggleOn();
+    }, 2000);
+  }
+
+  function userChance() {
+    toggleOff();
+    flashMessage("chance");
+    setTimeout(function(){
+      flashMessage("clear");
+      toggleOn();
+    }, 2000);
+  }
 
   flashMessage = function(message) {
     console.log("INFO:\tcalled function flashMessage() for " + messageRef[message]);
     $("#message").html(messageRef[message]);
   }
+
 
 
   //end
