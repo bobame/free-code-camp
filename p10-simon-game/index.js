@@ -77,15 +77,11 @@ $(document).ready(function(){
       if (  $("#strict-light-status").hasClass("strict-light-off") &&
            !$("#strict-light-status").hasClass("strict-light-on") )
       {
-        $("#strict-light-status").removeClass("strict-light-off");
-        $("#strict-light-status").addClass("strict-light-on");
-        strictIsOn = true;
+        turnStrictOn();
       } else if (  $("#strict-light-status").hasClass("strict-light-on") &&
                   !$("#strict-light-status").hasClass("strict-light-off") )
       {
-        $("#strict-light-status").removeClass("strict-light-on");
-        $("#strict-light-status").addClass("strict-light-off");
-        strictIsOn = false;
+        turnStrictOff();
       } else {
         console.log("ERROR:\tExpecting .strict-light-off or .strict-light-on");
       }
@@ -103,7 +99,7 @@ $(document).ready(function(){
 
 
   /* ==================================================
-     HELPERS - OFF/ON SWITCH TOGGLE
+     HELPERS - TOGGLE ON/OFF SWITCH & STRICT
   ================================================== */
 
   function toggleOn() {
@@ -128,6 +124,19 @@ $(document).ready(function(){
     gamePlays = [];
     userPlays = [];
   }
+
+  function turnStrictOn() {
+    $("#strict-light-status").removeClass("strict-light-off");
+    $("#strict-light-status").addClass("strict-light-on");
+    strictIsOn = true;
+  }
+
+  function turnStrictOff() {
+    $("#strict-light-status").removeClass("strict-light-on");
+    $("#strict-light-status").addClass("strict-light-off");
+    strictIsOn = false;
+  }
+
 
   /* ==================================================
      HELPERS - START & STRICT BUTTONS
@@ -294,10 +303,12 @@ $(document).ready(function(){
 
   function replayGame() {
     console.log("INFO:\tcalled function replayGame()");
+    userChance();
   }
 
   function restartGame() {
     console.log("INFO:\tcalled function restartGame()");
+    userLose();
   }
 
 
@@ -315,6 +326,10 @@ $(document).ready(function(){
   }
 
   function userLose() {
+    //better to turn light off or remain on?
+    if ( $("#strict-light-status").hasClass("strict-light-on") ) {
+      turnStrictOff();
+    }
     toggleOff();
     flashMessage("lose");
     setTimeout(function(){

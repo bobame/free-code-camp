@@ -2,7 +2,7 @@
 GENERAL
 ============================== */
 
-@import url('https://fonts.googleapis.com/css?family=Arsenal|Unica+One');
+@import url('https://fonts.googleapis.com/css?family=Arsenal|Unica+One|Barrio');
 
 html, body {
   /*http://www.w3schools.com/css/css3_gradients.asp*/
@@ -47,6 +47,12 @@ html, body {
   overflow: hidden; /*prevent clicks outside curved borders*/
 }
 
+/*adding to original #42f44e, rgb(66, 244, 78)*/
+#green:hover,
+#green:active {
+  background-color: rgb(2, 166, 13) !important;;
+}
+
 #red {
   background-color: #ea533f;
   border-top-right-radius: 100%;
@@ -55,6 +61,11 @@ html, body {
   border-right: 20px solid #444;
 }
 
+/*adding to original #ea533f, rgb(234, 83, 63)*/
+#red:hover,
+#red:active {
+  background-color: rgb(181, 0, 51) !important;;
+}
 
 #blue {
   background-color: #3f45ea;
@@ -64,11 +75,23 @@ html, body {
   border-right: 20px solid #444;
 }
 
+/*adding to original #3f45ea, rgb(144, 195, 212)*/
+#blue:hover,
+#blue:active {
+  background-color: rgb(12, 17, 138) !important;;
+}
+
 #yellow {
   background-color: #f6f927;
   border-bottom-left-radius: 100%;
   border-bottom: 20px solid #444;
   border-left: 20px solid #444;
+}
+
+/*subtracting to original #f6f927, rgb(246, 249, 39)*/
+#yellow:hover,
+#yellow:active {
+  background-color: rgb(201, 198, 0) !important;;
 }
 
 #bottom {
@@ -125,12 +148,21 @@ html, body {
   padding-bottom: 2px;
 }
 
-#strict-light > div {
+.strict-light-off {
   width: 12px;
   height: 12px;
   background-color: #444;
   margin: 0 auto;
   border-radius: 50%;
+}
+
+.strict-light-on {
+  width: 10px;
+  height: 10px;
+  background-color: yellow;
+  margin: 0 auto;
+  border-radius: 50%;
+  border: 1px solid #444;
 }
 
 #count,#start,#strict {
@@ -220,4 +252,17 @@ html, body {
 
 .pointer-when-on {
   cursor: default;
+}
+
+
+
+/* ==============================
+   MESSAGE (WIN / TRY AGAIN)
+============================== */
+
+#message {
+  background-color: transparent;
+  font-family: "Barrio";
+  font-size: 6em;
+  text-align: center;
 }
