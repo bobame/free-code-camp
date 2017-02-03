@@ -151,33 +151,20 @@ $(document).ready(function(){
   function playMoves() {
     console.log("INFO:\tcalled function playMoves()");
     console.log("INFO:\tinside playMoves(), looping through gamesPlays, " + gamePlays);
-
-    // ERROR - subsequent plays triggering together
-    // for (var i=0; i<gamePlays.length; i++) {
-    //   console.log("INFO:\tinside playMoves(), playing move, " + gamePlays[i]);
-    //   // play corresponding audio sound
-    //   new Audio(audioRef[gamePlays[i]]).play();
-    //   console.log("\n*****Playing sound for => " + gamePlays[i]);
-    //   //highlight corresponding button darker for half second
-    //   updateColor(gamePlays[i], colorsRef[gamePlays[i]][1], colorsRef[gamePlays[i]][0]);
-    // };
-
+    //IIFE, http://stackoverflow.com/a/8228308
     (function(){
       for (var i = 0; i < gamePlays.length; i++) {
-      // for each iteration console.log a word
-      // and make a pause after it
+      //delay else subsequent moves playing over each other ** (this was killing me) **
+      //http://stackoverflow.com/a/30865841 ****
       (function (i) {
         setTimeout(function () {
           console.log("Printing here ..." + gamePlays[i]);
           // new Audio(audioRef[gamePlays[i]]).play();
           updateColor(gamePlays[i], colorsRef[gamePlays[i]][1], colorsRef[gamePlays[i]][0]);
-          console.log("\t\t" + colorsRef[gamePlays[i]][1]);
-          console.log("\t\t" + colorsRef[gamePlays[i]][0]);
         }, 1000 * i);
       })(i);
     };
     })();
-
   }
 
   updateColor = function(target, color1, color2) {
