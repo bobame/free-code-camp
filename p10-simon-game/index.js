@@ -1,3 +1,7 @@
+/**
+DEBUG mode because location.reload() rejected by codepen non-debug mode
+*/
+
 $(document).ready(function(){
 
   //variables to capture states
@@ -12,7 +16,7 @@ $(document).ready(function(){
   var colorsArr = ["green", "red", "blue", "yellow"];
 
   //variables to hold constants
-  var playsMax = 5; //TESTING, update back to 20
+  var playsMax = 20;
   var audioRef = {
     "green": "https://s3.amazonaws.com/freecodecamp/simonSound1.mp3",
     "red": "https://s3.amazonaws.com/freecodecamp/simonSound2.mp3",
@@ -55,7 +59,10 @@ $(document).ready(function(){
     else if ( $("#switch-toggle").hasClass("toggle-on") &&
                !$("#switch-toggle").hasClass("toggle-off"))
     {
-      toggleOff();
+      //refer message in toggleOff() function definition
+      // toggleOff();
+      console.log("TASK:\ttoggle off behavior unexpected, forcing reload as workaround for now");
+      location.reload();
     } else {
       console.log("ERROR:\tExpecting .toggle-off or .toggle-on in #switch-toggle element");
     }
@@ -66,14 +73,14 @@ $(document).ready(function(){
     console.log("INFO:\tclicked on start button, id:" + this.id);
     if (toggleIsOn && !gameIsOn) {
       startGame();
-      gameIsOn = true; //REVISIT FOR TOGGLING OFF THEN ON THEN START AGAIN
+      gameIsOn = true;
     }
   });
 
   //click on strict button
   $("#strict-button").on("click", function(){
     console.log("INFO:\tclicked on strict button, id:" + this.id);
-    if (toggleIsOn && !gameIsOn) { //should action be blocked mid-game? (&& !gameIsOn)
+    if (toggleIsOn && !gameIsOn) {
       if (  $("#strict-light-status").hasClass("strict-light-off") &&
            !$("#strict-light-status").hasClass("strict-light-on") )
       {
@@ -112,6 +119,9 @@ $(document).ready(function(){
     gameIsOn = false; //needed to restart after toggling off
   }
 
+  //TODO: stop or reject pending deferreds/promises?
+  //currently game continuing once user toggles back on
+  //disabling feature for now as future enhancement
   function toggleOff() {
     console.log("INFO:\tcalled function toggleOff()");
     $("#switch-toggle").removeClass("toggle-on");
@@ -187,7 +197,6 @@ $(document).ready(function(){
       console.log("INFO:\tinside getMoves(), adding new move, " + newMove);
       gamePlays.push(newMove);
     }
-    //STAGE - otherwise should replay same moves
   }
 
   function playMoves() {
@@ -252,7 +261,7 @@ $(document).ready(function(){
       console.log("INFO:\tinside getUserPlays(), gamePlays matching userPlays => " + playIsMatching());
 
       if (playIsMatching() && counter < playsMax) {
-        readyForNextMove = true; //STAGE - setting to true again to take in next move
+        readyForNextMove = true;
         continueGame();
       } else if (playIsMatching() && !(counter < playsMax)) {
         userWin();
@@ -343,7 +352,7 @@ $(document).ready(function(){
     setTimeout(function(){
       flashMessage("clear");
       toggleOn();
-    }, 2000);
+    }, 1000);
   }
 
   function userLose() {
@@ -356,26 +365,23 @@ $(document).ready(function(){
     setTimeout(function(){
       flashMessage("clear");
       toggleOn();
-    }, 2000);
+    }, 1000);
   }
 
   function userChance() {
     flashMessage("chance");
     setTimeout(function(){
       flashMessage("clear");
-    }, 2000);
+    }, 1000);
   }
 
   flashMessage = function(message) {
     console.log("INFO:\tcalled function flashMessage() for " + messageRef[message]);
-    //$("#message").html(messageRef[message]);
-
-    //
-
-
+    $("#message").html(messageRef[message]);
+    //fade in slow, http://stackoverflow.com/a/4668587
+    $("#message").fadeOut(0, function(){
+      $("#message").fadeIn("slow");
+    });
   }
-
-
-
   //end
 });
