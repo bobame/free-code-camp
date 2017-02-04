@@ -152,6 +152,7 @@ $(document).ready(function(){
       console.log("INFO:\tcompleted function getGamePlays() from startGame()");
       getUserPlays().done(function(){
         console.log("INFO:\tcompleted function getUserPlays() from startGame()");
+        turnIsUser = true;
       });
     });
   }
@@ -199,7 +200,7 @@ $(document).ready(function(){
       //http://stackoverflow.com/a/30865841 ****
       (function (i) {
         setTimeout(function () {
-          console.log("Printing here ..." + gamePlays[i]);
+          console.log("INFO:\tinside playMoves(), gamePlays[i] => " + gamePlays[i]);
           // new Audio(audioRef[gamePlays[i]]).play();
           updateColor(gamePlays[i], colorsRef[gamePlays[i]][1], colorsRef[gamePlays[i]][0]);
         }, 1000 * i);
@@ -256,11 +257,7 @@ $(document).ready(function(){
       } else if (playIsMatching() && !(counter < playsMax)) {
         userWin();
       } else if (!playIsMatching() && !strictIsOn) {
-
-        //TEST
         replayGame();
-
-        // continueGame();
       } else if (!playIsMatching() && strictIsOn) {
         restartGame();
       } else {
@@ -308,27 +305,25 @@ $(document).ready(function(){
 
   function replayGame() {
     console.log("INFO:\tcalled function replayGame()");
-    //1. clear user plays and show message to try again
-    //2. get user plays
-    //3.
-
-    //TEST --->>
+    var waitTime = gamePlays.length * 1000 + 2500;
+    //nested setTimeouts, http://stackoverflow.com/a/6921279
     setTimeout(function() {
-      console.log("\n***Printing this A");
-      //first set of actions
+      //setup to replay games moves and take user retry moves
       userPlays = [];
       userChance();
       playMoves();
+      turnIsUser = true;
       setTimeout(function() {
-        console.log("\n***Printing this B");
-        //second set of actions
-
-
-      }, 2000);
-    }, 2000);
-
-    // <<--- TEST
-
+        //if matching then continuing game else ending game
+        if (playIsMatching()) {
+          console.log("\t\tuser got it right in retry, continuing game...");
+          continueGame();
+        } else {
+          console.log("\t\tuser got it wrong in retry, ending game...");
+          restartGame();
+        }
+      }, waitTime);
+    }, waitTime);
 
   }
 
@@ -373,7 +368,11 @@ $(document).ready(function(){
 
   flashMessage = function(message) {
     console.log("INFO:\tcalled function flashMessage() for " + messageRef[message]);
-    $("#message").html(messageRef[message]);
+    //$("#message").html(messageRef[message]);
+
+    //
+
+
   }
 
 
