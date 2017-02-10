@@ -10,7 +10,8 @@ Build a CodePen.io app that is functionally similar to [this](https://codepen.io
 
 1. [] I can type GitHub-flavored Markdown into a text area.
 2. [] I can see a preview of the output of my markdown that is updated as I type.
-3. [] Must user Sass and React.
+3. [] Must use Sass.
+4. [] Must use React.
 
 **Hints:**
 
@@ -27,5 +28,11 @@ see [instructions](https://www.freecodecamp.com/challenges/build-a-markdown-prev
 - Modernizr [cdn](https://cdnjs.com/libraries/modernizr), used [this](https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js)
 - Sass guide [sass-lang guide](http://sass-lang.com/guide)
 - Meyer Web reset, [documentation](http://sass-lang.com/documentation/file.SASS_REFERENCE.html) [css](http://meyerweb.com/eric/tools/css/reset/reset200802.css)
-- Compass
-- Bourbon (sudo gem install)
+- Compass [here](http://compass-style.org/)
+- Bourbon (sudo gem install) [here](http://bourbon.io/)
+- React basics [treehouse](https://teamtreehouse.com/library/react-basics)
+- Babel [here](https://babeljs.io/)
+- Initial learning curve React [starter](https://teamtreehouse.com/community/our-first-application-doesnt-work)
+- CLI "apm install react" for Atom [here](https://orktes.github.io/atom-react/)
+- XAMPP for CORS errors running locally [here](https://www.apachefriends.org/index.html)
+- CLI "python -m SimpleHTTPServer" [here](http://superuser.com/a/878035)
