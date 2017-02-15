@@ -38,9 +38,9 @@ see [instructions](https://www.freecodecamp.com/challenges/build-a-tribute-page)
 ## Plan - REDO using React and Sass
 1. [X] extract style elements from html file into Sass variables
 2. [X] clear html file into single div with id "app"
-3. [] tackle React
-4. [] create list elements by looping through array within render function
-5. [] ajax CORS solution to get timeline items directly from source
+3. [X] tackle React
+4. [X] create list elements by looping through array within render function
+5. [] ajax CORS solution to get timeline items directly from source 
 
 
 ## Notes
