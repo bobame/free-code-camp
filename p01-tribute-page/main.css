@@ -1,62 +1,39 @@
-* {
-/*   border: 1px solid black; */
-}
-
 #main {
-  margin: 5% auto;
-  padding: 2%;
+  background-color: #fcf8e3;
   color: #337ab7;
-}
+  margin: 5%;
+  padding: 2%;
+  border-radius: 2%; }
+  #main #header {
+    font-family: fantasy;
+    margin-bottom: 5%; }
+  #main #picture img {
+    margin: 0 auto;
+    border-radius: 5px; }
+  #main #picture p {
+    color: slategray;
+    padding: 1%; }
+  #main #timeline {
+    text-align: left; }
+    #main #timeline ul {
+      color: #555; }
+      #main #timeline ul .tyear {
+        font-weight: bold; }
+    #main #timeline #timeline-source {
+      color: slategray; }
+    #main #timeline #quote-large {
+      font-family: cursive;
+      font-size: 1.6em;
+      padding: 1.5% 5% 0.5%; }
+    #main #timeline #quote-small {
+      padding: 0 5%;
+      font-size: 0.8em; }
+    #main #timeline #cta {
+      color: black;
+      font-family: Verdana;
+      font-size: 1.8em; }
+  #main footer {
+    font-family: serif;
+    color: slategray; }
 
-#header {
-  font-family: fantasy;
-  margin-bottom: 5%;
-}
-
-#picture {
-  width: 90%;
-  margin: 0 auto;
-}
-
-#picture p {
-  color: slategray;
-  padding: 1%;
-}
-
-#picture img {
-  margin: 0 auto;
-}
-
-#timeline ul {
-  color: black;
-}
-
-.tyear {
-  font-weight: bold;
-}
-
-#timeline-source {
-  color: slategray;
-}
-
-.quote-large {
-  font-family: cursive;
-  font-size: 1.6em;
-  padding: 1.5% 5% 0.5%;
-}
-
-.quote-small {
-  padding: 0 5%;
-  font-size: 0.8em;
-}
-
-#cta {
-  color: black;
-  font-family: Verdana;
-  font-size: 1.8em;
-}
-
-footer {
-  font-family: serif;
-  color: slategray;
-}
+/*# sourceMappingURL=main.css.map */

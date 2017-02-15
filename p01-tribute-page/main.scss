@@ -1,0 +1,65 @@
+$font-header: fantasy;
+$font-quote-large: cursive;
+$font-cta: Verdana;
+$font-footer: serif;
+
+$color-main: #337ab7;
+$color-main-background: #fcf8e3;
+$color-ref-text: slategray;
+$color-timeline: #555;
+
+#main {
+  background-color: $color-main-background;
+  color: $color-main;
+  margin: 5%;
+  padding: 2%;
+  border-radius: 2%;
+
+  #header {
+    font-family: $font-header;
+    margin-bottom: 5%;
+  }
+  #picture {
+    img {
+      margin: 0 auto;
+      border-radius: 5px;
+    }
+    p {
+      color: $color-ref-text;
+      padding: 1%;
+    }
+  }
+  #timeline {
+    text-align: left;
+
+    ul {
+      color: $color-timeline;
+      .tyear {
+        font-weight: bold;
+      }
+    }
+    #timeline-source {
+      color: $color-ref-text;
+    }
+    #quote-large {
+      font-family: cursive;
+      font-size: 1.6em;
+      padding: 1.5% 5% 0.5%;
+    }
+    #quote-small {
+      padding: 0 5%;
+      font-size: 0.8em;
+    }
+    #cta {
+      color: black;
+      font-family: Verdana;
+      font-size: 1.8em;
+    }
+
+  }
+  footer {
+    font-family: $font-footer;
+    color: $color-ref-text;
+  }
+
+}
