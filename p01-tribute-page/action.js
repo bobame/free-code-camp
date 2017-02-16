@@ -31,6 +31,7 @@ function testAjax() {
         });
       }
       console.log(TIMELINE_ITEMS);
+      
     },
     error: function() {
       console.log("ERROR: failed ajax call.");
@@ -38,28 +39,33 @@ function testAjax() {
   });
 }
 
-testAjax();
+// testAjax();
 
 /* VARIABLES */
 
-const SRC_IMG = "http://f.edgesuite.net/imagecache/cropfit@w=800@cr=0,0,999,562@qa=85/data/www.humanrights.org/files/Eleanor-Roosevelt-%28gold%29_en.jpg?_=Y-0qJZFq";
-const SRC_TIMELINE = "http://www.pbs.org/wgbh/americanexperience/features/timeline/eleanor/";
-const SRC_WIKIPEDIA = "https://en.wikipedia.org/wiki/Eleanor_Roosevelt";
+const SRC = {
+  img: "http://f.edgesuite.net/imagecache/cropfit@w=800@cr=0,0,999,562@qa=85/data/www.humanrights.org/files/Eleanor-Roosevelt-%28gold%29_en.jpg?_=Y-0qJZFq",
+  timeline: "http://www.pbs.org/wgbh/americanexperience/features/timeline/eleanor/",
+  wiki: "https://en.wikipedia.org/wiki/Eleanor_Roosevelt"
+}
 
-const TEXT_TITLE = "Eleanor Roosevelt";
-const TEXT_SUBTITLE = "First Lady, Activist, Champion of Human Rights, Astounding Role Model for All";
-const TEXT_PIC = "Eleanor Roosevelt holding a poster of the Universal Declaration of Human Rights.";
-const TEXT_TIMELINE = "Here's a timeline of Eleanor Roosevelt's life:";
-const TEXT_QUOTE = "Freedom makes a huge requirement of every human being. With freedom comes responsibility. For the person who is unwilling to grow up, the person who does not want to carry his own weight, this is a frightening prospect.";
-const TEXT_CTA = "If you have time, you should read more about this incredible human being on her Wikipedia entry";
+const TEXT = {
+  title: "Eleanor Roosevelt",
+  subtitle: "First Lady, Activist, Champion of Human Rights, Astounding Role Model for All",
+  pic: "Eleanor Roosevelt holding a poster of the Universal Declaration of Human Rights.",
+  timeline: "Here's a timeline of Eleanor Roosevelt's life:",
+  quote: "Freedom makes a huge requirement of every human being. With freedom comes responsibility. For the person who is unwilling to grow up, the person who does not want to carry his own weight, this is a frightening prospect.",
+  cta: "If you have time, you should read more about this incredible human being on her Wikipedia entry"
+}
+
 
 /* COMPONENTS */
 
 function Header() {
   return (
     <div id="header">
-      <h1 className="text-center">{TEXT_TITLE}</h1>
-      <h5 className="text-center">{TEXT_SUBTITLE}</h5>
+      <h1 className="text-center">{TEXT.title}</h1>
+      <h5 className="text-center">{TEXT.subtitle}</h5>
     </div>
   );
 }
@@ -67,38 +73,46 @@ function Header() {
 function Picture() {
   return (
     <div id="picture" className="text-center">
-      <img src={SRC_IMG} alt="Image of Eleanor Roosevelt" className="img-responsive" />
+      <img src={SRC.img} alt="Image of Eleanor Roosevelt" className="img-responsive" />
       <div>
-        <p className="text-center">{TEXT_PIC}</p>
+        <p className="text-center">{TEXT.pic}</p>
       </div>
     </div>
   );
 }
 
-function Timeline(props) {
+function Timeline() {
   return (
     <div id="timeline" className="row">
       <div className="col-md-8 col-md-offset-2">
-        <h3>{TEXT_TIMELINE}</h3>
-        <ul>
-          {
-            TIMELINE_ITEMS.map(function(item) {
-              return <li key={item.id}><span className="tyear">{item.year}</span> - {item.content}</li>
-            })
-          }
-        </ul>
-        <p id="timeline-source">*Click <a href={SRC_TIMELINE} target="_blank">here</a> for timeline source.</p>
+        <h3>{TEXT.timeline}</h3>
+
+        { testAjax() }
+
+        <p id="timeline-source">*Click <a href={SRC.timeline} target="_blank">here</a> for timeline source.</p>
         <div>
-          <p id="quote-large">{TEXT_QUOTE}</p>
-          <p id="quote-small">-- {TEXT_TITLE}</p>
+          <p id="quote-large">{TEXT.quote}</p>
+          <p id="quote-small">-- {TEXT.title}</p>
         </div>
-        <p id="cta">{TEXT_CTA}<a href={SRC_WIKIPEDIA} target="_blank"> here.</a></p>
+        <p id="cta">{TEXT.cta}<a href={SRC.wiki} target="_blank"> here.</a></p>
       </div>
     </div>
   );
 }
 
-Timeline.propTypes = {
+function TimelineItems(props) {
+  return (
+    <ul>
+      {
+        props.items.map(function(item) {
+          return <li key={item.id}><span className="tyear">{item.year}</span> - {item.content}</li>
+        })
+      }
+    </ul>
+  );
+}
+
+TimelineItems.propTypes = {
   items: React.PropTypes.arrayOf(React.PropTypes.shape({
     id: React.PropTypes.number.isRequired,
     year: React.PropTypes.string.isRequired,
@@ -122,7 +136,7 @@ function TributePage() {
     <div id="main">
       <Header />
       <Picture />
-      <Timeline items={TIMELINE_ITEMS}/>
+      <Timeline />
       <Footer />
     </div>
   );
