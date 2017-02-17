@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css?family=Delius|Overlock|Poiret+One|Dancing+Script');
+
+$font-title: "Dancing Script";
+$font-light: "Poiret One";
+$font-dark: "Delius";
+
+@mixin spacey {
+  padding: 3%;
+}
+
+@mixin roundy {
+  border-radius: 10px;
+}
+
+@mixin setFont($font) {
+  font-family: $font;
+}
+
+@mixin headingBackground {
+  @include roundy;
+  border: 2px ridge lightgray;
+  background: radial-gradient(#0fb8ad, #1fc8db,  #2cb5e8);
+  padding: 2%;
+}
+
+@mixin headingText {
+  @include setFont($font-title);
+  font-size: 4.2em;
+  color: none;
+  text-shadow: 2px 2px 4px lighten(#2cb5e8, 10%);
+}
+
+@mixin textInputResize {
+  border: none;
+  width: 100%;
+  height: 65%;
+}
+
+@mixin bodyBackground {
+  // https://www.w3schools.com/css/css3_gradients.asp
+  background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+;
+}
+
+@mixin inOutPutBackground {
+  border: 4px ridge #1fc8db;
+  background-color: white;
+  box-shadow: 5px 5px 10px darken(#0fb8ad, 10%);
+}
+
+@mixin flexStretchCenter {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  align-items: stretch;
+}
+
+body {
+  @include bodyBackground;
+  @include spacey;
+}
+
+.markdown span {
+  @include setFont($font-light);
+}
+
+.preview span {
+  @include setFont($font-dark);
+}
+
+.markdown,
+.preview {
+  @include roundy;
+  @include spacey;
+  @include inOutPutBackground;
+}
+
+.markdown > h1,
+.preview > h1 {
+  @include headingText;
+  @include headingBackground;
+}
+
+textarea {
+  @include textInputResize;
+}
+
+.row {
+  @include flexStretchCenter;
+}

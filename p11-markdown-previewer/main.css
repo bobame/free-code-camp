@@ -1,0 +1,43 @@
+@import url("https://fonts.googleapis.com/css?family=Delius|Overlock|Poiret+One|Dancing+Script");
+body {
+  background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+  padding: 3%; }
+
+.markdown span {
+  font-family: "Poiret One"; }
+
+.preview span {
+  font-family: "Delius"; }
+
+.markdown,
+.preview {
+  border-radius: 10px;
+  padding: 3%;
+  border: 4px ridge #1fc8db;
+  background-color: white;
+  box-shadow: 5px 5px 10px #0b8981; }
+
+.markdown > h1,
+.preview > h1 {
+  font-family: "Dancing Script";
+  font-size: 4.2em;
+  color: none;
+  text-shadow: 2px 2px 4px #5ac5ed;
+  border-radius: 10px;
+  border: 2px ridge lightgray;
+  background: radial-gradient(#0fb8ad, #1fc8db, #2cb5e8);
+  padding: 2%; }
+
+textarea {
+  border: none;
+  width: 100%;
+  height: 65%; }
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  align-items: stretch; }
+
+/*# sourceMappingURL=main.css.map */
