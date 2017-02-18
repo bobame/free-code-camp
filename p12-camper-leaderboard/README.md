@@ -19,6 +19,17 @@ Build a CodePen.io app that is functionally similar to [this](https://codepen.io
 
 see [instructions](https://www.freecodecamp.com/challenges/build-a-camper-leaderboard)
 
-## Note
+## Note / Reference
 
--
+- multi-line selection and edit in Atom, CMD+D [here](https://discuss.atom.io/t/multiple-selections/755/2)
+- react-component doc [here](https://facebook.github.io/react/docs/react-component.html)
+- container components, [reminder-tribute]  [here](https://medium.com/@learnreact/container-components-c0e67432e005#.rtxzhwz2j)
+- additional presentational and container components [here](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.mx6s9dahp)
+- react.js 2015 conference ["Making your app fast with high-performance components"] [here](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.mx6s9dahp)
+- more on action types [reminder-review again] [here](http://redux.js.org/docs/recipes/ReducingBoilerplate.html#actions)
+- thinking in react [here](https://facebook.github.io/react/docs/thinking-in-react.html)
+- build a simple clock [here](https://facebook.github.io/react/docs/state-and-lifecycle.html) and corresponding codepen example [here](http://codepen.io/gaearon/pen/amqdNA?editors=0010)
+
+## TODO
+
+- egghead getting started with redux series [here](https://egghead.io/courses/getting-started-with-redux)
