@@ -6,41 +6,6 @@
   corsproxy
   python -m SimpleHTTPServer
 **************************************************/
-
-
-let TIMELINE_ITEMS = [];
-
-function testAjax() {
-  var url = "http://localhost:1337/www.pbs.org/wgbh/americanexperience/features/timeline/eleanor/";
-  $.ajax({
-    url: url,
-    type: 'GET',
-    success: function(html) {
-      var source = document.createElement("html");
-      source.innerHTML = html;
-      var count = $(html).find(".timeline_item").length;
-      for (var i=0; i<count; i++) {
-        var date = $(html).find(".timeline_date")[i].innerHTML;
-        var year = date.substr(date.length-4);
-        var content = $(html).find(".timeline_item_content>p>span")[i].innerHTML;
-        // console.log(year + ":" + content);
-        TIMELINE_ITEMS.push({
-          id: i,
-          year: year,
-          content: content
-        });
-      }
-      console.log(TIMELINE_ITEMS);
-      
-    },
-    error: function() {
-      console.log("ERROR: failed ajax call.");
-    }
-  });
-}
-
-// testAjax();
-
 /* VARIABLES */
 
 const SRC = {
@@ -58,10 +23,10 @@ const TEXT = {
   cta: "If you have time, you should read more about this incredible human being on her Wikipedia entry"
 }
 
-
 /* COMPONENTS */
 
 function Header() {
+  console.log("INFO:\tFUNC - Header()");
   return (
     <div id="header">
       <h1 className="text-center">{TEXT.title}</h1>
@@ -71,6 +36,7 @@ function Header() {
 }
 
 function Picture() {
+  console.log("INFO:\tFUNC - Picture()");
   return (
     <div id="picture" className="text-center">
       <img src={SRC.img} alt="Image of Eleanor Roosevelt" className="img-responsive" />
@@ -82,12 +48,13 @@ function Picture() {
 }
 
 function Timeline() {
+  console.log("INFO:\tFUNC - Timeline()");
   return (
     <div id="timeline" className="row">
       <div className="col-md-8 col-md-offset-2">
         <h3>{TEXT.timeline}</h3>
 
-        { testAjax() }
+        <TimelineItems />
 
         <p id="timeline-source">*Click <a href={SRC.timeline} target="_blank">here</a> for timeline source.</p>
         <div>
@@ -100,27 +67,72 @@ function Timeline() {
   );
 }
 
-function TimelineItems(props) {
-  return (
-    <ul>
-      {
-        props.items.map(function(item) {
-          return <li key={item.id}><span className="tyear">{item.year}</span> - {item.content}</li>
-        })
-      }
-    </ul>
-  );
-}
+var TimelineItems = React.createClass({
+    //lifecycle, https://medium.com/react-ecosystem/react-components-lifecycle-ce09239010df#.ckstiuoqa
+    getInitialState: function() {
+      return {
+          data: [],
+          fetching: false,
+          error: null
+      };
+    },
 
-TimelineItems.propTypes = {
-  items: React.PropTypes.arrayOf(React.PropTypes.shape({
-    id: React.PropTypes.number.isRequired,
-    year: React.PropTypes.string.isRequired,
-    content: React.PropTypes.string.isRequired,
-  })).isRequired,
-}
+    render: function() {
+      console.log("INFO:\tFUNC - TimelineItems() => RENDERING");
+      if (this.props.fetching || this.state.data.length===0) {
+          return <div className='loading'>Loading...</div>;
+      }
+
+      if (this.props.error) {
+          return <div className='error'>{this.state.error.message}</div>;
+      }
+
+      //render text as html, http://stackoverflow.com/a/31851195
+      return (
+        <div className='loaded'>
+            <ul>
+              {
+                this.state.data.map(function(item) {
+                  return (
+                    <li key={
+                      item[0]
+                    }><span className="tyear">{
+                      item[1]
+                    }</span> -&nbsp;{
+                      item[2]
+                    }</li>
+                  )
+                })
+              }
+            </ul>
+        </div>
+      );
+    },
+
+    componentDidMount: function() {
+      console.log("INFO:\tFUNC - TimelineItems() => MOUNTING");
+      this.setState({fetching: true});
+      $.get('http://localhost:1337/www.pbs.org/wgbh/americanexperience/features/timeline/eleanor/').done(function(data) {
+
+        let source = document.createElement("html");
+        source.innerHTML = data;
+
+        for (var i=0; i<$(source).find('.timeline_item').length; i++) {
+          let date = $(source).find('.timeline_date')[i].innerHTML;
+          let year = date.substr(date.length-4);
+          let content = $(source).find('.timeline_item_content span')[i].innerHTML;
+
+          //mutate state array, http://stackoverflow.com/a/26254086
+          let data = this.state.data;
+          this.state.data.push([i, year, content]);
+          this.setState({data: data});
+        }
+      }.bind(this));
+    }
+});
 
 function Footer() {
+  console.log("INFO:\tFUNC - Footer()");
   return (
     <div>
       <hr />
@@ -131,7 +143,10 @@ function Footer() {
   );
 }
 
+/* Putting it all together */
+
 function TributePage() {
+  console.log("INFO:\tFUNC - TributePage()");
   return (
     <div id="main">
       <Header />

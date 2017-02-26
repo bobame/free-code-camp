@@ -40,7 +40,7 @@ see [instructions](https://www.freecodecamp.com/challenges/build-a-tribute-page)
 2. [X] clear html file into single div with id "app"
 3. [X] tackle React
 4. [X] create list elements by looping through array within render function
-5. [] ajax CORS solution to get timeline items directly from source 
+5. [] ajax CORS solution to get timeline items directly from source
 
 
 ## Notes
@@ -56,3 +56,8 @@ see [instructions](https://www.freecodecamp.com/challenges/build-a-tribute-page)
 > Freedom makes a huge requirement of every human being. With freedom comes responsibility. For the person who is unwilling to grow up, the person who does not want to carry his own weight, this is a frightening prospect.
 
 **Link to external site:** https://en.wikipedia.org/wiki/Eleanor_Roosevelt
+
+- jquery and map to get all elements sharing class [here](http://stackoverflow.com/a/16630214)
+- modify state array [here](http://stackoverflow.com/a/26254086)
+- render text as html [here](http://stackoverflow.com/a/31851195)
+- component lifecycle [here](http://busypeoples.github.io/post/react-component-lifecycle/)
