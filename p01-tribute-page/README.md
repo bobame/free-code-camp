@@ -40,7 +40,8 @@ see [instructions](https://www.freecodecamp.com/challenges/build-a-tribute-page)
 2. [X] clear html file into single div with id "app"
 3. [X] tackle React
 4. [X] create list elements by looping through array within render function
-5. [] ajax CORS solution to get timeline items directly from source
+5. [X] ajax CORS solution to get timeline items directly from source (using cors proxy)
+6. [] get CORS fix for codepen
 
 
 ## Notes
