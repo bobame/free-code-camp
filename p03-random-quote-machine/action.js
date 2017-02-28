@@ -35,9 +35,12 @@ class QuoteBox extends React.Component {
     super(props);
 
     this.state = {
-      quote: 'You can avoid reality, but you cannot avoid the consequences of avoiding reality.',
-      author: 'Ayn Rand'
+      quoteText: 'You can avoid reality, but you cannot avoid the consequences of avoiding reality.',
+      quoteAuthor: 'Ayn Rand',
+      quoteLink: ''
     };
+
+    this.handleButtonClick = this.handleButtonClick.bind(this);
   }
 
   render() {
@@ -46,14 +49,14 @@ class QuoteBox extends React.Component {
         <div className="row quote text-center quote">
           <div className="col-sm-12">
             <i className="fa fa-quote-left"></i>
-            <span id="quote">{this.state.quote}</span>
+            <span id="quote">{this.state.quoteText}</span>
             <i className="fa fa-quote-right"></i>
           </div>
         </div>
 
         <div className="row author text-right author">
           <div className="col-sm-6 col-sm-offset-6">
-            <p id="author">- {this.state.author}</p>
+            <p id="author">- {this.state.quoteAuthor}</p>
           </div>
         </div>
 
@@ -71,14 +74,25 @@ class QuoteBox extends React.Component {
 
   handleButtonClick(event) {
     console.log(event.target);
-    $.get(API_URL).done(function(data) {
-      let quoteText = data.quoteText;
-      let quoteAuthor = data.quoteAuthor;
-      let quoteLink = data.quoteLink;
-      console.log(data, typeof data);
-      console.log("quoteText:\t", quoteText);
-      console.log("quoteAuthor:\t", quoteAuthor);
-      console.log("quoteLink:\t", quoteLink);
+    var re = /parseQuote\((.*)\)/;
+
+
+    $.get(API_URL).done((data) => {
+      let quoteData = JSON.parse(re.exec(data)[1]);
+      let quoteText = quoteData.quoteText;
+
+      let newString = quoteText.replace(/\//ig, '');
+      // let newString = quoteText.replace(/\//ig, '//');
+      // let quoteAuthor = quoteData.quoteAuthor;
+      // let quoteLink = quoteData.quoteLink;
+
+      console.log("quoteText:\t", newString);
+
+      this.setState({
+        quoteText: quoteData.quoteText,
+        quoteAuthor: quoteData.quoteAuthor,
+        quoteLink: quoteData.quoteLink
+      });
     }.bind(this));
 
   }
