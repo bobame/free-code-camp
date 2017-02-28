@@ -31,4 +31,5 @@ see [instructions](https://www.freecodecamp.com/challenges/build-a-random-quote-
     - [X] include attribution link
 
 ## Note
-Quotes from [forismatic](http://forismatic.com/en/api/)
+- Quotes from [forismatic](http://forismatic.com/en/api/)
+- regex match between 2 strings [here](http://stackoverflow.com/a/6110113)
