@@ -1,23 +1,8 @@
-var forismaticAPI = "http://api.forismatic.com/api/1.0/?method=getQuote&key=457653&format=jsonp&lang=en&jsonp=?";
-var randomColor;
-var $html = $("html");
-var $body = $("body");
-var $quoteBtn = $("button");
-var $quote = $("#quote");
-var $author = $("#author");
-var $fontAwesome = $(".fa");
-var $foot = $(".foot");
 
-$(document).ready(function(){
 
-  //changes color in response to button click
-  $("button").click(function(){
-    applyRandomColor();
-    showRandomQuote();
-  });
-});
+/*===== HELPERS =====*/
 
-//from Anatoliy & Robin, http://stackoverflow.com/a/1484514
+//generating random color, http://stackoverflow.com/a/1484514
 function getRandomColor() {
     var letters = '0123456789ABCDEF';
     var color = '#';
@@ -27,25 +12,62 @@ function getRandomColor() {
     return color;
 }
 
-//applys color to target elements
-function applyRandomColor() {
-  randomColor = getRandomColor();
-  $html.css("background-color", randomColor);
-  $body.css("background-color", randomColor);
-  $quoteBtn.css("background-color", randomColor);
-  $quote.css("color", randomColor);
-  $author.css("color", randomColor);
-  $fontAwesome.css("color", randomColor);
+/*===== COMPONENTS =====*/
+
+function Title() {
+  return (
+    <div className="container-fluid text-center top">
+      <p id="page-title">Enligten Me!</p>
+    </div>
+  );
 }
 
-//gets data, then clears old and appends new quote & author
-function showRandomQuote() {
-  $.getJSON(forismaticAPI, function(data){
-    //adds 5% bottom margon when quote text length is longer
-    if (data.quoteText.length > 115) {
-        $foot.css("margin-bottom", "5%");
-    }
-    $quote.html(data.quoteText);
-    $author.html("- " + data.quoteAuthor);
-  });
+function Center() {
+  return (
+    <div className="container-fluid bottom">
+      <div className="row quote text-center quote">
+        <div className="col-sm-12">
+          <i className="fa fa-quote-left"></i>
+          <span id="quote">"You can avoid reality, but you cannot avoid the consequences of avoiding reality."</span>
+          <i className="fa fa-quote-right"></i>
+        </div>
+      </div>
+
+      <div className="row author text-right author">
+        <div className="col-sm-6 col-sm-offset-6">
+          <p id="author">- Ayn Rand</p>
+        </div>
+      </div>
+
+      <div className="row buttons">
+        <div className="col-sm-2 col-sm-offset-0 text-left">
+          <a href="https://twitter.com/share" target="_blank"><i className="fa fa-twitter-square"></i></a>
+        </div>
+        <div className="col-sm-4 col-sm-offset-6 text-right">
+          <button>New Quote</button>
+        </div>
+      </div>
+    </div>
+  );
 }
+
+function Footer() {
+  return (
+    <div className="container-fluid text-center foot">
+      <span id="ref">by havefuncoding</span>
+      <p id="attrib">quotes from <a href="http://forismatic.com/en/" target="_blank">forismatic</a></p>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <div>
+      <Title />
+      <Center />
+      <Footer />
+    </div>
+  );
+}
+
+ReactDOM.render(<App />, document.querySelector('#app'));
