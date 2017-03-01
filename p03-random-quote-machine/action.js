@@ -4,10 +4,11 @@
 
 /*===== VARIABLES =====*/
 
-const API_URL = 'http://localhost:1337/api.forismatic.com/api/1.0/?method=getQuote&format=jsonp&lang=en&jsonp=parseQuote';
+//FAILING at JSON.parse with single escaped quote
+// const API_URL = 'http://localhost:1337/api.forismatic.com/api/1.0/?method=getQuote&format=jsonp&lang=en&jsonp=parseQuote';
 
-
-// const API_URL = 'http://api.forismatic.com/api/1.0/?method=getQuote&key=457653&format=jsonp&lang=en'
+//WORKING bc already returning JSON using <getJSON> instead <get>
+const API_URL = 'http://api.forismatic.com/api/1.0/?method=getQuote&key=457653&format=jsonp&lang=en&jsonp=?'
 
 
 /*===== HELPERS =====*/
@@ -75,43 +76,13 @@ class QuoteBox extends React.Component {
   }
 
   handleButtonClick(event) {
-
-    //working with test data containing single escaped quote
-    var re = /parseQuote\((.*)\)/;
-    let response = 'parseQuote({"quoteText":"Be miserable. Or motivate yourself. Whatever has to be done, it\'s always your choice.", "quoteAuthor":"Wayne Dyer", "senderName":"", "senderLink":"", "quoteLink":"http://forismatic.com/en/76ce76f00b/"})';
-
-    response.replace(/"/g, '\\"');
-    let quoteData = JSON.parse(re.exec(response)[1]);
-    let quoteText = quoteData.quoteText;
-    let quoteAuthor = quoteData.quoteAuthor;
-    let quoteLink = quoteData.quoteLink;
-
-    console.log("QuoteData:\t", quoteData);
-    console.log("QuoteText:\t", quoteText);
-    console.log("QuoteAuthor:\t", quoteAuthor);
-    console.log("QuoteLink:\t", quoteLink);
-
-    //ERROR: but failing with api returned data containing single escaped quote
-    // $.get(API_URL).done((response) => {
-    //   var re = /parseQuote\((.*)\)/;
-    //   response.replace(/"/g, '\\"');
-    //   console.log("=> ", response, typeof response);
-    //   let quoteData = JSON.parse(re.exec(response)[1]);
-    //   let quoteText = quoteData.quoteText;
-    //   let quoteAuthor = quoteData.quoteAuthor;
-    //   let quoteLink = quoteData.quoteLink;
-    //
-    //   console.log("QuoteData:\t", quoteData);
-    //   console.log("QuoteText:\t", quoteText);
-    //   console.log("QuoteAuthor:\t", quoteAuthor);
-    //   console.log("QuoteLink:\t", quoteLink);
-    //
-    //   this.setState({
-    //     quoteText: quoteData.quoteText,
-    //     quoteAuthor: quoteData.quoteAuthor,
-    //     quoteLink: quoteData.quoteLink
-    //   });
-    // }.bind(this));
+    $.getJSON(API_URL).done((response) => {
+      this.setState({
+        quoteText: response.quoteText,
+        quoteAuthor: response.quoteAuthor,
+        quoteLink: response.quoteLink
+      });
+    }.bind(this));
   }
 
 }
