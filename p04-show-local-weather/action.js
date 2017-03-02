@@ -1,53 +1,78 @@
+/* CLI => python -m SimpleHTTPServer */
 
-//to toggle Fahrenheit/Celsius button
-var clickCount = 0;
+/* HELPERS */
+const getFahrenheit = () => {
+  console.log("INFO:\tHELPER - getFahrenheit()");
+}
 
-$(document).ready(function(){
-  var url;
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position){
-      url = getUrl(position);
-      getData(url);
-    });
+const getPosition = () => {
+  console.log("INFO:\tHELPER - getPosition()");
+  //checking for geolocation, https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/Using_geolocation#The_geolocation_object
+  if ("geolocation" in navigator) {
+    console.log("TRUE - geolocation in navigator");
   } else {
-    //in case no navigator.geolocation
-    alert("Geolocation not supported in current browser.");
+    console.log("FALSE - geolocation not in navigator");
   }
-});
-
-function getUrl(position) {
-  var lat = position.coords.latitude;
-  var long = position.coords.longitude;
-  return "http://api.openweathermap.org/data/2.5/weather?lat="+lat+"&lon="+long+"&appid=987bdab9b6f926dbb6de05bf67491e93";
 }
 
-function getData(url) {
-  //2. calls api with built url and retrieves data
-  $.getJSON(url, function(data){
-    // http://openweathermap.org/img/w/10d.png
-    var imgSrc = "http://openweathermap.org/img/w/"+data.weather[0]["icon"]+".png";
-    var tempKel = data.main["temp"];
-    var tempFah = Math.round(tempKel * (9/5) - 459.67)+"&deg;"+"F";
-    var tempCel = Math.round(tempKel - 273.15)+"&deg;"+"C";
-    var city = data.name;
-    var sky = data.weather[0]["description"];
-    var windSpeed = data.wind["speed"]+" m/s";
-
-    //3. show local weather
-    $("#weather-icon").html("<img src='"+ imgSrc +"' alt='weather icon'/>");
-    $("#degrees").html(tempFah);
-    $("#location").html(city);
-    $("#sky").html(sky);
-    $("#wind").html(windSpeed);
-
-    //4. toggles fahrenheit and celcius
-    $("#degrees").on("click", function(){
-      clickCount += 1;
-      if (clickCount%2==0) {
-        $("#degrees").html(tempFah);
-      } else {
-        $("#degrees").html(tempCel);
-      }
-    });
-  });
+/* COMPONENTS */
+const Header = () => {
+  console.log("INFO:\tCOMPONENT - <Header />");
+  return(
+    <div className="container-fluid header">
+      <h1>Free Code Camp</h1>
+      <h3>Local Weather App</h3>
+    </div>
+  );
 }
+
+class LocalWeather extends React.Component {
+  constructor(props) {
+    console.log("INFO:\tCOMPONENT - <LocalWeather />");
+    super(props);
+
+    this.state = {
+      data: null
+    };
+
+  }
+
+  render() {
+    console.log("INFO:\tLIFECYCLE - LocalWeather.render()");
+    return (
+      null
+    );
+  }
+
+  componentDidMount() {
+    console.log("INFO:\tLIFECYCLE - LocalWeather.componentDidMount()");
+    const URL = 'http://api.openweathermap.org/data/2.5/weather?';
+    //lat=35&lon=139&appid=987bdab9b6f926dbb6de05bf67491e93";
+    getPosition();
+    let LAT = 35;
+    let LONG = 139;
+    let API_KEY = '987bdab9b6f926dbb6de05bf67491e93';
+    let API_URL = `${URL}lat=${LAT}&lon=${LONG}&appid=${API_KEY}`;
+
+    console.log("INFO:\tAPI_URL", API_URL);
+    $.getJSON(API_URL).done((response) => {
+      console.log(response);
+
+      this.setState({
+        data: response
+      });
+    }.bind(this));
+  }
+}
+
+const App = () => {
+  return(
+    <div className="container-fluid text-center">
+      <Header />
+      <LocalWeather />
+    </div>
+  );
+}
+
+/* RENDER */
+ReactDOM.render(<App />, document.querySelector('#app'));
