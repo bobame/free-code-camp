@@ -1,27 +1,7 @@
-
-//set initial values Quote & Author
-//
-
 /*===== VARIABLES =====*/
 
-//FAILING at JSON.parse with single escaped quote
-// const API_URL = 'http://localhost:1337/api.forismatic.com/api/1.0/?method=getQuote&format=jsonp&lang=en&jsonp=parseQuote';
-
-//WORKING bc already returning JSON using <getJSON> instead <get>
+//JSONP & getJSON()
 const API_URL = 'http://api.forismatic.com/api/1.0/?method=getQuote&key=457653&format=jsonp&lang=en&jsonp=?'
-
-
-/*===== HELPERS =====*/
-
-//generating random color, http://stackoverflow.com/a/1484514
-const getRandomColor = () => {
-    var letters = '0123456789ABCDEF';
-    var color = '#';
-    for (var i = 0; i < 6; i++ ) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
-}
 
 /*===== COMPONENTS =====*/
 
@@ -38,9 +18,9 @@ class QuoteBox extends React.Component {
     super(props);
 
     this.state = {
-      quoteText: 'You can avoid reality, but you cannot avoid the consequences of avoiding reality.',
-      quoteAuthor: 'Ayn Rand',
-      quoteLink: ''
+      quoteText: 'Courage is going from failure to failure without losing enthusiasm.',
+      quoteAuthor: 'Winston Churchill',
+      quoteLink: 'http://forismatic.com/en/6a81cd2a21/'
     };
 
     this.handleButtonClick = this.handleButtonClick.bind(this);
@@ -82,6 +62,18 @@ class QuoteBox extends React.Component {
         quoteAuthor: response.quoteAuthor,
         quoteLink: response.quoteLink
       });
+      //generating random color, http://stackoverflow.com/a/1484514
+      var letters = '0123456789ABCDEF';
+      var color = '#';
+      for (var i = 0; i < 6; i++ ) {
+          color += letters[Math.floor(Math.random() * 16)];
+      }
+      $("html").css("background-color", color);
+      $("body").css("background-color", color);
+      $("button").css("background-color", color);
+      $("#quote").css("color", color);
+      $("#author").css("color", color);
+      $(".fa").css("color", color);
     }.bind(this));
   }
 
