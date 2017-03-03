@@ -23,22 +23,22 @@ const Temperature = () => {
   );
 }
 
-const WeatherData = () => {
+const WeatherData = (props) => {
   return(
     <div className='row boxes'>
-      <div className='col'>
-        <span id='location'>
-          Your location
+      <div className='col col-sm-2'>
+        <span id='location' className='wordwrap'>
+          {props.city}
         </span>
       </div>
-      <div className='col'>
+      <div className='col col-sm-2'>
         <span id="sky">
-          Sky condition
+          {props.description}
         </span>
       </div>
-      <div className='col'>
+      <div className='col col-sm-2'>
         <span id='wind'>
-          Wind Speed m/s
+          {props.windspeed} m/s
         </span>
       </div>
     </div>
@@ -67,7 +67,11 @@ class LocalWeather extends React.Component {
     return (
       <div className="container-fluid content">
         <Temperature />
-        <WeatherData />
+        <WeatherData
+          // city={this.state.data.name}
+          city='abkjkjnkjnkjfndsgkjnkjnkjnkjnkjnkjnksdjnfgskjfngskjngskjn'
+          description={this.state.data.weather[0].description}
+          windspeed={this.state.data.wind.speed} />
       </div>
     );
   }

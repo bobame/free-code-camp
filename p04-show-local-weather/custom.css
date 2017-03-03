@@ -71,10 +71,12 @@ i {
   margin: 4% auto;
   display: flex;
   justify-content: center;
+  max-width: 800px;
+  /*align-self: stretch;
+  align-items: stretch;*/
 }
 
 .boxes span {
-  align-self: stretch;
 }
 
 .col {
@@ -86,8 +88,25 @@ i {
   font-family: "Playfair Display";
   font-size: 1.5em;
   padding: 2%;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0;
+  /*flex-direction: column;*/
 }
 
 .col-sm-2:nth-child(2) {
   margin: auto 1% auto 1%;
+}
+
+
+/******************************
+SPECIAL ADD-ONS
+******************************/
+
+.wordwrap {
+   white-space: pre-wrap;      /* CSS3 */
+   white-space: -moz-pre-wrap; /* Firefox */
+   white-space: -pre-wrap;     /* Opera <7 */
+   white-space: -o-pre-wrap;   /* Opera 7 */
+   word-wrap: break-word;      /* IE */
 }
