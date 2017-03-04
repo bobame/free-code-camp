@@ -14,7 +14,8 @@ class Temperature extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isFahrenheit: true
+      isFahrenheit: true,
+      icon: `http://openweathermap.org/img/w/${this.props.icon}.png`
     }
 
     this.handleButtonClick = this.handleButtonClick.bind(this);
@@ -34,12 +35,14 @@ class Temperature extends React.Component {
     let TYPES = ['Fahrenheit', 'Celsius'];
     let TOOLTIP = ('Click to toggle ' + ((this.state.isFahrenheit)?TYPES[1]:TYPES[0]));
     return(
-      <div className="row text-center">
-        <span id="weather-icon">
-          <i className="fa fa-thermometer-three-quarters" />
+      <div className='row text-center'>
+        <span id='weather-icon'>
+          <img
+            src={this.state.icon}
+            alt='weather icon' />
         </span>
         <button
-          id="degrees"
+          id='degrees'
           onClick={this.handleButtonClick.bind(this)}
           data-toggle='tooltip'
           title={TOOLTIP}>
@@ -98,7 +101,8 @@ class LocalWeather extends React.Component {
     return (
       <div className="container-fluid content">
         <Temperature
-          kelvin={this.state.data.main.temp} />
+          kelvin={this.state.data.main.temp}
+          icon={this.state.data.weather[0].icon} />
         <WeatherData
           city={this.state.data.name}
           main={this.state.data.weather[0].main}
