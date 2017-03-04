@@ -12,6 +12,9 @@ $SIZE_MEDIUM: 2.5em;
 $MARGIN: 4% auto;
 
 // MIXINS
+@mixin center {
+  margin: 0 auto;
+}
 @mixin cover {
   /*fill screen sizes dynamically, http://stackoverflow.com/a/16719061*/
   -webkit-background-size: cover;
@@ -56,10 +59,12 @@ $MARGIN: 4% auto;
 }
 
 //NESTED
-body,html {
+body {
   @include cover;
   /*https://css-tricks.com/perfect-full-page-background-image/*/
-  background: url($URL_background) no-repeat center center fixed;
+  background: url($URL_background) no-repeat center fixed;
+  // https://www.w3schools.com/cssref/playit.asp?filename=playcss_background-size#value_7
+  background-size: 100% 100%;
 
   .header {
     color: yellow;
@@ -93,7 +98,12 @@ body,html {
     margin: $MARGIN;
     @include flex_container;
   }
-  .col, .loading {
+  .col {
     @include box_container;
+  }
+  .loading {
+    @include box_container;
+    @include center;
+    max-width: 65%;
   }
 }

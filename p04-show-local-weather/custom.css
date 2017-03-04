@@ -1,25 +1,26 @@
 @import url("https://fonts.googleapis.com/css?family=Arima+Madurai|Lemonada|Noto+Serif|Playfair+Display");
-body, html {
+body {
   /*fill screen sizes dynamically, http://stackoverflow.com/a/16719061*/
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   /*https://css-tricks.com/perfect-full-page-background-image/*/
-  background: url("https://upload.wikimedia.org/wikipedia/commons/c/cc/Nacreous_clouds_Antarctica.jpg") no-repeat center center fixed; }
-  body .header, html .header {
+  background: url("https://upload.wikimedia.org/wikipedia/commons/c/cc/Nacreous_clouds_Antarctica.jpg") no-repeat center fixed;
+  background-size: 100% 100%; }
+  body .header {
     color: yellow;
     text-shadow: 2px 1px 1px yellow;
     margin: 4% auto; }
-    body .header h1, html .header h1 {
+    body .header h1 {
       font-family: "Lemonada";
       font-size: 4em; }
-    body .header h3, html .header h3 {
+    body .header h3 {
       font-family: "Arima Madurai";
       font-size: 2.5em; }
-  body .content #weather-icon, html .content #weather-icon {
+  body .content #weather-icon {
     font-size: 2.5em; }
-  body .content #degrees, html .content #degrees {
+  body .content #degrees {
     /*from @mdo, http://markdotto.com/playground/3d-text/*/
     text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15);
     font-family: "Noto Serif";
@@ -27,12 +28,12 @@ body, html {
     color: white;
     background-color: Transparent;
     border: none; }
-  body .boxes, html .boxes {
+  body .boxes {
     margin: 4% auto;
     display: flex;
     justify-content: center;
     text-align: center; }
-  body .col, body .loading, html .col, html .loading {
+  body .col {
     border: 2px solid darkgray;
     border-radius: 5px;
     background-color: #f9fafc;
@@ -46,5 +47,21 @@ body, html {
     display: flex;
     flex-direction: column;
     justify-content: space-around; }
+  body .loading {
+    border: 2px solid darkgray;
+    border-radius: 5px;
+    background-color: #f9fafc;
+    opacity: 0.7;
+    color: #31548c;
+    font-family: "Playfair Display";
+    font-size: 1.5em;
+    padding: 2%;
+    min-height: 120px;
+    /*vertical align text inside flex item*/
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 0 auto;
+    max-width: 65%; }
 
 /*# sourceMappingURL=custom.css.map */
