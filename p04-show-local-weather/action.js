@@ -31,23 +31,28 @@ class Temperature extends React.Component {
     let TEMP = (this.state.isFahrenheit) ?
                 Math.round(this.props.kelvin * (9/5) - 459.67) :
                 Math.round(this.props.kelvin - 273.15);
-    let TYPE = (this.state.isFahrenheit) ? 'F' : 'C';
-
+    let TYPES = ['Fahrenheit', 'Celsius'];
+    let TOOLTIP = ('Click to toggle ' + ((this.state.isFahrenheit)?TYPES[1]:TYPES[0]));
     return(
       <div className="row text-center">
         <span id="weather-icon">
           <i className="fa fa-thermometer-three-quarters" />
         </span>
-        <button id="degrees" onClick={this.handleButtonClick.bind(this)}>
-          {TEMP}&deg; {TYPE}
+        <button
+          id="degrees"
+          onClick={this.handleButtonClick.bind(this)}
+          data-toggle='tooltip'
+          title={TOOLTIP}>
+          {TEMP}&deg; {
+            (this.state.isFahrenheit) ?
+            TYPES[0].charAt(0) :
+            TYPES[1].charAt(0)
+          }
         </button>
       </div>
     );
   }
-
 }
-
-
 
 const WeatherData = (props) => {
   return(
@@ -99,6 +104,7 @@ class LocalWeather extends React.Component {
           main={this.state.data.weather[0].main}
           description={this.state.data.weather[0].description}
           windspeed={this.state.data.wind.speed} />
+          {$('[data-toggle="tooltip"]').tooltip()}
       </div>
     );
   }
