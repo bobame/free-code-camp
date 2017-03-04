@@ -5,17 +5,15 @@
 BODY
 ******************************/
 
-body {
-  /*https://upload.wikimedia.org/wikipedia/commons/c/cc/Nacreous_clouds_Antarctica.jpg*/
-  /*http://res.cloudinary.com/nelloreg/image/upload/v1483151258/sample.jpg*/
-  background-image: url("https://upload.wikimedia.org/wikipedia/commons/c/cc/Nacreous_clouds_Antarctica.jpg");
-  background-repeat: no-repeat;
+body,html {
   /*should fill all screen sizes and also after resize,http://stackoverflow.com/a/16719061*/
+  /*https://css-tricks.com/perfect-full-page-background-image/*/
+  background: url('https://upload.wikimedia.org/wikipedia/commons/c/cc/Nacreous_clouds_Antarctica.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;}
-
+  background-size: cover;
+}
 
 /******************************
 HEADER
@@ -71,16 +69,11 @@ i {
   margin: 4% auto;
   display: flex;
   justify-content: center;
-  max-width: 800px;
-  /*align-self: stretch;
-  align-items: stretch;*/
-}
-
-.boxes span {
+  text-align: center;
 }
 
 .col {
-  border: 1px solid darkgray;
+  border: 2px solid darkgray;
   border-radius: 5px;
   background-color: #f9fafc;
   opacity: 0.7;
@@ -88,25 +81,9 @@ i {
   font-family: "Playfair Display";
   font-size: 1.5em;
   padding: 2%;
-  flex-grow: 1;
-  flex-shrink: 1;
-  flex-basis: 0;
-  /*flex-direction: column;*/
-}
-
-.col-sm-2:nth-child(2) {
-  margin: auto 1% auto 1%;
-}
-
-
-/******************************
-SPECIAL ADD-ONS
-******************************/
-
-.wordwrap {
-   white-space: pre-wrap;      /* CSS3 */
-   white-space: -moz-pre-wrap; /* Firefox */
-   white-space: -pre-wrap;     /* Opera <7 */
-   white-space: -o-pre-wrap;   /* Opera 7 */
-   word-wrap: break-word;      /* IE */
+  min-height: 120px;
+  /*vertical align text inside flex item*/
+  display:flex;
+  flex-direction:column;
+  justify-content:space-around;
 }
