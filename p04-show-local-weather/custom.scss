@@ -1,0 +1,99 @@
+// IMPORTS
+@import url("https://fonts.googleapis.com/css?family=Arima+Madurai|Lemonada|Noto+Serif|Playfair+Display");
+
+// VARIABLES
+$URL_background: 'https://upload.wikimedia.org/wikipedia/commons/c/cc/Nacreous_clouds_Antarctica.jpg';
+$FONT_HEADER: 'Lemonada';
+$FONT_SUBHEADER: 'Arima Madurai';
+$FONT_TEMP: 'Noto Serif';
+$FONT_DATA: 'Playfair Display';
+$SIZE_LARGE: 4em;
+$SIZE_MEDIUM: 2.5em;
+$MARGIN: 4% auto;
+
+// MIXINS
+@mixin cover {
+  /*fill screen sizes dynamically, http://stackoverflow.com/a/16719061*/
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+@mixin box_container {
+  border: 2px solid darkgray;
+  border-radius: 5px;
+  background-color: #f9fafc;
+  opacity: 0.7;
+  color: #31548c;
+  font-family: $FONT_DATA;
+  font-size: 1.5em;
+  padding: 2%;
+  min-height: 120px;
+  /*vertical align text inside flex item*/
+  display:flex;
+  flex-direction:column;
+  justify-content:space-around;
+}
+@mixin flex_container {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+@mixin text_shadow {
+  /*from @mdo, http://markdotto.com/playground/3d-text/*/
+  text-shadow: 0 1px 0 #ccc,
+               0 2px 0 #c9c9c9,
+               0 3px 0 #bbb,
+               0 4px 0 #b9b9b9,
+               0 5px 0 #aaa,
+               0 6px 1px rgba(0,0,0,.1),
+               0 0 5px rgba(0,0,0,.1),
+               0 1px 3px rgba(0,0,0,.3),
+               0 3px 5px rgba(0,0,0,.2),
+               0 5px 10px rgba(0,0,0,.25),
+               0 10px 10px rgba(0,0,0,.2),
+               0 20px 20px rgba(0,0,0,.15);
+}
+
+//NESTED
+body,html {
+  @include cover;
+  /*https://css-tricks.com/perfect-full-page-background-image/*/
+  background: url($URL_background) no-repeat center center fixed;
+
+  .header {
+    color: yellow;
+    text-shadow: 2px 1px 1px yellow;
+    margin: $MARGIN;
+    h1 {
+      font-family: $FONT_HEADER;
+      font-size: $SIZE_LARGE;
+    }
+    h3 {
+      font-family: $FONT_SUBHEADER;
+      font-size: $SIZE_MEDIUM;
+    }
+  }
+  .content {
+    #weather-icon {
+      font-size: $SIZE_MEDIUM;
+    }
+
+    #degrees {
+      @include text_shadow;
+      font-family: $FONT_TEMP;
+      font-size: $SIZE_MEDIUM;
+      color: white;
+
+      background-color:  Transparent;
+      border: none;
+    }
+  }
+  .boxes {
+    margin: $MARGIN;
+    @include flex_container;
+  }
+  .col, .loading {
+    @include box_container;
+  }
+}

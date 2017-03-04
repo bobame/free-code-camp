@@ -91,7 +91,7 @@ class LocalWeather extends React.Component {
     // Dispay message indication loading weather data
     if (!this.state.data) {
       return (
-        <div className='mssg-grabbing'>Grabbing weather data...</div>
+        <div className='loading'>Grabbing weather data...</div>
       );
     }
     // Display weather data
