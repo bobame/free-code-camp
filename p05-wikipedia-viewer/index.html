@@ -5,48 +5,19 @@
     <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
     <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
     <link rel="stylesheet" href="custom.css">
-    <title>Wikipedia Viewer</title>
+    <title>Wikimedia Viewer</title>
   </head>
   <body>
+    
+    <div id="app"></div>
 
-    <!-- container -->
-    <div class="container text-center">
-      <!-- Random Search -->
-      <div class="random-search">
-        <button id="random-search">
-          Surprise me!
-        </button>
-        <span style="font-size:0.8em;">or...</span>
-      </div>
-
-      <!-- User Search -->
-      <div class="user-search">
-        <button id="user-search-icon"><i class="fa fa-search"></i>
-          </div>
-        <div class="user-search">
-          <input type="search" list="search-suggestions" id="user-search-field" class="form-control" placeholder="Enter search..." />
-          <button id="clear-btn">Close</button>
-          <button id="search-btn">Search</button>
-        </div>
-
-        <!-- Text Instruction to Search -->
-        <div class="text-search">
-          <p id="text-search">Click icon to search</p>
-        </div>
-
-        <!-- Search Results -->
-        <div class="search-results">
-          <ul id="search-results">
-          </ul>
-        </div>
-
-    </div> <!-- /container -->
-
-    <!-- jquery, bootstrap, js -->
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js'></script>
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js'></script>
-    <script src="action.js"></script>
+    <script src="https://unpkg.com/react@15.4.0/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@15.4.0/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.24/browser.min.js"></script>
+    <script type="text/babel"  src="action.js"></script>
 
     </script>
   </body>
