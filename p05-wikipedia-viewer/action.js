@@ -6,6 +6,7 @@ class App extends React.Component {
     this.state = {
       isBeforeSearchField: true,
       searchString: '',
+      buildingSearchString: '',
       results: []
     }
     // Error when not binded
@@ -37,47 +38,55 @@ class App extends React.Component {
 
   handleSearchButtonClick() {
     console.log('clicked search button');
-    if (this.state.searchString.length === 0 || this.state.searchString == null) {
-      alert('What would you like to search for?');
+    if (this.state.buildingSearchString.length === 0 || this.state.buildingSearchString == null) {
+      console.log('What would you like to search for?');
     } else {
-      console.log('executing search for search string', this.state.searchString);
-      let SEARCH_API = `https://crossorigin.me/https://en.wikipedia.org/w/api.php?action=opensearch&search=${this.state.searchString}&format=json&callback=?`;
-
-      axios.get(SEARCH_API)
-      .then(function (response) {
-        // Ignores beginning '/**/(' and ending ')'
-        let data = response.data.substring(5, response.data.length-1);
-        try {
-          data = JSON.parse(data);
-          console.log('Data:\t', data);
-          // If successful, data format expected as follows
-          // Array[4]
-          // 0: <search_string>
-          // 1: Array[10], containing <index>: <title>...
-          // 2: Array[10], containing <index>: <description>...
-          // 3: Array[10], containing <index>: <wikipedia_url>...
-          for (let i=0; i<10; i++) {
-            let tempResults = this.state.results;
-            tempResults.push([
-              data[1][i],
-              data[2][i],
-              data[3][i]
-            ]);
-            this.setState({ results: tempResults });
-          }
-          console.log('Results:\t', this.state.results);
-        } catch(e) {
-          console.log('ERROR:\t', e);
-        }
-      }.bind(this)) // NOTE: need to bind else throwing state undefined error
-      .catch(function (error) {
-        console.log('ERROR:\t', error);
-      });
+      // Callback to wait for setState before function, http://stackoverflow.com/a/37401726
+      this.setState({
+        searchString: this.state.buildingSearchString,
+        buildingSearchString: ''
+      }, this.performSearch);
     }
   }
 
-  handleSearchString(searchString) {
-    this.setState({ searchString });
+  performSearch() {
+    console.log('executing search for search string:', this.state.searchString);
+    let SEARCH_API = `https://crossorigin.me/https://en.wikipedia.org/w/api.php?action=opensearch&search=${this.state.searchString}&format=json&callback=?`;
+
+    axios.get(SEARCH_API)
+    .then(function (response) {
+      // Ignores beginning '/**/(' and ending ')'
+      let data = response.data.substring(5, response.data.length-1);
+      try {
+        data = JSON.parse(data);
+        console.log('Data:\t', data);
+        // If successful, data format expected as follows
+        // Array[4]
+        // 0: <search_string>
+        // 1: Array[10], containing <index>: <title>...
+        // 2: Array[10], containing <index>: <description>...
+        // 3: Array[10], containing <index>: <wikipedia_url>...
+        for (let i=0; i<10; i++) {
+          let tempResults = this.state.results;
+          tempResults.push([
+            data[1][i],
+            data[2][i],
+            data[3][i]
+          ]);
+          this.setState({ results: tempResults });
+        }
+        console.log('Results:\t', this.state.results);
+      } catch(e) {
+        console.log('ERROR:\t', e);
+      }
+    }.bind(this)) // NOTE: need to bind else throwing state undefined error
+    .catch(function (error) {
+      console.log('ERROR:\t', error);
+    });
+  }
+
+  handleSearchString(buildingSearchString) {
+    this.setState({ buildingSearchString });
   }
 
   render() {
@@ -97,7 +106,7 @@ class App extends React.Component {
             <TextSearch
                     closeButtonClick={this.handleCloseButtonClick}
                     searchButtonClick={this.handleSearchButtonClick}
-                    searchString={this.handleSearchString} />
+                    buildingSearchString={this.handleSearchString} />
         }
         {
           (this.state.results.length > 0) ? <SearchResults results={this.state.results} /> : null
@@ -135,7 +144,7 @@ const TextSearch = (props) => {
             id="user-search-field"
             className="form-control"
             placeholder="Enter search..."
-            onChange={event => props.searchString(event.target.value)} />
+            onChange={event => props.buildingSearchString(event.target.value)} />
       <button onClick={props.closeButtonClick} id="clear-btn">Close</button>
       <button onClick={props.searchButtonClick} id="search-btn">Search</button>
     </div>
