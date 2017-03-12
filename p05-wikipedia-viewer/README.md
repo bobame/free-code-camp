@@ -58,3 +58,5 @@ see [instructions](https://www.freecodecamp.com/challenges/build-a-wikipedia-vie
 - [cdn for autocomplete](https://cdnjs.com/libraries/jqueryui) (ending /jquery-ui.min.js)
 - [autocomplete example](http://w3lessons.info/2015/03/01/autocomplete-search-using-wikipedia-api-and-jquery-ui/)
 - look into vertical center-aligning
+- cors workaround using crossoriginme [here](https://crossorigin.me/)
+- axios documentation and simple example [here](https://www.npmjs.com/package/axios)
