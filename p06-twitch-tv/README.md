@@ -75,4 +75,3 @@ see [instructions](https://www.freecodecamp.com/challenges/use-the-twitchtv-json
 - colors from [Paletton](http://paletton.com/#uid=11T0u0kkVsbp4QUnjBfhUlFbjbz)
 - submitting project as all given requirements satisfied
 - noting down tasks for future enhancements in "Future Enhancements" section above
-- test branch
