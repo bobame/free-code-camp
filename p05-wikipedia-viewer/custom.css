@@ -85,8 +85,17 @@ USER SEARCH
 TEXT TO SEARCH
 *************************/
 
-.text-search {
+.user-search {
   margin-top: 3%;
+}
+
+#clear-btn, #search-btn {
+  color: #9775AA;
+  background-color: #c7c7d6;
+}
+
+input {
+  font-family: Georgia;
 }
 
 

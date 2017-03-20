@@ -60,3 +60,5 @@ see [instructions](https://www.freecodecamp.com/challenges/build-a-wikipedia-vie
 - look into vertical center-aligning
 - cors workaround using crossoriginme [here](https://crossorigin.me/)
 - axios documentation and simple example [here](https://www.npmjs.com/package/axios)
+- render triggered after every setState() [here](http://stackoverflow.com/a/24719289)
+- this.setState(this.state) vs. this.forceUpdate() [here](http://stackoverflow.com/questions/30626030/can-you-force-a-react-component-to-rerender-without-calling-setstate#comment58215798_30626072)

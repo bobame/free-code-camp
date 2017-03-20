@@ -18,17 +18,17 @@ class App extends React.Component {
   }
 
   handleRandomSearchButtonClick() {
-    console.log('clicked random search button');
+    console.log('APP HELPER - handleRandomSearchButtonClick()');
     window.open(RANDOM_API, '_blank');
   }
 
   handleSearchIconClick() {
-    console.log('clicked search icon');
+    console.log('APP HELPER - handleSearchIconClick()');
     this.setState({ isBeforeSearchField: false });
   }
 
   handleCloseButtonClick() {
-    console.log('clicked close button');
+    console.log('APP HELPER - handleCloseButtonClick()');
     this.setState({
       isBeforeSearchField: true,
       searchString: '',
@@ -37,19 +37,22 @@ class App extends React.Component {
   }
 
   handleSearchButtonClick() {
-    console.log('clicked search button');
+    console.log('APP HELPER - handleSearchButtonClick()');
     if (this.state.buildingSearchString.length === 0 || this.state.buildingSearchString == null) {
       console.log('What would you like to search for?');
     } else {
       // Callback to wait for setState before function, http://stackoverflow.com/a/37401726
       this.setState({
         searchString: this.state.buildingSearchString,
-        buildingSearchString: ''
+        buildingSearchString: '',
+        results: []
       }, this.performSearch);
+      // Also clearing input field
     }
   }
 
   performSearch() {
+    console.log('APP HELPER - performSearch()');
     console.log('executing search for search string:', this.state.searchString);
     let SEARCH_API = `https://crossorigin.me/https://en.wikipedia.org/w/api.php?action=opensearch&search=${this.state.searchString}&format=json&callback=?`;
 
@@ -73,9 +76,9 @@ class App extends React.Component {
             data[2][i],
             data[3][i]
           ]);
-          this.setState({ results: tempResults });
         }
         console.log('Results:\t', this.state.results);
+        this.triggerRender();
       } catch(e) {
         console.log('ERROR:\t', e);
       }
@@ -86,16 +89,24 @@ class App extends React.Component {
   }
 
   handleSearchString(buildingSearchString) {
+    console.log('APP HELPER - handleSearchString()');
     this.setState({ buildingSearchString });
   }
 
+  triggerRender() {
+    console.log('APP HELPER - triggerRender()');
+    this.setState(this.state);
+  }
+
   render() {
+    console.log('APP LIFECYCLE - render()');
     return (
       <div className='container text-center'>
         <div className="random-search">
           <button
             onClick={this.handleRandomSearchButtonClick}
-            id="random-search">
+            id='random-search'
+            title='Click me for a surprise article!'>
             Surprise me!
           </button>
           <span className='or'>or...</span>
@@ -106,26 +117,20 @@ class App extends React.Component {
             <TextSearch
                     closeButtonClick={this.handleCloseButtonClick}
                     searchButtonClick={this.handleSearchButtonClick}
-                    buildingSearchString={this.handleSearchString} />
+                    buildingSearchString={this.handleSearchString}
+                    inputDisplay={this.state.buildingSearchString} />
         }
-        {
-          (this.state.results.length > 0) ? <SearchResults results={this.state.results} /> : null
-        }
+        <SearchResults results={this.state.results} />
       </div>
     );
   }
-
-  componentDidMount() {
-
-  }
-
-
 }
 
 const SearchIcon = (props) => {
+  console.log('FUNC - SearchIcon(props)');
   return (
     <div className="user-search">
-      <button onClick={props.searchIconClick} id="user-search-icon">
+      <button onClick={props.searchIconClick} id="user-search-icon" title='Click to open search input field'>
         <i className="fa fa-search"></i>
       </button>
       <div className="text-search">
@@ -136,32 +141,49 @@ const SearchIcon = (props) => {
 }
 
 const TextSearch = (props) => {
+  console.log('FUNC - TextSearch(props)');
   return (
     <div className="user-search">
       <input
             type="search"
             list="search-suggestions"
             id="user-search-field"
-            className="form-control"
+            className="form-control focusedInput"
             placeholder="Enter search..."
-            onChange={event => props.buildingSearchString(event.target.value)} />
-      <button onClick={props.closeButtonClick} id="clear-btn">Close</button>
-      <button onClick={props.searchButtonClick} id="search-btn">Search</button>
+            onChange={event => props.buildingSearchString(event.target.value)}
+            value={props.inputDisplay} />
+      <button
+            onClick={props.closeButtonClick}
+            id="clear-btn"
+            className='btn-default'>
+            Close
+      </button>
+      <button
+            onClick={props.searchButtonClick}
+            id="search-btn"
+            className='btn-default'>
+            Search
+      </button>
     </div>
   );
 }
 
 const SearchResults = (props) => {
+  console.log('FUNC - SearchResults(props)', props.results);
+  // Adding null check here, else fails while getting index of null
+  if (props.results.length===0) {
+    return null;
+  }
   return (
     <div className="search-results">
       <ul id="search-results">
         {
           props.results.map(function(item, i){
-            <ResultListItem
+            return <ResultListItem
                     key={i}
                     title={props.results[i][0]}
                     description={props.results[i][1]}
-                    link={props.results[i][2]} />
+                    link={props.results[i][2]} />;
           })
         }
       </ul>
@@ -170,20 +192,19 @@ const SearchResults = (props) => {
 }
 
 const ResultListItem = (props) => {
+  console.log('FUNC - ResultListItem(props)');
+  // console.log('ResultListItem:', props.link, props.title, props.description);
   return (
     // Formatting as follows, from pre-React original
     // a tag with src={link} and text as {title}
     // br tag
     // tag-less {description}
     <li>
-      <a src={props.link} title={props.title} target='_blank'>{prop.title}</a>
+      <a src={props.link} title={props.title} target='_blank'>{props.title}</a>
       <br />
       {props.description}
     </li>
   );
 }
-
-
-
 
 ReactDOM.render(<App />, document.querySelector('#app'));
