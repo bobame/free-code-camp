@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css?family=Itim|Italianno");
+body {
+  background-color: #d3e0e8; }
+  body h1 {
+    color: #0f5875; }
+  body .navbar {
+    background-color: #0f5875;
+    height: 60px; }
+    body .navbar .navbar-brand {
+      color: white;
+      font-family: 'Itim';
+      font-size: 2.2em; }
+  body #footer {
+    padding-top: 10px;
+    bottom: 0;
+    position: absolute;
+    width: 100%; }
+    body #footer #creds {
+      text-align: center;
+      font-family: 'Italianno';
+      font-size: 2em; }
+
+/*# sourceMappingURL=style.css.map */

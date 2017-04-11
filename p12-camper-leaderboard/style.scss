@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css?family=Itim|Italianno');
+
+$color-body: #d3e0e8;
+$color-borders: #0f5875;
+$color-borders-text: white;
+
+@mixin add-test-border() {
+  border: 1px solid black;
+}
+
+body {
+  background-color: $color-body;
+
+  h1 {
+    color: $color-borders;
+  }
+
+  .navbar {
+    background-color: $color-borders;
+    height: 60px;
+
+    .navbar-brand {
+      color: $color-borders-text;
+      font-family: 'Itim';
+      font-size: 2.2em;
+    }
+  }
+
+  #footer {
+    padding-top: 10px;
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+
+    #creds {
+      text-align: center;
+      font-family: 'Italianno';
+      font-size: 2em;
+    }
+  }
+
+
+}
