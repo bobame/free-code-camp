@@ -1,6 +1,23 @@
 ## Specifications
 
 - see [CodePen](#) for completed version **UPDATE LINK**
+**Same code throwing error on codepen, adding screenshots and instruction to run locally:**
+
+**Screenshot - Sorted by Recent**
+
+<img width="1256" alt="screen shot 2017-04-18 at 3 44 53 pm" src="https://cloud.githubusercontent.com/assets/10410748/25156404/1c14d98a-244f-11e7-8346-d4c423acd128.png">
+
+**Screenshot - Sorted by All Time**
+
+<img width="1257" alt="screen shot 2017-04-18 at 3 45 13 pm" src="https://cloud.githubusercontent.com/assets/10410748/25156414/32b8ca02-244f-11e7-90da-80564c7c9c00.png">
+
+**Instructions:**
+
+```
+python -m SimpleHTTPServer <4digits>>
+```
+
+---
 
 ### Objective:
 Build a CodePen.io app that is functionally similar to [this](https://codepen.io/freeCodeCamp/full/eZGMjp).
