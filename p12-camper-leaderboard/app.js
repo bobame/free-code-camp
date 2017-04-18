@@ -1,9 +1,12 @@
 
 const Data = {
-  url_fcc: 'https://www.freecodecamp.com/havefuncoding'
+  url_fcc: 'https://www.freecodecamp.com/havefuncoding',
+  url_recent: 'https://fcctop100.herokuapp.com/api/fccusers/top/recent',
+  url_alltime: 'https://fcctop100.herokuapp.com/api/fccusers/top/alltime'
 }
 
 const Header = () => {
+  //static header containing navbar with freecodecamp brand
   return (
     <div className='navbar navbar-default' id='header'>
       <div className='navbar-brand'>
@@ -14,52 +17,92 @@ const Header = () => {
   );
 }
 
-const FillerContent = () => {
-  return (
-    <div>
-      {
-        'Lorem ipsum dolor sit amet'.repeat(1000)
-      }
-    </div>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      recent: null,
+      alltime: null,
+      filterRecent: true //setting default filter as recent
+    }
+    this.sortRecent = this.sortRecent.bind(this);
+    this.sortAlltime = this.sortAlltime.bind(this);
+    this.displayLeaders = this.displayLeaders.bind(this);
+  }
+
+  componentWillMount() {
+    console.log('App.componentWillMount()');
+    // mounting data for sorting by recent
+    $.getJSON(Data.url_recent).done(response => {
+      this.setState({ recent: response });
+    }.bind(this));
+    // mounting data for sorting by alltime
+    $.getJSON(Data.url_alltime).done(response => {
+      this.setState({ alltime: response });
+    });
+  }
+
+  sortRecent() {
+    console.log('App.sortRecent()');
+    this.setState({ filterRecent: true });
+  }
+
+  sortAlltime() {
+    console.log('App.sortAlltime()');
+    this.setState({ filterRecent: false });
+  }
+
+  displayLeaders(data) {
+    console.log('App.displayLeaders()');
+    if (!data) return; // prevents from rendering null
+
+  }
+
+  render() {
+    return (
+      <div>
+        <Header />
+        <div className='container'>
+          <table className='table table-hover'>
+            <thead>
+              <tr id='th-main'>
+                <th colSpan={4} className='text-center'>Camper Leaderboard</th>
+              </tr>
+              <tr id='th-sub'>
+                <th className='text-center'>#</th>
+                <th className='text-center'>Camper Name</th>
+                <th className='text-center'>Points (last 30 days)&nbsp;
+                  <button
+                    onClick={this.sortRecent}
+                    id="sort-recent">
+                    <i className="fa fa-sort-desc" aria-hidden="true"></i>
+                  </button>
+                </th>
+                <th className='text-center'>Points (all time)&nbsp;
+                  <button
+                    onClick={this.sortAlltime}
+                    id="sort-all">
+                    <i className="fa fa-sort-desc" aria-hidden="true"></i>
+                  </button>
+                </th>
+              </tr>
+            </thead>
+            {
+              (this.state.filterRecent)
+                ? this.displayLeaders(this.state.recent)
+                : this.displayLeaders(this.state.alltime)
+            }
+          </table>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 }
 
-const Leaderboard = (props) => {
-  return (
-    <div className='container'>
-      <table className='table table-hover'>
-        <thead>
-          <tr id='th-main'>
-            <th colSpan={4} className='text-center'>Camper Leaderboard</th>
-          </tr>
-          <tr id='th-sub'>
-            <th className='text-center'>#</th>
-            <th className='text-center'>Camper Name</th>
-            <th className='text-center'>Points (last 30 days)&nbsp;
-              <button
-                onClick={props.sortRecent}
-                id="sort-recent">
-                <i className="fa fa-sort-desc" aria-hidden="true"></i>
-              </button>
-            </th>
-            <th className='text-center'>Points (all time)&nbsp;
-              <button
-                onClick={props.sortAll}
-                id="sort-all">
-                <i className="fa fa-sort-desc" aria-hidden="true"></i>
-              </button>
-            </th>
-          </tr>
-        </thead>
-        {
-          (props.leaders)? props.displayData() : null
-        }
-      </table>
-    </div>
-  );
-}
 
 const Footer = () => {
+  //static footer with user link to freecodecamp profile
   return (
     <div className='navbar navbar-fixed-bottom' id='footer'>
       <div id='creds'>
@@ -69,62 +112,16 @@ const Footer = () => {
   );
 }
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: []
-    }
-    this.sortRecent = this.sortRecent.bind(this);
-    this.sortAll = this.sortAll.bind(this);
-    this.displayData = this.displayData.bind(this);
-  }
-
-  sortRecent() {
-    const sourceRecent = 'https://fcctop100.herokuapp.com/api/fccusers/top/recent';
-    console.log('clicked button to sort by recent');
-    $.getJSON(sourceRecent).done((response) => {
-      this.setState({
-        data: response.map((x, i) => {
-          `<tr>
-            <td>${i}</td>
-            <td>${x.img}${x.username}</td>
-            <td>${x.recent}</td>
-            <td>${x.alltime}</td>
-          </tr>`
-        }).join('\n')
-      });
-    }.bind(this));
-  }
-
-  sortAll() {
-    console.log('clicked button to sort by all');
-  }
-
-  displayData() {
-    console.log('need to display data');
-    return (
-      <tbody>
-        {
-          (document.querySelector('tbody'))? document.querySelector('tbody').innerHTML = this.state.data: null
-        }
-      </tbody>
-    );
-  }
-
-  render() {
-    return (
-      <div>
-        <Header />
-        <Leaderboard
-          sortRecent={this.sortRecent}
-          sortAll={this.sortAll}
-          leaders={this.state.data}
-          displayData={this.displayData} />
-        <Footer />
-      </div>
-    );
-  }
-}
-
 ReactDOM.render(<App />, document.querySelector('#app'));
+
+
+/*
+response.map((x, i) => {
+  `<tr>
+    <td>${i}</td>
+    <td>${x.img}${x.username}</td>
+    <td>${x.recent}</td>
+    <td>${x.alltime}</td>
+  </tr>`
+}).join('\n')
+*/
