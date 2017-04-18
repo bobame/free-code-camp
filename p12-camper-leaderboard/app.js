@@ -55,10 +55,26 @@ class App extends React.Component {
   displayLeaders(data) {
     console.log('App.displayLeaders()');
     if (!data) return; // prevents from rendering null
-
+    return (
+      <tbody>
+      {
+        data.map(function(leader, index) {
+          return (
+            <tr key={leader.username}>
+              <td className='number text-center'>{index+1}</td>
+              <td className='leader'>{leader.username}</td>
+              <td className='recent text-center'></td>
+              <td className='alltime text-center'></td>
+            </tr>
+          )
+        })
+      }
+      </tbody>
+    );
   }
 
   render() {
+    console.log('App.render()');
     return (
       <div>
         <Header />
@@ -94,22 +110,9 @@ class App extends React.Component {
             }
           </table>
         </div>
-        <Footer />
       </div>
     );
   }
-}
-
-
-const Footer = () => {
-  //static footer with user link to freecodecamp profile
-  return (
-    <div className='navbar navbar-fixed-bottom' id='footer'>
-      <div id='creds'>
-        by <a href={Data.url_fcc} target='_blank'>@havefuncoding</a>
-      </div>
-    </div>
-  );
 }
 
 ReactDOM.render(<App />, document.querySelector('#app'));
