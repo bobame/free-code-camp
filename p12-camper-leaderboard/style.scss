@@ -6,14 +6,27 @@ $color-borders-text: white;
 $font-head: 'Itim';
 $font-main: 'Lato';
 $font-curvy: 'Italianno';
+$height-of-navbar: 60px;
+
+@mixin make-sticker-footer-adaptive() {
+  //sticky footer getting stuck mid page after render, http://stackoverflow.com/a/36765856
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
 
 @mixin add-test-border() {
   border: 1px solid black;
 }
 
-* { @include add-test-border(); }
+// * { @include add-test-border(); }
 
-body { background-color: $color-body; }
+body {
+  background-color: $color-body;
+  margin-top: $height-of-navbar;
+  margin-bottom: $height-of-navbar;
+}
 
 #th-sub {
   // text-align: center; //not working here, added inline jsx
@@ -36,9 +49,18 @@ button {
   background-color: Transparent;
 }
 
+table, tr, th, td {
+  border: 1px ridge lighten($color-borders, 15%);
+}
+
+.leader > img {
+  height: $height-of-navbar;
+  width: $height-of-navbar;
+}
+
 .navbar {
   background-color: $color-borders;
-  height: 60px;
+  height: $height-of-navbar;
 }
 
 .navbar-brand {
@@ -48,8 +70,9 @@ button {
 }
 
 #footer {
+  @include make-sticker-footer-adaptive();
+  margin-top: $height-of-navbar;
   padding-top: 10px;
-  position: absolute;
   width: 100%;
 }
 

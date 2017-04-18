@@ -8,7 +8,7 @@ const Data = {
 const Header = () => {
   //static header containing navbar with freecodecamp brand
   return (
-    <div className='navbar navbar-default' id='header'>
+    <div className='navbar navbar-default navbar-fixed-top' id='header'>
       <div className='navbar-brand'>
         freeCodeCamp&nbsp;
         <i className='fa fa-free-code-camp' aria-hidden='true'></i>
@@ -62,9 +62,9 @@ class App extends React.Component {
           return (
             <tr key={leader.username}>
               <td className='number text-center'>{index+1}</td>
-              <td className='leader'>{leader.username}</td>
-              <td className='recent text-center'></td>
-              <td className='alltime text-center'></td>
+              <td className='leader'><img src={leader.img} alt='Leader Avatar'/>{leader.username}</td>
+              <td className='recent text-center'>{leader.recent}</td>
+              <td className='alltime text-center'>{leader.alltime}</td>
             </tr>
           )
         })
@@ -110,9 +110,20 @@ class App extends React.Component {
             }
           </table>
         </div>
+        <Footer />
       </div>
     );
   }
+}
+
+const Footer = () => {
+  return (
+    <div className='navbar navbar-fixed-bottom' id='footer'>
+      <div id='creds'>
+        by <a href={Data.url_fcc} target='_blank'>@havefuncoding</a>
+      </div>
+    </div>
+  );
 }
 
 ReactDOM.render(<App />, document.querySelector('#app'));
