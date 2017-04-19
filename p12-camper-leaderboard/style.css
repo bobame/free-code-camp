@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Itim|Italianno|Lato");
+@import url("https://fonts.googleapis.com/css?family=Itim|Italianno|Lato|Roboto");
 body {
   background-color: #d3e0e8;
   margin-top: 60px;
@@ -22,6 +22,14 @@ button {
 
 table, tr, th, td {
   border: 1px ridge #188bb9; }
+
+td {
+  font-family: "Roboto";
+  vertical-align: middle; }
+
+.leader {
+  font-size: 1.2em;
+  font-weight: 900; }
 
 .leader > img {
   height: 60px;

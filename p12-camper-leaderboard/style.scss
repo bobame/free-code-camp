@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Itim|Italianno|Lato');
+@import url('https://fonts.googleapis.com/css?family=Itim|Italianno|Lato|Roboto');
 
 $color-body: #d3e0e8;
 $color-borders: #0f5875;
@@ -6,6 +6,7 @@ $color-borders-text: white;
 $font-head: 'Itim';
 $font-main: 'Lato';
 $font-curvy: 'Italianno';
+$font-leaders: 'Roboto';
 $height-of-navbar: 60px;
 
 @mixin make-sticker-footer-adaptive() {
@@ -51,6 +52,16 @@ button {
 
 table, tr, th, td {
   border: 1px ridge lighten($color-borders, 15%);
+}
+
+td {
+  font-family: $font-leaders;
+  vertical-align:middle;
+}
+
+.leader {
+  font-size: 1.2em;
+  font-weight: 900;
 }
 
 .leader > img {

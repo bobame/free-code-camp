@@ -1,8 +1,9 @@
 
 const Data = {
-  url_fcc: 'https://www.freecodecamp.com/havefuncoding',
+  url_me: 'https://www.freecodecamp.com/havefuncoding',
   url_recent: 'https://fcctop100.herokuapp.com/api/fccusers/top/recent',
-  url_alltime: 'https://fcctop100.herokuapp.com/api/fccusers/top/alltime'
+  url_alltime: 'https://fcctop100.herokuapp.com/api/fccusers/top/alltime',
+  url_fcc: 'https://www.freecodecamp.com/'
 }
 
 const Header = () => {
@@ -62,7 +63,11 @@ class App extends React.Component {
           return (
             <tr key={leader.username}>
               <td className='number text-center'>{index+1}</td>
-              <td className='leader'><img src={leader.img} alt='Leader Avatar'/>{leader.username}</td>
+              <td className='leader'>
+                <img src={leader.img} alt='Leader Avatar'/>
+                &nbsp;
+                <a href={Data.url_fcc+leader.username} target='_blank'>{leader.username}</a>
+              </td>
               <td className='recent text-center'>{leader.recent}</td>
               <td className='alltime text-center'>{leader.alltime}</td>
             </tr>
@@ -120,7 +125,7 @@ const Footer = () => {
   return (
     <div className='navbar navbar-fixed-bottom' id='footer'>
       <div id='creds'>
-        by <a href={Data.url_fcc} target='_blank'>@havefuncoding</a>
+        by <a href={Data.url_me} target='_blank'>@havefuncoding</a>
       </div>
     </div>
   );
