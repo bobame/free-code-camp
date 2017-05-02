@@ -36,7 +36,7 @@ class App extends React.Component {
     // mounting data for sorting by recent
     $.getJSON(Data.url_recent).done(response => {
       this.setState({ recent: response });
-    }.bind(this));
+    }); // took out ".bind(this)" as throwing illegal token error in codepen
     // mounting data for sorting by alltime
     $.getJSON(Data.url_alltime).done(response => {
       this.setState({ alltime: response });

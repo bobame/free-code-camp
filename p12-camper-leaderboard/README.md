@@ -1,15 +1,6 @@
 ## Specifications
 
-- see [CodePen](#) for completed version **UPDATE LINK**
-**Same code throwing error on codepen, adding screenshots and instruction to run locally:**
-
-**Screenshot - Sorted by Recent**
-
-<img width="1256" alt="screen shot 2017-04-18 at 3 44 53 pm" src="https://cloud.githubusercontent.com/assets/10410748/25156404/1c14d98a-244f-11e7-8346-d4c423acd128.png">
-
-**Screenshot - Sorted by All Time**
-
-<img width="1257" alt="screen shot 2017-04-18 at 3 45 13 pm" src="https://cloud.githubusercontent.com/assets/10410748/25156414/32b8ca02-244f-11e7-90da-80564c7c9c00.png">
+- see [CodePen](http://codepen.io/gracen/full/ygrdaG/) for completed version
 
 **Instructions:**
 
@@ -48,6 +39,8 @@ see [instructions](https://www.freecodecamp.com/challenges/build-a-camper-leader
 - thinking in react [here](https://facebook.github.io/react/docs/thinking-in-react.html)
 - build a simple clock [here](https://facebook.github.io/react/docs/state-and-lifecycle.html) and corresponding codepen example [here](http://codepen.io/gaearon/pen/amqdNA?editors=0010)
 
-## TODO
+## Screenshots
 
-- egghead getting started with redux series [here](https://egghead.io/courses/getting-started-with-redux)
+<img width="1094" alt="screen shot 2017-05-02 at 4 10 00 pm" src="https://cloud.githubusercontent.com/assets/10410748/25642994/ff994ef4-2f51-11e7-8cae-1c720a317f9e.png">
+
+<img width="1092" alt="screen shot 2017-05-02 at 4 10 08 pm" src="https://cloud.githubusercontent.com/assets/10410748/25642997/02681fb6-2f52-11e7-96dd-117fa2fadb47.png">
