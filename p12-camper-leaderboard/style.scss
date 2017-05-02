@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css?family=Itim|Italianno|Lato|Roboto');
+
+$color-body: #d3e0e8;
+$color-borders: #0f5875;
+$color-borders-text: white;
+$font-head: 'Itim';
+$font-main: 'Lato';
+$font-curvy: 'Italianno';
+$font-leaders: 'Roboto';
+$height-of-navbar: 60px;
+
+@mixin make-sticker-footer-adaptive() {
+  //sticky footer getting stuck mid page after render, http://stackoverflow.com/a/36765856
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+@mixin add-test-border() {
+  border: 1px solid black;
+}
+
+// * { @include add-test-border(); }
+
+body {
+  background-color: $color-body;
+  margin-top: $height-of-navbar;
+  margin-bottom: $height-of-navbar;
+}
+
+#th-sub {
+  // text-align: center; //not working here, added inline jsx
+  font-family: $font-main;
+  font-size: 1.2em;
+  background-color: darken($color-borders, 15%);
+  color: $color-borders-text;
+}
+
+#th-main {
+  // text-align: center;
+  font-family: $font-curvy;
+  font-size: 3.2em;
+  background-color: lighten($color-borders, 65%);
+  color: darken($color-borders, 15%);
+}
+
+button {
+  border: none;
+  background-color: Transparent;
+}
+
+table, tr, th, td {
+  border: 1px ridge lighten($color-borders, 15%);
+}
+
+td {
+  font-family: $font-leaders;
+  vertical-align:middle;
+}
+
+.leader {
+  font-size: 1.2em;
+  font-weight: 900;
+}
+
+.leader > img {
+  height: $height-of-navbar;
+  width: $height-of-navbar;
+}
+
+.navbar {
+  background-color: $color-borders;
+  height: $height-of-navbar;
+}
+
+.navbar-brand {
+  color: $color-borders-text !important;
+  font-family: $font-head;
+  font-size: 2.2em;
+}
+
+#footer {
+  @include make-sticker-footer-adaptive();
+  margin-top: $height-of-navbar;
+  padding-top: 10px;
+  width: 100%;
+}
+
+#creds {
+  text-align: center;
+  font-family: $font-curvy;
+  font-size: 2em;
+}

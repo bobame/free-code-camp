@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css?family=Itim|Italianno|Lato|Roboto");
+body {
+  background-color: #d3e0e8;
+  margin-top: 60px;
+  margin-bottom: 60px; }
+
+#th-sub {
+  font-family: "Lato";
+  font-size: 1.2em;
+  background-color: #062531;
+  color: white; }
+
+#th-main {
+  font-family: "Italianno";
+  font-size: 3.2em;
+  background-color: #d6f0fa;
+  color: #062531; }
+
+button {
+  border: none;
+  background-color: Transparent; }
+
+table, tr, th, td {
+  border: 1px ridge #188bb9; }
+
+td {
+  font-family: "Roboto";
+  vertical-align: middle; }
+
+.leader {
+  font-size: 1.2em;
+  font-weight: 900; }
+
+.leader > img {
+  height: 60px;
+  width: 60px; }
+
+.navbar {
+  background-color: #0f5875;
+  height: 60px; }
+
+.navbar-brand {
+  color: white !important;
+  font-family: "Itim";
+  font-size: 2.2em; }
+
+#footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin-top: 60px;
+  padding-top: 10px;
+  width: 100%; }
+
+#creds {
+  text-align: center;
+  font-family: "Italianno";
+  font-size: 2em; }
+
+/*# sourceMappingURL=style.css.map */
