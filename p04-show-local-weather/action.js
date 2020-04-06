@@ -119,7 +119,7 @@ class LocalWeather extends React.Component {
     // setState undefined in geolocation callback, http://stackoverflow.com/a/38302892
     let self = this;
     const URL = 'http://api.openweathermap.org/data/2.5/weather?';
-    const API_KEY = '987bdab9b6f926dbb6de05bf67491e93';
+    const API_KEY = '<API_KEY>';
     // Checking for geolocation, https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/Using_geolocation#The_geolocation_object
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(function(position) {
