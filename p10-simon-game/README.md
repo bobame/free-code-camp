@@ -1,6 +1,6 @@
 ## Specifications
 
-- see [CodePen](http://s.codepen.io/gracen/debug/GrQyYp/PNrvYNoKnvpM) for completed version
+- see [CodePen](https://codepen.io/gracen/full/GrQyYp/) for completed version
 
 ### Objective:
 Build a CodePen.io app that is functionally similar to [this](https://codepen.io/Em-Ant/full/QbRyqq/).
